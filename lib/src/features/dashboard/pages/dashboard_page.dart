@@ -26,24 +26,47 @@ class DashboardPage extends StatelessWidget {
                           child: ListView(
                             children: <Widget>[
                               ListTile(
-                                title: Text(
+                                title: const Text(
                                   "Tạo cá thể",
                                 ),
+                                minLeadingWidth: 20,
+                                leading: state.currentIndex == 0
+                                    ? const Icon(
+                                        Icons.check_outlined,
+                                        color: Colors.green,
+                                      )
+                                    : null,
                                 onTap: () =>
                                     context.read<DashboardBloc>().changePage(0),
                               ),
-                              ListTile(title: Text("Menu B")),
-                              ListTile(title: Text("Menu C")),
-                              ListTile(title: Text("Menu D")),
-                              ListTile(title: Text("Menu E")),
-                              ListTile(title: Text("Menu F")),
-                              ListTile(title: Text("Menu G")),
-                              ListTile(title: Text("Menu H")),
-                              ListTile(title: Text("Menu I")),
-                              ListTile(title: Text("Menu J")),
-                              ListTile(title: Text("Menu K")),
-                              ListTile(title: Text("Menu L")),
-                              ListTile(title: Text("Menu M")),
+                              ListTile(
+                                minLeadingWidth: 20,
+                                leading: state.currentIndex == 1
+                                    ? const Icon(
+                                        Icons.check_outlined,
+                                        color: Colors.green,
+                                      )
+                                    : null,
+                                title: const Text(
+                                  "Family tree",
+                                ),
+                                onTap: () =>
+                                    context.read<DashboardBloc>().changePage(1),
+                              ),
+                              ListTile(
+                                minLeadingWidth: 20,
+                                leading: state.currentIndex == 2
+                                    ? const Icon(
+                                        Icons.check_outlined,
+                                        color: Colors.green,
+                                      )
+                                    : null,
+                                title: const Text(
+                                  "Danh sách cá thể",
+                                ),
+                                onTap: () =>
+                                    context.read<DashboardBloc>().changePage(2),
+                              ),
                             ],
                           ),
                         ),

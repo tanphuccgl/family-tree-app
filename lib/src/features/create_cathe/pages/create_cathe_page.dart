@@ -1,5 +1,7 @@
 import 'package:familytree/src/features/create_cathe/logic/create_cathe_bloc.dart';
+import 'package:familytree/src/network/model/product_model.dart';
 import 'package:familytree/src/theme/colors.dart';
+import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:familytree/widgets/froms/input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -119,6 +121,51 @@ class CreateCathePage extends StatelessWidget {
                                       .read<CreateCatheBloc>()
                                       .onChangedSex(!state.isMale),
                                 ),
+                                const Text("Video :"),
+                                sizebox20,
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: XColors.primary2,
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10, horizontal: 12)),
+                                  onPressed: () => context
+                                      .read<CreateCatheBloc>()
+                                      .onAddVideo(context),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: const [
+                                      Icon(
+                                        Icons.add_box_outlined,
+                                        color: Colors.black,
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                        "Thêm Video Mới",
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                sizebox20,
+                                if (state.video != "")
+                                  GestureDetector(
+                                    onTap: () {
+                                      Clipboard.setData(
+                                          ClipboardData(text: state.video));
+
+                                      XToast.show("Sao chép");
+                                    },
+                                    child: const Text(
+                                      "Link",
+                                      style: TextStyle(color: Colors.blue),
+                                    ),
+                                  ),
                               ]),
                         ),
                         const Padding(
@@ -152,6 +199,9 @@ class CreateCathePage extends StatelessWidget {
                                 sizebox20,
                                 XInput(
                                     value: state.familyCode,
+                                    errorText: state.isFamilyCodeExist == true
+                                        ? "Đã tồn tại"
+                                        : "",
                                     onChanged: (value) => context
                                         .read<CreateCatheBloc>()
                                         .onChangedFamilyCode(value)),
@@ -169,53 +219,122 @@ class CreateCathePage extends StatelessWidget {
                                     onChanged: (value) => context
                                         .read<CreateCatheBloc>()
                                         .onChangedColor(value)),
-                                const Text("Video :"),
-                                sizebox20,
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      elevation: 2,
-                                      side: const BorderSide(
-                                          color: XColors.primary3,
-                                          strokeAlign: 1),
-                                      backgroundColor: XColors.primary2,
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 10, horizontal: 12)),
-                                  onPressed: () {},
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: const [
-                                      Icon(
-                                        Icons.add_box_outlined,
-                                        color: Colors.black,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        "Thêm Video Mới",
+                                const Text.rich(
+                                  TextSpan(
+                                    text: "Loại",
+                                    style: TextStyle(
+                                      color: Colors.black, // Màu chữ của "Tên"
+                                    ),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                        text: " *",
                                         style: TextStyle(
-                                          fontSize: 20,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.normal,
+                                          color: Colors.red, // Màu chữ của "*"
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
                                 sizebox20,
+                                Container(
+                                  width: 85,
+                                  height: 50,
+                                  padding: const EdgeInsets.only(left: 5),
+                                  decoration: BoxDecoration(
+                                      color: XColors.primary2,
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: DropdownButton<ProductTypeEnum>(
+                                    icon: const Icon(Icons.arrow_drop_down),
+                                    iconSize: 22,
+                                    underline: const SizedBox(),
+                                    value: state.type,
+                                    onChanged: (ProductTypeEnum? value) {
+                                      context
+                                          .read<CreateCatheBloc>()
+                                          .onChangedType(value!);
+                                    },
+                                    items: ProductTypeEnum.values
+                                        .map((ProductTypeEnum location) {
+                                      return DropdownMenuItem<ProductTypeEnum>(
+                                        value: location,
+                                        child: Text(location.labelOf),
+                                      );
+                                    }).toList(),
+                                  ),
+                                ),
                                 sizebox20,
+                                Visibility(
+                                    visible: state.type != ProductTypeEnum.f0,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Text.rich(
+                                          TextSpan(
+                                            text: "Từ family code",
+                                            style: TextStyle(
+                                              color: Colors
+                                                  .black, // Màu chữ của "Tên"
+                                            ),
+                                            children: <TextSpan>[
+                                              TextSpan(
+                                                text: " *",
+                                                style: TextStyle(
+                                                  color: Colors
+                                                      .red, // Màu chữ của "*"
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        sizebox20,
+                                        if (state
+                                            .productSuggest.isNotEmpty) ...[
+                                          Container(
+                                            width: size.width,
+                                            height: 50,
+                                            padding:
+                                                const EdgeInsets.only(left: 5),
+                                            decoration: BoxDecoration(
+                                                color: XColors.primary2,
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            child: DropdownButton<ProductModel>(
+                                              icon: const Icon(
+                                                  Icons.arrow_drop_down),
+                                              iconSize: 22,
+                                              underline: const SizedBox(),
+                                              value: state.fromFamilyCode,
+                                              onChanged: (ProductModel? value) {
+                                                context
+                                                    .read<CreateCatheBloc>()
+                                                    .onChangedFromFamilyCode(
+                                                        value!);
+                                              },
+                                              items: state.productSuggest
+                                                  .map((ProductModel location) {
+                                                return DropdownMenuItem<
+                                                    ProductModel>(
+                                                  value: location,
+                                                  child: Text(location.id),
+                                                );
+                                              }).toList(),
+                                            ),
+                                          ),
+                                          sizebox20,
+                                        ]
+                                      ],
+                                    )),
                                 const Text("Ảnh :"),
                                 sizebox20,
                                 ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                      elevation: 2,
-                                      side: const BorderSide(
-                                          color: XColors.primary3,
-                                          strokeAlign: 1),
                                       backgroundColor: XColors.primary2,
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 10, horizontal: 12)),
-                                  onPressed: () {},
+                                  onPressed: () => context
+                                      .read<CreateCatheBloc>()
+                                      .onAddImage(context),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: const [
@@ -237,6 +356,15 @@ class CreateCathePage extends StatelessWidget {
                                     ],
                                   ),
                                 ),
+                                if (state.imageFile != null)
+                                  SizedBox(
+                                    width: 100,
+                                    height: 100,
+                                    child: Image.memory(
+                                      state.imageFile!.bytes!,
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
                               ]),
                         ),
                       ],

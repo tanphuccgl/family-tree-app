@@ -5,11 +5,13 @@ class DashboardState extends Equatable {
   final int currentIndex;
 
   List<Widget> get pages => [
-        CreateCathePage(),
+        const CreateCathePage(),
+        const TreeViewPage(),
+        const ListCaThePage(),
       ];
 
   const DashboardState({
-    this.currentIndex = 0,
+    this.currentIndex = 1,
   });
 
   @override
