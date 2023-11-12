@@ -176,7 +176,7 @@ class _XInputState extends State<XInput> {
         floatingLabelBehavior: FloatingLabelBehavior.auto,
         isDense: widget.isDense,
         contentPadding: widget.contentPadding ??
-            const EdgeInsets.symmetric(vertical: 11, horizontal: 15),
+            const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         prefixIcon: widget.prefixIcon,
         suffixIcon: _buildActions(),
         counterStyle: const TextStyle(color: XColors.borderInput),
@@ -195,9 +195,7 @@ class _XInputState extends State<XInput> {
       textCapitalization: widget.textCapitalization,
       style: widget.style ??
           Theme.of(context).textTheme.labelLarge?.copyWith(
-              fontSize: 18.sp,
-              color: Colors.black,
-              fontWeight: FontWeight.w500),
+              fontSize: 18, color: Colors.black, fontWeight: FontWeight.w500),
       textAlign: widget.textAlign,
       readOnly: widget.readOnly,
       autofocus: widget.autofocus,
