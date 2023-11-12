@@ -12,6 +12,13 @@ class CreateCatheState extends Equatable {
   final String videoLink;
   final String familyCode;
   final bool isMale;
+  final ProductModel fromFamilyCode;
+  final ProductTypeEnum type;
+  final List<ProductModel> productSuggest;
+  final bool isFamilyCodeExist;
+  final PlatformFile? imageFile;
+  final String video;
+
   const CreateCatheState({
     this.date = "",
     this.review = "",
@@ -23,7 +30,16 @@ class CreateCatheState extends Equatable {
     this.videoLink = "",
     this.familyCode = "",
     this.isMale = true,
+    required this.fromFamilyCode,
+    this.type = ProductTypeEnum.f0,
+    this.isFamilyCodeExist = false,
+    this.productSuggest = const [],
+    this.imageFile,
+    this.video = "",
   });
+
+  factory CreateCatheState.ds() =>
+      CreateCatheState(fromFamilyCode: ProductModel());
 
   @override
   List<Object?> get props => [
@@ -37,6 +53,12 @@ class CreateCatheState extends Equatable {
         videoLink,
         familyCode,
         isMale,
+        fromFamilyCode,
+        type,
+        productSuggest,
+        isFamilyCodeExist,
+        imageFile,
+        video,
       ];
 
   CreateCatheState copyWith({
@@ -50,6 +72,12 @@ class CreateCatheState extends Equatable {
     String? videoLink,
     String? familyCode,
     bool? isMale,
+    ProductModel? fromFamilyCode,
+    ProductTypeEnum? type,
+    List<ProductModel>? productSuggest,
+    bool? isFamilyCodeExist,
+    PlatformFile? imageFile,
+    String? video,
   }) {
     return CreateCatheState(
       date: date ?? this.date,
@@ -62,6 +90,12 @@ class CreateCatheState extends Equatable {
       videoLink: videoLink ?? this.videoLink,
       familyCode: familyCode ?? this.familyCode,
       isMale: isMale ?? this.isMale,
+      fromFamilyCode: fromFamilyCode ?? this.fromFamilyCode,
+      type: type ?? this.type,
+      productSuggest: productSuggest ?? this.productSuggest,
+      isFamilyCodeExist: isFamilyCodeExist ?? this.isFamilyCodeExist,
+      imageFile: imageFile ?? this.imageFile,
+      video: video ?? this.video,
     );
   }
 }

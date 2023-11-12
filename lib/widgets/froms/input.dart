@@ -2,7 +2,6 @@ import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/radius.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class XInput extends StatefulWidget {
   const XInput({
@@ -153,7 +152,7 @@ class _XInputState extends State<XInput> {
   @override
   Widget build(BuildContext context) {
     final enabledBorder = OutlineInputBorder(
-      borderSide: const BorderSide(color: XColors.borderInput, width: 0),
+      borderSide: const BorderSide(color: XColors.primary, width: 0),
       borderRadius: BorderHelper.r10,
     );
     final focusedBorder = OutlineInputBorder(
@@ -161,7 +160,7 @@ class _XInputState extends State<XInput> {
       borderRadius: BorderHelper.r10,
     );
     final errorBorder = OutlineInputBorder(
-      borderSide: const BorderSide(color: Colors.red, width: 0),
+      borderSide: const BorderSide(color: XColors.primary, width: 0),
       borderRadius: BorderHelper.r10,
     );
 
@@ -189,6 +188,7 @@ class _XInputState extends State<XInput> {
         border: widget.border,
         helperText: "",
         counterText: "",
+        errorText: widget.errorText,
       ),
       onTapOutside: (e) => FocusScope.of(context).unfocus(),
       keyboardType: widget.keyboardType,

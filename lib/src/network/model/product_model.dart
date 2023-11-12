@@ -6,6 +6,53 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:familytree/src/network/model/common/base_model.dart';
 import 'package:familytree/src/utils/utils.dart';
 
+enum ProductTypeEnum {
+  f0,
+  f1,
+  f2,
+  f3;
+
+  static ProductTypeEnum fromString(String? type) {
+    switch (type) {
+      case "F0":
+        return ProductTypeEnum.f0;
+      case "F1":
+        return ProductTypeEnum.f1;
+      case "F2":
+        return ProductTypeEnum.f2;
+      case "F3":
+        return ProductTypeEnum.f3;
+    }
+    return ProductTypeEnum.f0;
+  }
+
+  String get nameOf {
+    switch (this) {
+      case ProductTypeEnum.f0:
+        return "F0";
+      case ProductTypeEnum.f1:
+        return "F1";
+      case ProductTypeEnum.f2:
+        return "F2";
+      case ProductTypeEnum.f3:
+        return "F3";
+    }
+  }
+
+  String get labelOf {
+    switch (this) {
+      case ProductTypeEnum.f0:
+        return "F0";
+      case ProductTypeEnum.f1:
+        return "F1";
+      case ProductTypeEnum.f2:
+        return "F2";
+      case ProductTypeEnum.f3:
+        return "F3";
+    }
+  }
+}
+
 class ProductModel extends BaseModel {
   final String date;
   final String review;
@@ -15,8 +62,10 @@ class ProductModel extends BaseModel {
   final double weight;
   final String name;
   final String videoLink;
-  final String familyCode;
+  final String fromId;
   final bool isMale;
+  final String image;
+  final ProductTypeEnum type;
 
   ProductModel({
     String? id,
@@ -30,8 +79,10 @@ class ProductModel extends BaseModel {
     this.weight = 0,
     this.name = "",
     this.videoLink = "",
-    this.familyCode = "",
+    this.fromId = "",
     this.isMale = true,
+    this.type = ProductTypeEnum.f0,
+    this.image = "",
   }) : super(id: id ?? "", createAt: createAt, updateAt: updateAt);
 
   factory ProductModel.empty() {
@@ -50,6 +101,7 @@ class ProductModel extends BaseModel {
       'date': date,
       "createAt": createAt,
       "updateAt": updateAt,
+      "type": type.nameOf,
       "id": id,
       'review': review,
       'age': age,
@@ -58,8 +110,9 @@ class ProductModel extends BaseModel {
       'weight': weight,
       'name': name,
       'videoLink': videoLink,
-      'familyCode': familyCode,
+      'fromId': fromId,
       'isMale': isMale,
+      'image': image,
     };
   }
 
@@ -68,6 +121,9 @@ class ProductModel extends BaseModel {
       id: id ?? map['id'],
       createAt: Utils.convertMapToTimestamp(map['createAt'] ?? 0),
       updateAt: Utils.convertMapToTimestamp(map['updateAt'] ?? 0),
+      type: map["type"] == null
+          ? ProductTypeEnum.f0
+          : ProductTypeEnum.fromString(map["type"]),
       date: map['date'] as String,
       review: map['review'] as String,
       age: map['age'] as int,
@@ -76,8 +132,9 @@ class ProductModel extends BaseModel {
       weight: map['weight'] as double,
       name: map['name'] as String,
       videoLink: map['videoLink'] as String,
-      familyCode: map['familyCode'] as String,
+      fromId: map['fromId'] as String,
       isMale: map['isMale'] as bool,
+      image: map['image'] as String,
     );
   }
 
@@ -98,8 +155,10 @@ class ProductModel extends BaseModel {
     String? id,
     Timestamp? createAt,
     Timestamp? updateAt,
-    String? familyCode,
+    String? fromId,
     bool? isMale,
+    ProductTypeEnum? type,
+    String? image,
   }) {
     return ProductModel(
       id: id ?? this.id,
@@ -113,8 +172,10 @@ class ProductModel extends BaseModel {
       weight: weight ?? this.weight,
       name: name ?? this.name,
       videoLink: videoLink ?? this.videoLink,
-      familyCode: familyCode ?? this.familyCode,
+      fromId: fromId ?? this.fromId,
       isMale: isMale ?? this.isMale,
+      type: type ?? this.type,
+      image: image ?? this.image,
     );
   }
 }

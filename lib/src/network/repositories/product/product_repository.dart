@@ -14,4 +14,6 @@ abstract class ProductRepository {
   Future<XResult<String>> deleteProduct(String id);
 
   Future<XResult<List<ProductModel>>> getAllProduct();
+
+  Future<XResult<List<ProductModel>>> getProductWithType(ProductTypeEnum value);
 }
