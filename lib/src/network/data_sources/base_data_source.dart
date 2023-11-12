@@ -46,18 +46,6 @@ class BaseCollectionReference<T extends BaseModel> {
 
   Future<XResult<T>> set(T item, {bool merge = true}) async {
     try {
-      FirebaseFirestore firestore = FirebaseFirestore.instance;
-
-      DocumentReference counterRef =
-          firestore.collection('counters').doc('productCounter');
-      DocumentSnapshot counterSnapshot = await counterRef.get();
-      int currentId = counterSnapshot.exists ? counterSnapshot['value'] : 0;
-
-      currentId++;
-
-      item.id = currentId.toString();
-
-      await counterRef.set({'value': currentId});
       await ref
           .doc(item.id.isEmpty ? null : item.id)
           .set(item, SetOptions(merge: merge))
