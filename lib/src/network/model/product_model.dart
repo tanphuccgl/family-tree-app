@@ -56,6 +56,7 @@ enum ProductTypeEnum {
 class ProductModel extends BaseModel {
   final String date;
   final String review;
+  final String area;
   final int age;
   final String color;
   final double price;
@@ -74,6 +75,7 @@ class ProductModel extends BaseModel {
     this.date = "",
     this.review = "",
     this.age = 0,
+    this.area = "",
     this.color = "",
     this.price = 0,
     this.weight = 0,
@@ -113,6 +115,7 @@ class ProductModel extends BaseModel {
       'fromId': fromId,
       'isMale': isMale,
       'image': image,
+      'area': area,
     };
   }
 
@@ -135,6 +138,7 @@ class ProductModel extends BaseModel {
       fromId: map['fromId'] as String,
       isMale: map['isMale'] as bool,
       image: map['image'] as String,
+      area: map['area'] as String,
     );
   }
 
@@ -159,6 +163,7 @@ class ProductModel extends BaseModel {
     bool? isMale,
     ProductTypeEnum? type,
     String? image,
+    String? area,
   }) {
     return ProductModel(
       id: id ?? this.id,
@@ -176,6 +181,7 @@ class ProductModel extends BaseModel {
       isMale: isMale ?? this.isMale,
       type: type ?? this.type,
       image: image ?? this.image,
+      area: area ?? this.area,
     );
   }
 }

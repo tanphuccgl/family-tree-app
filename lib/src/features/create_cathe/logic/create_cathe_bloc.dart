@@ -5,6 +5,7 @@ import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
@@ -54,6 +55,10 @@ class CreateCatheBloc extends Cubit<CreateCatheState> {
       return;
     }
     emit(state.copyWith(isFamilyCodeExist: false));
+  }
+
+  void onChangedArea(String value) {
+    emit(state.copyWith(area: value));
   }
 
   void onChangedName(String value) {
@@ -216,6 +221,12 @@ class CreateCatheBloc extends Cubit<CreateCatheState> {
       debugPrint(error.toString());
       return null;
     }
+  }
+
+  void copy() {
+    Clipboard.setData(ClipboardData(text: state.video));
+
+    XToast.show("Sao chép");
   }
 
   @override

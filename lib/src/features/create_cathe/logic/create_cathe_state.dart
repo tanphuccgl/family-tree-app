@@ -18,6 +18,7 @@ class CreateCatheState extends Equatable {
   final bool isFamilyCodeExist;
   final PlatformFile? imageFile;
   final String video;
+  final String area;
 
   const CreateCatheState({
     this.date = "",
@@ -36,6 +37,7 @@ class CreateCatheState extends Equatable {
     this.productSuggest = const [],
     this.imageFile,
     this.video = "",
+    this.area = '',
   });
 
   factory CreateCatheState.ds() =>
@@ -59,6 +61,7 @@ class CreateCatheState extends Equatable {
         isFamilyCodeExist,
         imageFile,
         video,
+        area,
       ];
 
   CreateCatheState copyWith({
@@ -78,6 +81,7 @@ class CreateCatheState extends Equatable {
     bool? isFamilyCodeExist,
     PlatformFile? imageFile,
     String? video,
+    String? area,
   }) {
     return CreateCatheState(
       date: date ?? this.date,
@@ -96,6 +100,7 @@ class CreateCatheState extends Equatable {
       isFamilyCodeExist: isFamilyCodeExist ?? this.isFamilyCodeExist,
       imageFile: imageFile ?? this.imageFile,
       video: video ?? this.video,
+      area: area ?? this.area,
     );
   }
 }

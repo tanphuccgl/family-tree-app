@@ -1,4 +1,6 @@
 import 'package:familytree/src/features/dashboard/cubit/dashboard_bloc.dart';
+import 'package:familytree/src/features/dashboard/widgets/item_drawer.dart';
+import 'package:familytree/src/features/dashboard/widgets/item_drawer_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,51 +26,9 @@ class DashboardPage extends StatelessWidget {
                       children: <Widget>[
                         Flexible(
                           child: ListView(
-                            children: <Widget>[
-                              ListTile(
-                                title: const Text(
-                                  "Tạo cá thể",
-                                ),
-                                minLeadingWidth: 20,
-                                leading: state.currentIndex == 0
-                                    ? const Icon(
-                                        Icons.check_outlined,
-                                        color: Colors.green,
-                                      )
-                                    : null,
-                                onTap: () =>
-                                    context.read<DashboardBloc>().changePage(0),
-                              ),
-                              ListTile(
-                                minLeadingWidth: 20,
-                                leading: state.currentIndex == 1
-                                    ? const Icon(
-                                        Icons.check_outlined,
-                                        color: Colors.green,
-                                      )
-                                    : null,
-                                title: const Text(
-                                  "Family tree",
-                                ),
-                                onTap: () =>
-                                    context.read<DashboardBloc>().changePage(1),
-                              ),
-                              ListTile(
-                                minLeadingWidth: 20,
-                                leading: state.currentIndex == 2
-                                    ? const Icon(
-                                        Icons.check_outlined,
-                                        color: Colors.green,
-                                      )
-                                    : null,
-                                title: const Text(
-                                  "Danh sách cá thể",
-                                ),
-                                onTap: () =>
-                                    context.read<DashboardBloc>().changePage(2),
-                              ),
-                            ],
-                          ),
+                              children: ItemDrawerEnum.values
+                                  .map((e) => ItemDrawer(data: e))
+                                  .toList()),
                         ),
                         Expanded(
                           flex: 7,
