@@ -1,6 +1,8 @@
 import 'package:familytree/src/features/create_cathe/logic/create_cathe_bloc.dart';
 import 'package:familytree/src/network/model/product_model.dart';
 import 'package:familytree/src/theme/colors.dart';
+import 'package:familytree/widgets/button/button.dart';
+import 'package:familytree/widgets/button/button_2.dart';
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:familytree/widgets/froms/input.dart';
 import 'package:flutter/material.dart';
@@ -123,34 +125,12 @@ class CreateCathePage extends StatelessWidget {
                                 ),
                                 const Text("Video :"),
                                 sizebox20,
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: XColors.primary2,
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 10, horizontal: 12)),
+                                XButton2(
+                                  icon: Icons.add_box_outlined,
+                                  text: "Thêm Video Mới",
                                   onPressed: () => context
                                       .read<CreateCatheBloc>()
                                       .onAddVideo(context),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: const [
-                                      Icon(
-                                        Icons.add_box_outlined,
-                                        color: Colors.black,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        "Thêm Video Mới",
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
                                 ),
                                 sizebox20,
                                 if (state.video != "")
@@ -327,34 +307,12 @@ class CreateCathePage extends StatelessWidget {
                                     )),
                                 const Text("Ảnh :"),
                                 sizebox20,
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: XColors.primary2,
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 10, horizontal: 12)),
+                                XButton2(
+                                  icon: Icons.add_box_outlined,
+                                  text: "Thêm Ảnh Mới",
                                   onPressed: () => context
                                       .read<CreateCatheBloc>()
                                       .onAddImage(context),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: const [
-                                      Icon(
-                                        Icons.add_box_outlined,
-                                        color: Colors.black,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        "Thêm Ảnh Mới",
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
                                 ),
                                 if (state.imageFile != null)
                                   SizedBox(
@@ -370,28 +328,10 @@ class CreateCathePage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 60),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            minimumSize: Size(size.width, 50),
-                            elevation: 2,
-                            backgroundColor: XColors.primary2,
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 12)),
-                        onPressed: () =>
-                            context.read<CreateCatheBloc>().createNewProduct(),
-                        child: const Text(
-                          "Tạo cá thể",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
-                      ),
-                    ),
+                  XButton(
+                    text: "Tạo cá thể",
+                    onPressed: () =>
+                        context.read<CreateCatheBloc>().createNewProduct(),
                   ),
                   const SizedBox(
                     height: 30,
