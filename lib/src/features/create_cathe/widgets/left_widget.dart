@@ -1,4 +1,5 @@
 import 'package:familytree/src/features/create_cathe/logic/create_cathe_bloc.dart';
+import 'package:familytree/src/features/create_cathe/logic/info_more_bloc.dart';
 import 'package:familytree/src/features/create_cathe/widgets/text_rich.dart';
 import 'package:familytree/widgets/button/button_2.dart';
 import 'package:familytree/widgets/froms/input.dart';
@@ -6,8 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../network/model/area_model.dart';
+
 class LeftWidget extends StatelessWidget {
-  const LeftWidget({super.key});
+  final AreaModel area;
+  const LeftWidget({super.key, required this.area});
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +32,19 @@ class LeftWidget extends StatelessWidget {
               XTextRich(text: "Khu vực"),
               sizebox20,
               XInput(
-                  value: state.area,
-                  onChanged: (value) =>
-                      context.read<CreateCatheBloc>().onChangedArea(value)),
+                value: area.name + " ( ${area.nameId} )",
+                readOnly: true,
+              ),
+              XTextRich(
+                text: "Giới tính",
+              ),
+              sizebox20,
+              XInput(
+                value: state.isMale == true ? "Đực" : "Cái",
+                readOnly: true,
+                onTap: () =>
+                    context.read<CreateCatheBloc>().onChangedSex(!state.isMale),
+              ),
               const Text("Tuổi :"),
               sizebox20,
               XInput(
@@ -65,16 +79,6 @@ class LeftWidget extends StatelessWidget {
                       const TextInputType.numberWithOptions(decimal: true),
                   onChanged: (value) =>
                       context.read<CreateCatheBloc>().onChangedPrice(value)),
-              XTextRich(
-                text: "Giới tính",
-              ),
-              sizebox20,
-              XInput(
-                value: state.isMale == true ? "Đực" : "Cái",
-                readOnly: true,
-                onTap: () =>
-                    context.read<CreateCatheBloc>().onChangedSex(!state.isMale),
-              ),
               const Text("Video :"),
               sizebox20,
               XButton2(
@@ -92,6 +96,63 @@ class LeftWidget extends StatelessWidget {
                     style: TextStyle(color: Colors.blue),
                   ),
                 ),
+              ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: state.listInfoMore.length,
+                  itemBuilder: (_, i) {
+                    return BlocProvider(
+                      key: ValueKey(state.listInfoMore[i].id),
+                      create: (_) => InfoMoreBloc(),
+                      child: BlocBuilder<InfoMoreBloc, InfoMoreState>(
+                        builder: (context1, infoMoreState) {
+                          return Column(
+                            key: ValueKey(state.listInfoMore[i].id),
+                            children: [
+                              Row(
+                                children: [
+                                  Text("thông tin ${i + 1} :"),
+                                  SizedBox(width: 20),
+                                  XButton2(
+                                      onPressed: () => context
+                                          .read<CreateCatheBloc>()
+                                          .removeInfoMore(
+                                              state.listInfoMore[i]),
+                                      text: "Xóa",
+                                      icon: Icons.delete)
+                                ],
+                              ),
+                              sizebox20,
+                              XInput(
+                                  value: infoMoreState.name,
+                                  hintText: "Tiêu đề",
+                                  onChanged: (value) {
+                                    context1
+                                        .read<InfoMoreBloc>()
+                                        .onChangeName(value);
+                                    context
+                                        .read<CreateCatheBloc>()
+                                        .updateNameToListInfoMore(
+                                            state.listInfoMore[i], value);
+                                  }),
+                              sizebox20,
+                              XInput(
+                                  hintText: "Nội dung",
+                                  value: infoMoreState.description,
+                                  onChanged: (value) {
+                                    context1
+                                        .read<InfoMoreBloc>()
+                                        .onChangeDescription(value);
+                                    context
+                                        .read<CreateCatheBloc>()
+                                        .updateDataToListInfoMore(
+                                            state.listInfoMore[i], value);
+                                  }),
+                            ],
+                          );
+                        },
+                      ),
+                    );
+                  })
             ]);
       },
     );

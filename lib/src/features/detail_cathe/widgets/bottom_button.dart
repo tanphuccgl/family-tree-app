@@ -30,8 +30,7 @@ class BottomButton extends StatelessWidget {
 
         return XButton(
           text: "Xác nhận",
-          onPressed: () =>
-              context.read<DetailCatheBloc>().onConfirmButton(context),
+          onPressed: () => context.read<DetailCatheBloc>().onConfirmButton(),
         );
       },
     );

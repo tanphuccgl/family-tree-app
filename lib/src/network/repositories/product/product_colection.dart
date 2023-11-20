@@ -51,4 +51,36 @@ class ProductCollectionReference extends BaseCollectionReference<ProductModel> {
       return XResult.exception(e);
     }
   }
+
+  Future<XResult<List<ProductModel>>> getListProductWithFather(
+      ProductTypeEnum value) async {
+    try {
+      var snapshot = await ref
+          .where('type', isEqualTo: value.nameOf)
+          .where('isMale', isEqualTo: true)
+          .get();
+
+      var data = snapshot.docs.map((e) => e.data()).toList();
+
+      return XResult.success(data);
+    } catch (e) {
+      return XResult.exception(e);
+    }
+  }
+
+  Future<XResult<List<ProductModel>>> getListProductWithMother(
+      ProductTypeEnum value) async {
+    try {
+      var snapshot = await ref
+          .where('type', isEqualTo: value.nameOf)
+          .where('isMale', isEqualTo: false)
+          .get();
+
+      var data = snapshot.docs.map((e) => e.data()).toList();
+
+      return XResult.success(data);
+    } catch (e) {
+      return XResult.exception(e);
+    }
+  }
 }

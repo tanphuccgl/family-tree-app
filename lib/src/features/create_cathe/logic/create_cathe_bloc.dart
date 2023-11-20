@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:familytree/src/network/domain.dart';
+import 'package:familytree/src/network/model/area_model.dart';
+import 'package:familytree/src/network/model/info_more_model.dart';
 import 'package:familytree/src/network/model/product_model.dart';
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:file_picker/file_picker.dart';
@@ -8,11 +11,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:uuid/uuid.dart';
 
 part 'create_cathe_state.dart';
 
 class CreateCatheBloc extends Cubit<CreateCatheState> {
-  CreateCatheBloc() : super(CreateCatheState.ds());
+  final BuildContext context;
+  final AreaModel area;
+  final bool hasF0;
+  CreateCatheBloc(
+    this.context, {
+    required this.area,
+    required this.hasF0,
+  }) : super(CreateCatheState.ds());
 
   Domain get domain => GetIt.I<Domain>();
 
@@ -41,10 +52,22 @@ class CreateCatheBloc extends Cubit<CreateCatheState> {
 
     final result = await domain.product.getProductWithType(typeQuery);
     if (result.isSuccess) {
+      final listFather =
+          result.data!.where((element) => element.isMale == true).toList();
+      final listMother =
+          result.data!.where((element) => element.isMale == false).toList();
       emit(state.copyWith(
-        productSuggest: result.data,
-        fromFamilyCode: result.data!.first,
+        listFather: listFather,
+        listMother: listMother,
       ));
+
+      if (listFather.isNotEmpty) {
+        emit(state.copyWith(father: listFather.first));
+      }
+
+      if (listMother.isNotEmpty) {
+        emit(state.copyWith(mother: listMother.first));
+      }
     }
   }
 
@@ -57,12 +80,24 @@ class CreateCatheBloc extends Cubit<CreateCatheState> {
     emit(state.copyWith(isFamilyCodeExist: false));
   }
 
-  void onChangedArea(String value) {
-    emit(state.copyWith(area: value));
+  void onChangedMother(ProductModel value) {
+    emit(state.copyWith(mother: value));
+  }
+
+  void onChangedFather(ProductModel value) {
+    emit(state.copyWith(father: value));
   }
 
   void onChangedName(String value) {
     emit(state.copyWith(name: value));
+  }
+
+  void onChangedStyle(String value) {
+    emit(state.copyWith(style: value));
+  }
+
+  void onChangedFood(String value) {
+    emit(state.copyWith(food: value));
   }
 
   void onChangedAge(String value) {
@@ -94,14 +129,10 @@ class CreateCatheBloc extends Cubit<CreateCatheState> {
     emit(state.copyWith(isMale: value));
   }
 
-  void onChangedFromFamilyCode(ProductModel value) {
-    emit(state.copyWith(fromFamilyCode: value));
-  }
-
   void onChangedType(ProductTypeEnum value) {
     emit(state.copyWith(type: value));
 
-    emit(state.copyWith(productSuggest: []));
+    emit(state.copyWith(listFather: []));
     getProductWithType();
   }
 
@@ -110,9 +141,36 @@ class CreateCatheBloc extends Cubit<CreateCatheState> {
       XToast.error("Mã đã tồn tại");
       return;
     }
+    if (hasF0 && state.type == ProductTypeEnum.f0) {
+      XToast.error("F0 đã tồn tại");
+      return;
+    }
+
+    if (state.type != ProductTypeEnum.f0 && state.type != ProductTypeEnum.f1) {
+      if (state.listMother.isEmpty) {
+        XToast.error("Vui lòng tạo cá thể mẹ");
+        return;
+      }
+
+      if (state.listFather.isEmpty) {
+        XToast.error("Vui lòng tạo cá thể cha");
+        return;
+      }
+      if (state.father.id.isEmpty || state.mother.id.isEmpty) {
+        XToast.error("Vui lòng nhập thông tin bắt buộc");
+        return;
+      }
+    }
 
     if (state.name.isEmpty || state.familyCode.isEmpty) {
       XToast.error("Vui lòng nhập thông tin bắt buộc");
+      return;
+    }
+
+    bool hasMissingData = state.listInfoMore
+        .any((person) => person.name == "" || person.description == "");
+    if (hasMissingData) {
+      XToast.error("Vui lòng nhập thông tin thêm");
       return;
     }
 
@@ -127,7 +185,6 @@ class CreateCatheBloc extends Cubit<CreateCatheState> {
       age: state.age,
       color: state.color,
       date: state.date,
-      fromId: state.fromFamilyCode.id,
       isMale: state.isMale,
       name: state.name,
       price: state.price,
@@ -137,6 +194,14 @@ class CreateCatheBloc extends Cubit<CreateCatheState> {
       id: state.familyCode,
       type: state.type,
       image: url,
+      area: area,
+      mother: state.mother.id,
+      father: state.father.id,
+      food: state.food,
+      style: state.style,
+      updateAt: Timestamp.now(),
+      createAt: Timestamp.now(),
+      listInfoMore: state.listInfoMore,
     );
 
     final result = await domain.product.createProduct(product);
@@ -144,6 +209,7 @@ class CreateCatheBloc extends Cubit<CreateCatheState> {
       emit(CreateCatheState.ds());
       XToast.success("Tạo mới cá thể thành công");
       XToast.hideLoading();
+      Navigator.pop(context, result.data);
       return;
     }
     emit(CreateCatheState.ds());
@@ -227,6 +293,43 @@ class CreateCatheBloc extends Cubit<CreateCatheState> {
     Clipboard.setData(ClipboardData(text: state.video));
 
     XToast.show("Sao chép");
+  }
+
+  void addInfoMore() {
+    emit(state.copyWith(
+        listInfoMore: [...state.listInfoMore, InfoMoreModel(id: Uuid().v4())]));
+  }
+
+  void removeInfoMore(InfoMoreModel data) {
+    final list = [...state.listInfoMore];
+    list.remove(data);
+
+    emit(state.copyWith(listInfoMore: list));
+  }
+
+  void updateNameToListInfoMore(InfoMoreModel data, String name) {
+    state.listInfoMore.forEach((person) {
+      if (person.id == data.id) {
+        person.name = name;
+      }
+    });
+
+    emit(state.copyWith(listInfoMore: [
+      ...state.listInfoMore,
+    ]));
+    print(state.listInfoMore.first.name);
+  }
+
+  void updateDataToListInfoMore(InfoMoreModel data, String noidung) {
+    state.listInfoMore.forEach((person) {
+      if (person.id == data.id) {
+        person.description = noidung;
+      }
+    });
+
+    emit(state.copyWith(listInfoMore: [
+      ...state.listInfoMore,
+    ]));
   }
 
   @override

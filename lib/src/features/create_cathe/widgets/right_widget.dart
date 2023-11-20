@@ -1,4 +1,5 @@
 import 'package:familytree/src/features/create_cathe/logic/create_cathe_bloc.dart';
+import 'package:familytree/src/features/create_cathe/widgets/text_rich.dart';
 import 'package:familytree/src/network/model/product_model.dart';
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/widgets/button/button_2.dart';
@@ -20,22 +21,7 @@ class RightWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text.rich(
-                TextSpan(
-                  text: "Family code",
-                  style: TextStyle(
-                    color: Colors.black, // Màu chữ của "Tên"
-                  ),
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: " *",
-                      style: TextStyle(
-                        color: Colors.red, // Màu chữ của "*"
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              XTextRich(text: "Family code"),
               sizebox20,
               XInput(
                   value: state.familyCode,
@@ -44,33 +30,8 @@ class RightWidget extends StatelessWidget {
                   onChanged: (value) => context
                       .read<CreateCatheBloc>()
                       .onChangedFamilyCode(value)),
-              const Text("Đánh giá :"),
-              sizebox20,
-              XInput(
-                  value: state.review,
-                  onChanged: (value) =>
-                      context.read<CreateCatheBloc>().onChangedReview(value)),
-              const Text("Màu :"),
-              sizebox20,
-              XInput(
-                  value: state.color,
-                  onChanged: (value) =>
-                      context.read<CreateCatheBloc>().onChangedColor(value)),
-              const Text.rich(
-                TextSpan(
-                  text: "Loại",
-                  style: TextStyle(
-                    color: Colors.black, // Màu chữ của "Tên"
-                  ),
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: " *",
-                      style: TextStyle(
-                        color: Colors.red, // Màu chữ của "*"
-                      ),
-                    ),
-                  ],
-                ),
+              XTextRich(
+                text: "Loại",
               ),
               sizebox20,
               Container(
@@ -96,60 +57,96 @@ class RightWidget extends StatelessWidget {
                   }).toList(),
                 ),
               ),
+              if (state.type != ProductTypeEnum.f0 &&
+                  state.type != ProductTypeEnum.f1) ...[
+                if (state.listFather.isNotEmpty) ...[
+                  sizebox20,
+                  XTextRich(
+                    text: "Cha",
+                  ),
+                  sizebox20,
+                  Container(
+                    width: size.width,
+                    height: 50,
+                    padding: const EdgeInsets.only(left: 5),
+                    decoration: BoxDecoration(
+                        color: XColors.primary2,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: DropdownButton<ProductModel>(
+                      icon: const Icon(Icons.arrow_drop_down),
+                      iconSize: 22,
+                      underline: const SizedBox(),
+                      value: state.father,
+                      onChanged: (ProductModel? value) {
+                        context.read<CreateCatheBloc>().onChangedFather(value!);
+                      },
+                      items: state.listFather.map((ProductModel location) {
+                        return DropdownMenuItem<ProductModel>(
+                          value: location,
+                          child: Tooltip(
+                              message: 'Đây là tooltip',
+                              child: Text(location.id)),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ],
+                if (state.listMother.isNotEmpty) ...[
+                  sizebox20,
+                  XTextRich(
+                    text: "Mẹ",
+                  ),
+                  sizebox20,
+                  Container(
+                    width: size.width,
+                    height: 50,
+                    padding: const EdgeInsets.only(left: 5),
+                    decoration: BoxDecoration(
+                        color: XColors.primary2,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: DropdownButton<ProductModel>(
+                      icon: const Icon(Icons.arrow_drop_down),
+                      iconSize: 22,
+                      underline: const SizedBox(),
+                      value: state.mother,
+                      onChanged: (ProductModel? value) {
+                        context.read<CreateCatheBloc>().onChangedMother(value!);
+                      },
+                      items: state.listMother.map((ProductModel location) {
+                        return DropdownMenuItem<ProductModel>(
+                          value: location,
+                          child: Text(location.id),
+                        );
+                      }).toList(),
+                    ),
+                  )
+                ]
+              ],
               sizebox20,
-              Visibility(
-                  visible: state.type != ProductTypeEnum.f0,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text.rich(
-                        TextSpan(
-                          text: "Từ family code",
-                          style: TextStyle(
-                            color: Colors.black, // Màu chữ của "Tên"
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: " *",
-                              style: TextStyle(
-                                color: Colors.red, // Màu chữ của "*"
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      sizebox20,
-                      if (state.productSuggest.isNotEmpty) ...[
-                        Container(
-                          width: size.width,
-                          height: 50,
-                          padding: const EdgeInsets.only(left: 5),
-                          decoration: BoxDecoration(
-                              color: XColors.primary2,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: DropdownButton<ProductModel>(
-                            icon: const Icon(Icons.arrow_drop_down),
-                            iconSize: 22,
-                            underline: const SizedBox(),
-                            value: state.fromFamilyCode,
-                            onChanged: (ProductModel? value) {
-                              context
-                                  .read<CreateCatheBloc>()
-                                  .onChangedFromFamilyCode(value!);
-                            },
-                            items: state.productSuggest
-                                .map((ProductModel location) {
-                              return DropdownMenuItem<ProductModel>(
-                                value: location,
-                                child: Text(location.id),
-                              );
-                            }).toList(),
-                          ),
-                        ),
-                        sizebox20,
-                      ]
-                    ],
-                  )),
+              const Text("Đánh giá :"),
+              sizebox20,
+              XInput(
+                  value: state.review,
+                  onChanged: (value) =>
+                      context.read<CreateCatheBloc>().onChangedReview(value)),
+              const Text("Màu :"),
+              sizebox20,
+              XInput(
+                  value: state.color,
+                  onChanged: (value) =>
+                      context.read<CreateCatheBloc>().onChangedColor(value)),
+              const Text("Nguồn thức ăn :"),
+              sizebox20,
+              XInput(
+                  value: state.food,
+                  onChanged: (value) =>
+                      context.read<CreateCatheBloc>().onChangedFood(value)),
+              const Text("Kiểu cách :"),
+              sizebox20,
+              XInput(
+                  value: state.style,
+                  onChanged: (value) =>
+                      context.read<CreateCatheBloc>().onChangedStyle(value)),
               const Text("Ảnh :"),
               sizebox20,
               XButton2(

@@ -12,13 +12,17 @@ class CreateCatheState extends Equatable {
   final String videoLink;
   final String familyCode;
   final bool isMale;
-  final ProductModel fromFamilyCode;
   final ProductTypeEnum type;
-  final List<ProductModel> productSuggest;
+  final List<ProductModel> listFather;
+  final List<ProductModel> listMother;
   final bool isFamilyCodeExist;
   final PlatformFile? imageFile;
   final String video;
-  final String area;
+  final ProductModel father;
+  final ProductModel mother;
+  final String food;
+  final String style;
+  final List<InfoMoreModel> listInfoMore;
 
   const CreateCatheState({
     this.date = "",
@@ -31,17 +35,23 @@ class CreateCatheState extends Equatable {
     this.videoLink = "",
     this.familyCode = "",
     this.isMale = true,
-    required this.fromFamilyCode,
     this.type = ProductTypeEnum.f0,
     this.isFamilyCodeExist = false,
-    this.productSuggest = const [],
+    this.listFather = const [],
+    this.listMother = const [],
     this.imageFile,
     this.video = "",
-    this.area = '',
+    required this.father,
+    required this.mother,
+    this.food = "",
+    this.style = "",
+    this.listInfoMore = const [],
   });
 
-  factory CreateCatheState.ds() =>
-      CreateCatheState(fromFamilyCode: ProductModel());
+  factory CreateCatheState.ds() => CreateCatheState(
+        father: ProductModel(id: ""),
+        mother: ProductModel(id: ""),
+      );
 
   @override
   List<Object?> get props => [
@@ -55,13 +65,17 @@ class CreateCatheState extends Equatable {
         videoLink,
         familyCode,
         isMale,
-        fromFamilyCode,
         type,
-        productSuggest,
+        listFather,
         isFamilyCodeExist,
         imageFile,
         video,
-        area,
+        father,
+        mother,
+        listMother,
+        food,
+        style,
+        listInfoMore,
       ];
 
   CreateCatheState copyWith({
@@ -75,13 +89,17 @@ class CreateCatheState extends Equatable {
     String? videoLink,
     String? familyCode,
     bool? isMale,
-    ProductModel? fromFamilyCode,
     ProductTypeEnum? type,
-    List<ProductModel>? productSuggest,
+    List<ProductModel>? listFather,
+    List<ProductModel>? listMother,
     bool? isFamilyCodeExist,
     PlatformFile? imageFile,
     String? video,
-    String? area,
+    ProductModel? mother,
+    ProductModel? father,
+    String? food,
+    String? style,
+    List<InfoMoreModel>? listInfoMore,
   }) {
     return CreateCatheState(
       date: date ?? this.date,
@@ -94,13 +112,17 @@ class CreateCatheState extends Equatable {
       videoLink: videoLink ?? this.videoLink,
       familyCode: familyCode ?? this.familyCode,
       isMale: isMale ?? this.isMale,
-      fromFamilyCode: fromFamilyCode ?? this.fromFamilyCode,
       type: type ?? this.type,
-      productSuggest: productSuggest ?? this.productSuggest,
+      listFather: listFather ?? this.listFather,
       isFamilyCodeExist: isFamilyCodeExist ?? this.isFamilyCodeExist,
       imageFile: imageFile ?? this.imageFile,
       video: video ?? this.video,
-      area: area ?? this.area,
+      father: father ?? this.father,
+      mother: mother ?? this.mother,
+      listMother: listMother ?? this.listMother,
+      food: food ?? this.food,
+      style: style ?? this.style,
+      listInfoMore: listInfoMore ?? this.listInfoMore,
     );
   }
 }
