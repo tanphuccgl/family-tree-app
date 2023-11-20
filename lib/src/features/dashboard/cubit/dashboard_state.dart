@@ -4,11 +4,7 @@ part of 'dashboard_bloc.dart';
 class DashboardState extends Equatable {
   final int currentIndex;
 
-  List<Widget> get pages => [
-        const CreateCathePage(),
-        const TreeViewPage(),
-        const ListCaThePage(),
-      ];
+  List<Widget> get pages => ItemDrawerEnum.values.map((e) => e.pages).toList();
 
   const DashboardState({
     this.currentIndex = 1,

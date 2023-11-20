@@ -31,6 +31,21 @@ class ListCaThePage extends StatelessWidget {
                       title(
                         "Tên",
                       ),
+                      title(
+                        "Nguồn thức ăn",
+                      ),
+                      title(
+                        "Kiểu cách",
+                      ),
+                      title(
+                        "Khu vực",
+                      ),
+                      title(
+                        "Cha",
+                      ),
+                      title(
+                        "Mẹ",
+                      ),
                       title("Giới tính"),
                       title("Ngày sinh"),
                       title("Cân nặng"),
@@ -66,7 +81,7 @@ class ListCaThePage extends StatelessWidget {
     return Expanded(
       child: Text(
         title,
-        maxLines: 1,
+        maxLines: 2,
         textAlign: TextAlign.center,
         style:
             const TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
@@ -78,7 +93,7 @@ class ListCaThePage extends StatelessWidget {
     return Expanded(
       child: Text(
         title,
-        maxLines: 1,
+        maxLines: 2,
         textAlign: TextAlign.center,
         style:
             const TextStyle(color: Colors.black, fontWeight: FontWeight.normal),
@@ -104,6 +119,11 @@ class ListCaThePage extends StatelessWidget {
               value.id,
             ),
             labelData(value.name),
+            labelData(value.food),
+            labelData(value.style),
+            labelData(value.area?.nameId ?? ""),
+            labelData(value.father),
+            labelData(value.mother),
             labelData(
               value.isMale == true ? "Đực" : "Cái",
             ),

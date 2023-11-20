@@ -1,7 +1,7 @@
-import 'package:familytree/src/features/detail_cathe/pages/detail_cathe_page.dart';
+import 'package:familytree/src/features/family_tree/logic/family_tree_bloc.dart';
 import 'package:familytree/src/network/model/product_model.dart';
-import 'package:familytree/src/router/coordinator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemElementWidget extends StatelessWidget {
   final ProductModel data;
@@ -10,9 +10,7 @@ class ItemElementWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        XCoordinator.push(DetailCathePage(id: data.id));
-      },
+      onTap: () => context.read<FamilyTreeBloc>().moveToItem(data.id),
       child: Column(
         children: [
           Row(
@@ -48,17 +46,24 @@ class ItemElementWidget extends StatelessWidget {
           data.isMale
               ? Container(
                   padding: const EdgeInsets.all(16),
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    color: Colors.blue,
-                  ),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      color: Colors.blue,
+                      image: DecorationImage(
+                        image: NetworkImage(data.image),
+                        colorFilter: new ColorFilter.mode(
+                            Colors.black.withOpacity(0.5), BlendMode.dstATop),
+                      )),
                   child: Text(data.name))
               : Container(
                   padding: const EdgeInsets.all(30),
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.yellow,
-                  ),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.yellow,
+                      image: DecorationImage(
+                          colorFilter: new ColorFilter.mode(
+                              Colors.black.withOpacity(0.5), BlendMode.dstATop),
+                          image: NetworkImage(data.image))),
                   child: Text(data.name)),
         ],
       ),

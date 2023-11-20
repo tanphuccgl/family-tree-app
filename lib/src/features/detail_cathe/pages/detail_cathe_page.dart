@@ -8,33 +8,43 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DetailCathePage extends StatelessWidget {
   final String id;
-  const DetailCathePage({super.key, required this.id});
+
+  const DetailCathePage({
+    super.key,
+    required this.id,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return BlocProvider(
-      create: (context) => DetailCatheBloc(id),
+      create: (context) => DetailCatheBloc(context, id),
       child: BlocBuilder<DetailCatheBloc, DetailCatheState>(
         builder: (context, state) {
           return Scaffold(
+            floatingActionButton: !state.isEdit
+                ? SizedBox()
+                : FloatingActionButton(
+                    onPressed: () =>
+                        context.read<DetailCatheBloc>().addInfoMore(),
+                    child: const Icon(Icons.add),
+                  ),
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
-              child: Column(
+              child: ListView(shrinkWrap: true, children: [
+                Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Expanded(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const LeftWidget(),
-                          divider(),
-                          const RightWidget()
-                        ],
-                      ),
-                    ),
-                    const BottomButton()
-                  ]),
+                    SizedBox(width: size.width / 3, child: LeftWidget()),
+                    divider(),
+                    SizedBox(width: size.width / 3, child: const RightWidget()),
+                  ],
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                const BottomButton()
+              ]),
             ),
           );
         },
@@ -43,12 +53,9 @@ class DetailCathePage extends StatelessWidget {
   }
 
   Widget divider() {
-    return const Padding(
-      padding: EdgeInsets.only(bottom: 100),
-      child: VerticalDivider(
-        thickness: 2,
-        color: Colors.grey,
-      ),
+    return const VerticalDivider(
+      thickness: 2,
+      color: Colors.grey,
     );
   }
 }

@@ -1,7 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:familytree/src/features/create_cathe/pages/create_cathe_page.dart';
-import 'package:familytree/src/features/family_tree/pages/family_tree_page.dart';
-import 'package:familytree/src/features/list_cathe/pages/list_cathe_page.dart';
+import 'package:familytree/src/features/dashboard/widgets/item_drawer_enum.dart';
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

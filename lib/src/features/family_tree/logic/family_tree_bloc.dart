@@ -1,6 +1,10 @@
 import 'package:equatable/equatable.dart';
+import 'package:familytree/src/features/create_cathe/pages/create_cathe_page.dart';
+import 'package:familytree/src/features/detail_cathe/pages/detail_cathe_page.dart';
 import 'package:familytree/src/network/domain.dart';
+import 'package:familytree/src/network/model/area_model.dart';
 import 'package:familytree/src/network/model/product_model.dart';
+import 'package:familytree/src/router/coordinator.dart';
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -15,33 +19,103 @@ class FamilyTreeBloc extends Cubit<FamilyTreeState> {
 
   Domain get domain => GetIt.I<Domain>();
   final Graph graph = Graph()..isTree = true;
-  BuchheimWalkerConfiguration builder = BuchheimWalkerConfiguration();
+  SugiyamaConfiguration builder = SugiyamaConfiguration();
 
   void init() async {
     XToast.showLoading();
-    builder
-      ..siblingSeparation = (100)
-      ..levelSeparation = (150)
-      ..subtreeSeparation = (150)
-      ..orientation = (BuchheimWalkerConfiguration.ORIENTATION_TOP_BOTTOM);
+    builder..bendPointShape = CurvedBendPointShape(curveLength: 20);
+    await getAllArea();
     await getAllProduct();
+
     XToast.hideLoading();
   }
 
-  void createNode(List<ProductModel> list) {
-    for (var element in list) {
-      if (element.type != ProductTypeEnum.f0) {
-        graph.addEdge(Node.Id(list.singleWhere((e) => e.id == element.fromId)),
-            Node.Id(element));
-      } else {}
+  Future<void> getAllArea() async {
+    final result = await domain.area.getAllArea();
+    if (result.isSuccess) {
+      emit(state.copyWith(listArea: result.data));
+      if (result.data!.isNotEmpty) {
+        emit(state.copyWith(areaIdSelected: result.data!.first.id));
+      }
+
+      return;
     }
+  }
+
+  void onChangeAreaIdSelected(String id) async {
+    emit(state.copyWith(areaIdSelected: id));
+    await getAllProduct();
+  }
+
+  void createNode(List<ProductModel> list) {
+    graph.removeEdges(state.edges);
+    graph.removeNodes(state.nodes);
+    final List<Edge> edges = [];
+    final List<Node> nodes = [];
+    final root = list.singleWhere((e) => e.type == ProductTypeEnum.f0);
+    final nodeRoot = Node.Id(root);
+    nodes.add(nodeRoot);
+    for (var element in list) {
+      if (element.type == ProductTypeEnum.f1) {
+        edges.add(Edge(nodeRoot, Node.Id(element)));
+        nodes.add(Node.Id(element));
+        nodes.add(Node.Id(nodeRoot));
+      }
+      if (element.type != ProductTypeEnum.f0 &&
+          element.type != ProductTypeEnum.f1) {
+        final a = list.singleWhere((e) => e.id == element.father);
+        final b = list.singleWhere((e) => e.id == element.mother);
+        edges.add(Edge(Node.Id(a), Node.Id(element)));
+        edges.add(Edge(Node.Id(b), Node.Id(element)));
+        nodes.add(Node.Id(a));
+        nodes.add(Node.Id(b));
+        nodes.add(Node.Id(element));
+      }
+    }
+    emit(state.copyWith(edges: edges));
+    emit(state.copyWith(nodes: nodes));
+    graph.addEdges(edges);
   }
 
   Future<void> getAllProduct() async {
     final result = await domain.product.getAllProduct();
     if (result.isSuccess) {
-      emit(state.copyWith(list: result.data));
-      createNode(result.data!);
+      final list = result.data!
+          .where((e) => e.area?.id == state.areaIdSelected)
+          .toList();
+      emit(state.copyWith(list: list));
+
+      createNode(list);
+    }
+  }
+
+  void moveToCreateProduct() async {
+    try {
+      final hasF0 = state.list.firstWhere(
+          (element) => element.type == ProductTypeEnum.f0,
+          orElse: () => ProductModel(id: ""));
+
+      AreaModel value = state.listArea
+          .singleWhere((element) => element.id == state.areaIdSelected);
+      final ProductModel? result = await XCoordinator.push(CreateCathePage(
+        area: value,
+        hasF0: hasF0.id.isNotEmpty,
+      ));
+      if (result != null) {
+        onChangeAreaIdSelected(state.areaIdSelected);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void moveToItem(String id) async {
+    final ProductModel? result =
+        await XCoordinator.push(DetailCathePage(id: id));
+    if (result != null) {
+      if (result.id == "") {
+        onChangeAreaIdSelected(state.areaIdSelected);
+      }
     }
   }
 
