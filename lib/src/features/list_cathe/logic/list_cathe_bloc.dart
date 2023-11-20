@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:familytree/src/features/list_cathe/sort_enum.dart';
 import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/product_model.dart';
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
