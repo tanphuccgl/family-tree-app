@@ -21,7 +21,7 @@ class AreaPage extends StatelessWidget {
                   XButton(
                       onPressed: () =>
                           context.read<AreaBloc>().moveTocreateArea(),
-                      text: "Tạo Khu vực"),
+                      text: "Tạo xuất xứ"),
                   SizedBox(
                     height: 30,
                   ),

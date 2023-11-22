@@ -38,7 +38,7 @@ class ListCaThePage extends StatelessWidget {
                         "Kiểu cách",
                       ),
                       title(
-                        "Khu vực",
+                        "xuất xứ",
                       ),
                       title(
                         "Cha",

@@ -96,6 +96,14 @@ class CreateCatheBloc extends Cubit<CreateCatheState> {
     emit(state.copyWith(style: value));
   }
 
+  void onChangedFatherNote(String value) {
+    emit(state.copyWith(fatherNote: value));
+  }
+
+  void onChangedMotherNote(String value) {
+    emit(state.copyWith(motherNote: value));
+  }
+
   void onChangedFood(String value) {
     emit(state.copyWith(food: value));
   }
@@ -202,6 +210,8 @@ class CreateCatheBloc extends Cubit<CreateCatheState> {
       updateAt: Timestamp.now(),
       createAt: Timestamp.now(),
       listInfoMore: state.listInfoMore,
+      fatherNote: state.fatherNote,
+      motherNote: state.motherNote,
     );
 
     final result = await domain.product.createProduct(product);

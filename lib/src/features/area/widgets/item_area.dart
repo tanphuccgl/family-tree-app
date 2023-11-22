@@ -19,11 +19,11 @@ class ItemArea extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              "Tên khu vực: " + data.name,
+              "Tên xuất xứ: " + data.name,
               style: TextStyle(color: Colors.black),
             ),
             Text(
-              "Mã khu vực: " + data.nameId,
+              "Mã xuất xứ: " + data.nameId,
               style: TextStyle(color: Colors.black),
             ),
           ],

@@ -73,6 +73,8 @@ class ProductModel extends BaseModel {
   final String food;
   final String style;
   final List<InfoMoreModel> listInfoMore;
+  final String fatherNote;
+  final String motherNote;
 
   ProductModel({
     String? id,
@@ -94,6 +96,8 @@ class ProductModel extends BaseModel {
     this.mother = "",
     this.food = "",
     this.style = "",
+    this.fatherNote = "",
+    this.motherNote = "",
     this.listInfoMore = const [],
   }) : super(id: id ?? "", createAt: createAt, updateAt: updateAt);
 
@@ -130,6 +134,8 @@ class ProductModel extends BaseModel {
       'food': food,
       'style': style,
       "listInfoMore": listInfoMore.map((e) => e.toMap()).toList(),
+      'fatherNote': fatherNote,
+      'motherNote': motherNote,
     };
   }
 
@@ -161,6 +167,8 @@ class ProductModel extends BaseModel {
           : (map['listInfoMore'] as List)
               .map((e) => InfoMoreModel.fromMap(e))
               .toList(),
+      fatherNote: map['fatherNote'] == null ? "" : map['fatherNote'] as String,
+      motherNote: map['motherNote'] == null ? "" : map['motherNote'] as String,
     );
   }
 
@@ -190,6 +198,8 @@ class ProductModel extends BaseModel {
     String? food,
     String? style,
     List<InfoMoreModel>? listInfoMore,
+    String? fatherNote,
+    String? motherNote,
   }) {
     return ProductModel(
       id: id ?? this.id,
@@ -212,6 +222,8 @@ class ProductModel extends BaseModel {
       food: food ?? this.food,
       style: style ?? this.style,
       listInfoMore: listInfoMore ?? this.listInfoMore,
+      fatherNote: fatherNote ?? this.fatherNote,
+      motherNote: motherNote ?? this.motherNote,
     );
   }
 

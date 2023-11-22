@@ -23,6 +23,8 @@ class CreateCatheState extends Equatable {
   final String food;
   final String style;
   final List<InfoMoreModel> listInfoMore;
+  final String fatherNote;
+  final String motherNote;
 
   const CreateCatheState({
     this.date = "",
@@ -46,6 +48,8 @@ class CreateCatheState extends Equatable {
     this.food = "",
     this.style = "",
     this.listInfoMore = const [],
+    this.fatherNote = "",
+    this.motherNote = "",
   });
 
   factory CreateCatheState.ds() => CreateCatheState(
@@ -76,6 +80,8 @@ class CreateCatheState extends Equatable {
         food,
         style,
         listInfoMore,
+        fatherNote,
+        motherNote,
       ];
 
   CreateCatheState copyWith({
@@ -100,6 +106,8 @@ class CreateCatheState extends Equatable {
     String? food,
     String? style,
     List<InfoMoreModel>? listInfoMore,
+    String? fatherNote,
+    String? motherNote,
   }) {
     return CreateCatheState(
       date: date ?? this.date,
@@ -123,6 +131,8 @@ class CreateCatheState extends Equatable {
       food: food ?? this.food,
       style: style ?? this.style,
       listInfoMore: listInfoMore ?? this.listInfoMore,
+      fatherNote: fatherNote ?? this.fatherNote,
+      motherNote: motherNote ?? this.motherNote,
     );
   }
 }

@@ -29,7 +29,7 @@ class LeftWidget extends StatelessWidget {
                     : (value) =>
                         context.read<DetailCatheBloc>().onChangedName(value),
               ),
-              XTextRich(text: "Khu vực"),
+              XTextRich(text: "xuất xứ"),
               sizebox20,
               XInput(
                 value: (state.area?.name ?? "") + " ( ${state.area?.nameId} )",

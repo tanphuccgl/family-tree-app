@@ -1,3 +1,4 @@
+import 'package:familytree/src/features/create_cathe/widgets/text_rich.dart';
 import 'package:familytree/src/features/detail_cathe/logic/detail_cathe_bloc.dart';
 import 'package:familytree/src/network/model/product_model.dart';
 import 'package:familytree/widgets/button/button_2.dart';
@@ -51,6 +52,20 @@ class RightWidget extends StatelessWidget {
                 value: state.type.labelOf,
                 readOnly: true,
               ),
+              if (state.type == ProductTypeEnum.f0) ...[
+                XTextRich(text: "Cha"),
+                sizebox20,
+                XInput(
+                  value: state.fatherNote,
+                  readOnly: true,
+                ),
+                XTextRich(text: "Mẹ"),
+                sizebox20,
+                XInput(
+                  value: state.motherNote,
+                  readOnly: true,
+                ),
+              ],
               if (state.type != ProductTypeEnum.f0 &&
                   state.type != ProductTypeEnum.f1) ...[
                 const Text("Cha :"),
