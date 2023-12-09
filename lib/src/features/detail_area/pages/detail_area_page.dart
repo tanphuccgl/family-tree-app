@@ -20,14 +20,14 @@ class DetailAreaPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 15, vertical: 30),
               child: Column(
                 children: [
-                  XTextRich(text: "Tên Khu vực"),
+                  XTextRich(text: "Tên xuất xứ"),
                   SizedBox(height: 20),
                   XInput(
                       value: state.name,
                       readOnly: !state.isEdit,
                       onChanged: (value) =>
                           context.read<DetailAreaBloc>().onChangedName(value)),
-                  XTextRich(text: "Mã Khu vực"),
+                  XTextRich(text: "Mã xuất xứ"),
                   SizedBox(height: 20),
                   XInput(
                       value: state.nameId,

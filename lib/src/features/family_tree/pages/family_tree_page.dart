@@ -68,7 +68,7 @@ class TreeViewPage extends StatelessWidget {
                     Align(
                         alignment: Alignment.centerLeft,
                         child: const Text(
-                          "Khu vực: ",
+                          "xuất xứ: ",
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 25,

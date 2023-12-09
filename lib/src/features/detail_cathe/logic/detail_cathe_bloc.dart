@@ -54,6 +54,8 @@ class DetailCatheBloc extends Cubit<DetailCatheState> {
         type: data.type,
         area: data.area,
         imageNetwork: data.image,
+        fatherNote: data.fatherNote,
+        motherNote: data.motherNote,
       ));
       XToast.hideLoading();
       return;

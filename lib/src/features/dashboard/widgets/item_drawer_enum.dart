@@ -16,7 +16,7 @@ enum ItemDrawerEnum {
       case list:
         return "Danh sách cá thể";
       case area:
-        return "Khu vực";
+        return "xuất xứ";
     }
   }
 

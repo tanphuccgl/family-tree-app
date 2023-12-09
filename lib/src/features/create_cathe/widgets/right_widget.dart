@@ -57,6 +57,22 @@ class RightWidget extends StatelessWidget {
                   }).toList(),
                 ),
               ),
+              if (state.type == ProductTypeEnum.f0) ...[
+                XTextRich(text: "Cha"),
+                sizebox20,
+                XInput(
+                    value: state.fatherNote,
+                    onChanged: (value) => context
+                        .read<CreateCatheBloc>()
+                        .onChangedFatherNote(value)),
+                XTextRich(text: "Mẹ"),
+                sizebox20,
+                XInput(
+                    value: state.motherNote,
+                    onChanged: (value) => context
+                        .read<CreateCatheBloc>()
+                        .onChangedMotherNote(value)),
+              ],
               if (state.type != ProductTypeEnum.f0 &&
                   state.type != ProductTypeEnum.f1) ...[
                 if (state.listFather.isNotEmpty) ...[

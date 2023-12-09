@@ -22,6 +22,8 @@ class DetailCatheState extends Equatable {
   final List<InfoMoreModel> listInfoMore;
   final AreaModel? area;
   final String imageNetwork;
+  final String fatherNote;
+  final String motherNote;
 
   factory DetailCatheState.ds() => DetailCatheState();
 
@@ -45,6 +47,8 @@ class DetailCatheState extends Equatable {
     this.listInfoMore = const [],
     this.area,
     this.imageNetwork = "",
+    this.motherNote = "",
+    this.fatherNote = "",
   });
   @override
   List<Object?> get props => [
@@ -67,6 +71,8 @@ class DetailCatheState extends Equatable {
         isEdit,
         area,
         imageNetwork,
+        motherNote,
+        fatherNote,
       ];
 
   DetailCatheState copyWith({
@@ -89,6 +95,8 @@ class DetailCatheState extends Equatable {
     List<InfoMoreModel>? listInfoMore,
     AreaModel? area,
     String? imageNetwork,
+    String? motherNote,
+    String? fatherNote,
   }) {
     return DetailCatheState(
       isEdit: isEdit ?? this.isEdit,
@@ -110,6 +118,8 @@ class DetailCatheState extends Equatable {
       listInfoMore: listInfoMore ?? this.listInfoMore,
       area: area ?? this.area,
       imageNetwork: imageNetwork ?? this.imageNetwork,
+      fatherNote: fatherNote ?? this.fatherNote,
+      motherNote: motherNote ?? this.motherNote,
     );
   }
 }

@@ -30,7 +30,7 @@ enum SortEnum {
       case SortEnum.style:
         return 'Phong cách';
       case SortEnum.area:
-        return 'Khu vực';
+        return 'xuất xứ';
       case SortEnum.father:
         return 'Cha';
       case SortEnum.mother:
