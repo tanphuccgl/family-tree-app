@@ -53,6 +53,14 @@ class TreeViewPage extends StatelessWidget {
                   ),
                   Spacer(),
                   FloatingActionButton(
+                    heroTag: "btn1",
+                    onPressed: () =>
+                        context.read<FamilyTreeBloc>().navigateToCopulate(),
+                    child: const Icon(Icons.person),
+                  ),
+                  SizedBox(width: 20.0),
+                  FloatingActionButton(
+                    heroTag: "btn2",
                     onPressed: () =>
                         context.read<FamilyTreeBloc>().moveToCreateProduct(),
                     child: const Icon(Icons.add),
@@ -68,7 +76,7 @@ class TreeViewPage extends StatelessWidget {
                     Align(
                         alignment: Alignment.centerLeft,
                         child: const Text(
-                          "xuất xứ: ",
+                          "Khu vực: ",
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 25,

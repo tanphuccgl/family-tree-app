@@ -1,5 +1,8 @@
 import 'package:equatable/equatable.dart';
-import 'package:familytree/src/features/create_cathe/pages/create_cathe_page.dart';
+import 'package:familytree/src/features/create_individual/choose_type_individual/pages/choose_type_individual_page.dart';
+import 'package:familytree/src/features/create_individual/copulate/pages/copulate_page.dart';
+import 'package:familytree/src/features/create_individual/create_individual_f0_root/pages/create_individual_f0_root_page.dart';
+
 import 'package:familytree/src/features/detail_cathe/pages/detail_cathe_page.dart';
 import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/area_model.dart';
@@ -63,8 +66,8 @@ class FamilyTreeBloc extends Cubit<FamilyTreeState> {
       }
       if (element.type != ProductTypeEnum.f0 &&
           element.type != ProductTypeEnum.f1) {
-        final a = list.singleWhere((e) => e.id == element.father);
-        final b = list.singleWhere((e) => e.id == element.mother);
+        final a = list.singleWhere((e) => e.id == element.fatherId);
+        final b = list.singleWhere((e) => e.id == element.motherId);
         edges.add(Edge(Node.Id(a), Node.Id(element)));
         edges.add(Edge(Node.Id(b), Node.Id(element)));
         nodes.add(Node.Id(a));
@@ -84,28 +87,31 @@ class FamilyTreeBloc extends Cubit<FamilyTreeState> {
           .where((e) => e.area?.id == state.areaIdSelected)
           .toList();
       emit(state.copyWith(list: list));
-
-      createNode(list);
+//TODO
+      // createNode(list);
     }
+  }
+
+  void navigateToCopulate() async {
+    XCoordinator.push(CopulatePage());
   }
 
   void moveToCreateProduct() async {
     try {
-      final hasF0 = state.list.firstWhere(
-          (element) => element.type == ProductTypeEnum.f0,
-          orElse: () => ProductModel(id: ""));
-
-      AreaModel value = state.listArea
+      AreaModel area = state.listArea
           .singleWhere((element) => element.id == state.areaIdSelected);
-      final ProductModel? result = await XCoordinator.push(CreateCathePage(
-        area: value,
-        hasF0: hasF0.id.isNotEmpty,
-      ));
-      if (result != null) {
-        onChangeAreaIdSelected(state.areaIdSelected);
+
+      if (state.list.isEmpty) {
+        XCoordinator.push(CreateIndividualF0RootPage(
+          area: area,
+        ));
+      } else {
+        XCoordinator.push(ChooseTypeIndividualPage(
+          area: area,
+        ));
       }
     } catch (e) {
-      print(e);
+      XToast.error("Có lỗi xảy ra");
     }
   }
 

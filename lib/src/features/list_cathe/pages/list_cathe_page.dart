@@ -122,8 +122,8 @@ class ListCaThePage extends StatelessWidget {
             labelData(value.food),
             labelData(value.style),
             labelData(value.area?.nameId ?? ""),
-            labelData(value.father),
-            labelData(value.mother),
+            labelData(value.fatherId),
+            labelData(value.motherId),
             labelData(
               value.isMale == true ? "Đực" : "Cái",
             ),

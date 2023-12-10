@@ -59,6 +59,8 @@ class ProductModel extends BaseModel {
   final String date;
   final String review;
   final AreaModel? area;
+  final List<String> listCopulateId;
+  final String origin;
   final int age;
   final String color;
   final double price;
@@ -68,19 +70,19 @@ class ProductModel extends BaseModel {
   final bool isMale;
   final String image;
   final ProductTypeEnum type;
-  final String father;
-  final String mother;
+  final String fatherId;
+  final String motherId;
   final String food;
   final String style;
   final List<InfoMoreModel> listInfoMore;
-  final String fatherNote;
-  final String motherNote;
 
   ProductModel({
     String? id,
+    this.listCopulateId = const [],
     Timestamp? createAt,
     Timestamp? updateAt,
     this.date = "",
+    this.origin = "",
     this.review = "",
     this.age = 0,
     this.area,
@@ -92,12 +94,10 @@ class ProductModel extends BaseModel {
     this.isMale = true,
     this.type = ProductTypeEnum.f0,
     this.image = "",
-    this.father = "",
-    this.mother = "",
+    this.fatherId = "",
+    this.motherId = "",
     this.food = "",
     this.style = "",
-    this.fatherNote = "",
-    this.motherNote = "",
     this.listInfoMore = const [],
   }) : super(id: id ?? "", createAt: createAt, updateAt: updateAt);
 
@@ -115,10 +115,12 @@ class ProductModel extends BaseModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'date': date,
+      'listCopulateId': listCopulateId.map((e) => e).toList(),
       "createAt": createAt,
       "updateAt": updateAt,
       "type": type.nameOf,
       "id": id,
+      'origin': origin,
       'review': review,
       'age': age,
       'color': color,
@@ -129,13 +131,11 @@ class ProductModel extends BaseModel {
       'isMale': isMale,
       'image': image,
       'area': area?.toMap(),
-      'father': father,
-      'mother': mother,
+      'fatherId': fatherId,
+      'motherId': motherId,
       'food': food,
       'style': style,
       "listInfoMore": listInfoMore.map((e) => e.toMap()).toList(),
-      'fatherNote': fatherNote,
-      'motherNote': motherNote,
     };
   }
 
@@ -150,6 +150,10 @@ class ProductModel extends BaseModel {
       date: map['date'] as String,
       review: map['review'] as String,
       age: map['age'] as int,
+      listCopulateId: map['listCopulateId'] == null
+          ? []
+          : (map['listCopulateId'] as List).map((e) => e.toString()).toList(),
+      origin: map['origin'] as String,
       color: map['color'] as String,
       price: map['price'] as double,
       weight: map['weight'] as double,
@@ -158,8 +162,8 @@ class ProductModel extends BaseModel {
       isMale: map['isMale'] as bool,
       image: map['image'] as String,
       area: map['area'] == null ? null : AreaModel.fromMap(map['area']),
-      father: map['father'] as String,
-      mother: map['mother'] as String,
+      fatherId: map['fatherId'] as String,
+      motherId: map['motherId'] as String,
       food: map['food'] == null ? "" : map['food'] as String,
       style: map['style'] == null ? "" : map['style'] as String,
       listInfoMore: map['listInfoMore'] == null
@@ -167,8 +171,6 @@ class ProductModel extends BaseModel {
           : (map['listInfoMore'] as List)
               .map((e) => InfoMoreModel.fromMap(e))
               .toList(),
-      fatherNote: map['fatherNote'] == null ? "" : map['fatherNote'] as String,
-      motherNote: map['motherNote'] == null ? "" : map['motherNote'] as String,
     );
   }
 
@@ -190,19 +192,21 @@ class ProductModel extends BaseModel {
     Timestamp? createAt,
     Timestamp? updateAt,
     bool? isMale,
+    List<String>? listCopulateId,
     ProductTypeEnum? type,
     String? image,
     AreaModel? area,
-    String? father,
-    String? mother,
+    String? origin,
+    String? fatherId,
+    String? motherId,
     String? food,
     String? style,
     List<InfoMoreModel>? listInfoMore,
-    String? fatherNote,
-    String? motherNote,
   }) {
     return ProductModel(
       id: id ?? this.id,
+      listCopulateId: listCopulateId ?? this.listCopulateId,
+      origin: origin ?? this.origin,
       createAt: createAt ?? this.createAt,
       updateAt: updateAt ?? this.updateAt,
       date: date ?? this.date,
@@ -217,51 +221,11 @@ class ProductModel extends BaseModel {
       type: type ?? this.type,
       image: image ?? this.image,
       area: area ?? this.area,
-      father: father ?? this.father,
-      mother: mother ?? this.mother,
+      fatherId: fatherId ?? this.fatherId,
+      motherId: motherId ?? this.motherId,
       food: food ?? this.food,
       style: style ?? this.style,
       listInfoMore: listInfoMore ?? this.listInfoMore,
-      fatherNote: fatherNote ?? this.fatherNote,
-      motherNote: motherNote ?? this.motherNote,
     );
-  }
-
-  @override
-  bool operator ==(covariant ProductModel other) {
-    if (identical(this, other)) return true;
-
-    return other.date == date &&
-        other.review == review &&
-        other.area == area &&
-        other.age == age &&
-        other.color == color &&
-        other.price == price &&
-        other.weight == weight &&
-        other.name == name &&
-        other.videoLink == videoLink &&
-        other.isMale == isMale &&
-        other.image == image &&
-        other.type == type &&
-        other.father == father &&
-        other.mother == mother;
-  }
-
-  @override
-  int get hashCode {
-    return date.hashCode ^
-        review.hashCode ^
-        area.hashCode ^
-        age.hashCode ^
-        color.hashCode ^
-        price.hashCode ^
-        weight.hashCode ^
-        name.hashCode ^
-        videoLink.hashCode ^
-        isMale.hashCode ^
-        image.hashCode ^
-        type.hashCode ^
-        father.hashCode ^
-        mother.hashCode;
   }
 }

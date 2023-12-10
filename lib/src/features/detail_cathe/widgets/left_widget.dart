@@ -1,4 +1,4 @@
-import 'package:familytree/src/features/create_cathe/widgets/text_rich.dart';
+import 'package:familytree/src/features/create_individual/widgets/text_rich.dart';
 import 'package:familytree/src/features/detail_cathe/logic/detail_cathe_bloc.dart';
 import 'package:familytree/src/features/detail_cathe/logic/info_more_1_bloc.dart';
 import 'package:familytree/widgets/button/button_2.dart';
