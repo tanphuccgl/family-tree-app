@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
-import 'package:familytree/src/features/create_individual/choose_type_individual/pages/choose_type_individual_page.dart';
-import 'package:familytree/src/features/create_individual/copulate/pages/copulate_page.dart';
-import 'package:familytree/src/features/create_individual/create_individual_f0_root/pages/create_individual_f0_root_page.dart';
+import 'package:familytree/src/features/individual/create_individual/choose_type_individual/pages/choose_type_individual_page.dart';
+import 'package:familytree/src/features/individual/create_individual/copulate/pages/copulate_page.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_root/pages/create_individual_f0_root_page.dart';
+import 'package:familytree/src/features/individual/detail_cathe/pages/detail_cathe_page.dart';
 
-import 'package:familytree/src/features/detail_cathe/pages/detail_cathe_page.dart';
 import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/area_model.dart';
 import 'package:familytree/src/network/model/product_model.dart';
