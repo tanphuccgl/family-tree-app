@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
+import 'package:familytree/src/features/copulate/pages/copulate_page.dart';
 import 'package:familytree/src/features/individual/create_individual/choose_type_individual/pages/choose_type_individual_page.dart';
-import 'package:familytree/src/features/individual/create_individual/copulate/pages/copulate_page.dart';
 import 'package:familytree/src/features/individual/create_individual/create_individual_f0_root/pages/create_individual_f0_root_page.dart';
 import 'package:familytree/src/features/individual/detail_cathe/pages/detail_cathe_page.dart';
 

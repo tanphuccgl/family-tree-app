@@ -1,4 +1,4 @@
-import 'package:familytree/src/features/individual/create_individual/copulate/logic/copulate_bloc.dart';
+import 'package:familytree/src/features/copulate/logic/copulate_bloc.dart';
 import 'package:familytree/src/network/model/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
