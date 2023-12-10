@@ -36,12 +36,17 @@ class CopulateBloc extends Cubit<CopulateState> {
   }
 
   Future<void> onButtonCopulate() async {
-    if (state.femaleSelected == null || state.maleSelected == null) {
+    final femaleSelected = state.femaleSelected;
+    final maleSelected = state.maleSelected;
+
+    if (femaleSelected == null || maleSelected == null) {
       XToast.error("Vui lòng chọn đủ");
       return;
     }
-    final femaleSelected = state.femaleSelected!;
-    final maleSelected = state.maleSelected!;
+    if (femaleSelected.origin?.id == maleSelected.origin?.id) {
+      XToast.error("Không được phối cận huyết - chung xuất xứ");
+      return;
+    }
 
     try {
       await Future.wait([

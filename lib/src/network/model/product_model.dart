@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:familytree/src/network/model/area_model.dart';
 import 'package:familytree/src/network/model/common/base_model.dart';
 import 'package:familytree/src/network/model/info_more_model.dart';
+import 'package:familytree/src/network/model/origin_model.dart';
 import 'package:familytree/src/utils/utils.dart';
 
 enum ProductTypeEnum {
@@ -60,7 +61,7 @@ class ProductModel extends BaseModel {
   final String review;
   final AreaModel? area;
   final List<String> listCopulateId;
-  final String origin;
+  final OriginModel? origin;
   final int age;
   final String color;
   final double price;
@@ -82,7 +83,7 @@ class ProductModel extends BaseModel {
     Timestamp? createAt,
     Timestamp? updateAt,
     this.date = "",
-    this.origin = "",
+    this.origin,
     this.review = "",
     this.age = 0,
     this.area,
@@ -120,7 +121,7 @@ class ProductModel extends BaseModel {
       "updateAt": updateAt,
       "type": type.nameOf,
       "id": id,
-      'origin': origin,
+      'origin': origin?.toMap(),
       'review': review,
       'age': age,
       'color': color,
@@ -153,7 +154,7 @@ class ProductModel extends BaseModel {
       listCopulateId: map['listCopulateId'] == null
           ? []
           : (map['listCopulateId'] as List).map((e) => e.toString()).toList(),
-      origin: map['origin'] as String,
+      origin: map['origin'] == null ? null : OriginModel.fromMap(map['origin']),
       color: map['color'] as String,
       price: map['price'] as double,
       weight: map['weight'] as double,
@@ -196,7 +197,7 @@ class ProductModel extends BaseModel {
     ProductTypeEnum? type,
     String? image,
     AreaModel? area,
-    String? origin,
+    OriginModel? origin,
     String? fatherId,
     String? motherId,
     String? food,
