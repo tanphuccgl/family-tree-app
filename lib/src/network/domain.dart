@@ -1,5 +1,7 @@
 import 'package:familytree/src/network/repositories/area/area_repository.dart';
 import 'package:familytree/src/network/repositories/area/area_repository_impl.dart';
+import 'package:familytree/src/network/repositories/origin/origin_repository.dart';
+import 'package:familytree/src/network/repositories/origin/origin_repository_impl.dart';
 import 'package:familytree/src/network/repositories/product/product_repository.dart';
 
 import 'repositories/product/product_repository_impl.dart';
@@ -13,9 +15,11 @@ class Domain {
   }
   late ProductRepository product;
   late AreaRepository area;
+  late OriginRepository origin;
 
   Domain._() {
     product = ProductRepositoryImpl();
     area = AreaRepositoryImpl();
+    origin = OriginRepositoryImpl();
   }
 }
