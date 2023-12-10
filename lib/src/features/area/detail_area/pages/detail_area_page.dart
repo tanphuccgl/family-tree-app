@@ -1,5 +1,6 @@
+import 'package:familytree/src/features/area/detail_area/logic/detail_area_bloc.dart';
 import 'package:familytree/src/features/create_individual/widgets/text_rich.dart';
-import 'package:familytree/src/features/detail_area/logic/detail_area_bloc.dart';
+
 import 'package:familytree/widgets/button/button.dart';
 import 'package:familytree/widgets/froms/input.dart';
 import 'package:flutter/material.dart';
@@ -20,14 +21,14 @@ class DetailAreaPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 15, vertical: 30),
               child: Column(
                 children: [
-                  XTextRich(text: "Tên xuất xứ"),
+                  XTextRich(text: "Tên khu vực"),
                   SizedBox(height: 20),
                   XInput(
                       value: state.name,
                       readOnly: !state.isEdit,
                       onChanged: (value) =>
                           context.read<DetailAreaBloc>().onChangedName(value)),
-                  XTextRich(text: "Mã xuất xứ"),
+                  XTextRich(text: "Mã khu vực"),
                   SizedBox(height: 20),
                   XInput(
                       value: state.nameId,
