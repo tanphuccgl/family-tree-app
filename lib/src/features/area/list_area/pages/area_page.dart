@@ -1,5 +1,5 @@
-import 'package:familytree/src/features/area/logic/area_bloc.dart';
-import 'package:familytree/src/features/area/widgets/item_area.dart';
+import 'package:familytree/src/features/area/list_area/logic/area_bloc.dart';
+import 'package:familytree/src/features/area/list_area/widgets/item_area.dart';
 import 'package:familytree/widgets/button/button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,7 +21,7 @@ class AreaPage extends StatelessWidget {
                   XButton(
                       onPressed: () =>
                           context.read<AreaBloc>().moveTocreateArea(),
-                      text: "Tạo xuất xứ"),
+                      text: "Tạo khu vực"),
                   SizedBox(
                     height: 30,
                   ),

@@ -1,4 +1,5 @@
-import 'package:familytree/src/features/area/logic/area_bloc.dart';
+import 'package:familytree/src/features/area/list_area/logic/area_bloc.dart';
+
 import 'package:familytree/src/network/model/area_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,11 +20,11 @@ class ItemArea extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              "Tên xuất xứ: " + data.name,
+              "Tên khu vực: " + data.name,
               style: TextStyle(color: Colors.black),
             ),
             Text(
-              "Mã xuất xứ: " + data.nameId,
+              "Mã khu vực: " + data.nameId,
               style: TextStyle(color: Colors.black),
             ),
           ],
