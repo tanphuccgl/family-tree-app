@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:familytree/src/features/create_area/pages/create_area_page.dart';
-import 'package:familytree/src/features/detail_area/pages/detail_area_page.dart';
+import 'package:familytree/src/features/area/create_area/pages/create_area_page.dart';
+import 'package:familytree/src/features/area/detail_area/pages/detail_area_page.dart';
+
 import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/area_model.dart';
 import 'package:familytree/src/router/coordinator.dart';

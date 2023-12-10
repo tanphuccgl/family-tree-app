@@ -13,8 +13,6 @@ class ParentDefaultWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return BlocBuilder<CreateIndividualDefaultBloc,
         CreateIndividualDefaultState>(
       builder: (context, state) {
