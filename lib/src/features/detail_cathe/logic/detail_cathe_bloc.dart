@@ -40,8 +40,8 @@ class DetailCatheBloc extends Cubit<DetailCatheState> {
         color: data.color,
         date: data.date,
         familyCode: data.id,
-        father: data.father,
-        mother: data.mother,
+        father: data.fatherId,
+        mother: data.motherId,
         food: data.food,
         isMale: data.isMale,
         listInfoMore: data.listInfoMore,
@@ -54,8 +54,6 @@ class DetailCatheBloc extends Cubit<DetailCatheState> {
         type: data.type,
         area: data.area,
         imageNetwork: data.image,
-        fatherNote: data.fatherNote,
-        motherNote: data.motherNote,
       ));
       XToast.hideLoading();
       return;
@@ -152,8 +150,8 @@ class DetailCatheBloc extends Cubit<DetailCatheState> {
       type: state.type,
       image: state.imageNetwork,
       area: state.area,
-      mother: state.mother,
-      father: state.father,
+      motherId: state.mother,
+      fatherId: state.father,
       food: state.food,
       style: state.style,
       updateAt: Timestamp.now(),
