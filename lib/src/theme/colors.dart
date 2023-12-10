@@ -4,13 +4,15 @@ import 'package:flutter/material.dart';
 class XColors {
   // https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4
   static final MaterialColor primaryColors =
-      ColorUtility.generateMaterialColor(primary);
+      ColorUtility.generateMaterialColor(primary1);
 
-  static const primary = Color(0xffF6F6F6);
-  static const primary2 = Color(0xffD9D9D9);
-
-  static const primary3 = Color(0xff7D7D7D);
-  static const primary4 = Color(0xffEFEFEF);
+  static const Color primary1 = Color(0xff081B2B);
+  static const Color primary2 = Color(0xff10253A);
+  static const Color primary3 = Color(0xff162C46);
+  static const Color primary4 = Color(0xff0642A0);
+  static const Color primary5 = Color(0xff97A8BF);
+  static const Color primary6 = Color(0xffD4E2FE);
+  static const Color primary7 = Color(0xff7CACF8);
 
   static const borderInput = Color(0x1A000000);
   static const diableButton = Color(0xff01878A);
