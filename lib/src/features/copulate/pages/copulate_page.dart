@@ -1,5 +1,6 @@
-import 'package:familytree/src/features/individual/create_individual/copulate/logic/copulate_bloc.dart';
-import 'package:familytree/src/features/individual/create_individual/copulate/widgets/generation_copulate_tabbar.dart';
+import 'package:familytree/src/features/copulate/logic/copulate_bloc.dart';
+import 'package:familytree/src/features/copulate/widgets/generation_copulate_tabbar.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

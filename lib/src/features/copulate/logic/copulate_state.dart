@@ -9,11 +9,13 @@ class CopulateState extends Equatable {
   final ProductModel? maleSelected;
   final ProductModel? femaleSelected;
 
-  List<ProductModel> get listMaleIndividual =>
-      listIndividualCurrent.where((e) => e.isMale == true).toList();
+  List<ProductModel> get listMaleIndividual => listIndividualCurrent
+      .where((e) => e.isMale == true && e.origin != null)
+      .toList();
 
   List<ProductModel> get listFemaleIndividual => listIndividualCurrent
-      .where((e) => e.isMale == false && e.listCopulateId.isEmpty)
+      .where((e) =>
+          e.isMale == false && e.listCopulateId.isEmpty && e.origin != null)
       .toList();
 
   CopulateState({

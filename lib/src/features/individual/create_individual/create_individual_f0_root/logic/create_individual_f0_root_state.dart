@@ -5,13 +5,15 @@ class CreateIndividualF0RootState extends Equatable {
   final AreaModel? area;
   final String name;
   final String familyCode;
-  final String origin;
+  final OriginModel? origin;
+  final List<OriginModel> listOriginSuggest;
 
   const CreateIndividualF0RootState({
     this.area,
     this.name = "",
     this.familyCode = "",
-    this.origin = "",
+    this.origin,
+    this.listOriginSuggest = const [],
   });
 
   factory CreateIndividualF0RootState.ds() => CreateIndividualF0RootState();
@@ -22,19 +24,22 @@ class CreateIndividualF0RootState extends Equatable {
         name,
         familyCode,
         origin,
+        listOriginSuggest,
       ];
 
   CreateIndividualF0RootState copyWith({
     AreaModel? area,
     String? name,
     String? familyCode,
-    String? origin,
+    OriginModel? origin,
+    List<OriginModel>? listOriginSuggest,
   }) {
     return CreateIndividualF0RootState(
       area: area ?? this.area,
       name: name ?? this.name,
       familyCode: familyCode ?? this.familyCode,
       origin: origin ?? this.origin,
+      listOriginSuggest: listOriginSuggest ?? this.listOriginSuggest,
     );
   }
 }

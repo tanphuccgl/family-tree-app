@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/area_model.dart';
+import 'package:familytree/src/network/model/origin_model.dart';
 import 'package:familytree/src/network/model/product_model.dart';
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,14 @@ class CreateIndividualDefaultBloc extends Cubit<CreateIndividualDefaultState> {
   void init() {
     emit(state.copyWith(area: area, type: type));
     getListParentSuggest();
+    getListOriginSuggest();
+  }
+
+  void getListOriginSuggest() async {
+    final result = await domain.origin.getAllOrigin();
+    if (result.isSuccess) {
+      emit(state.copyWith(listOriginSuggest: [...result.data!]));
+    }
   }
 
   void _checkIdExist() async {
@@ -52,7 +61,7 @@ class CreateIndividualDefaultBloc extends Cubit<CreateIndividualDefaultState> {
     emit(state.copyWith(isMale: value));
   }
 
-  void onChangedOrigin(String value) {
+  void onChangedOrigin(OriginModel value) {
     emit(state.copyWith(origin: value));
   }
 
@@ -78,6 +87,13 @@ class CreateIndividualDefaultBloc extends Cubit<CreateIndividualDefaultState> {
   }
 
   void createNewProduct() async {
+    if (state.name.isEmpty ||
+        state.familyCode.isEmpty ||
+        state.origin == null) {
+      XToast.error("Vui lòng nhập thông tin bắt buộc");
+      return;
+    }
+
     if (state.isFamilyCodeExist) {
       XToast.error("Mã đã tồn tại");
       return;

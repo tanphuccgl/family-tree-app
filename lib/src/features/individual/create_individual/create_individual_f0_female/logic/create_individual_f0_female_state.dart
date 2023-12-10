@@ -5,14 +5,16 @@ class CreateIndividualF0FemaleState extends Equatable {
   final AreaModel? area;
   final String name;
   final String familyCode;
-  final String origin;
   final bool isFamilyCodeExist;
+  final OriginModel? origin;
+  final List<OriginModel> listOriginSuggest;
 
   const CreateIndividualF0FemaleState({
     this.area,
     this.name = "",
     this.familyCode = "",
-    this.origin = "",
+    this.origin,
+    this.listOriginSuggest = const [],
     this.isFamilyCodeExist = false,
   });
 
@@ -25,21 +27,24 @@ class CreateIndividualF0FemaleState extends Equatable {
         familyCode,
         origin,
         isFamilyCodeExist,
+        listOriginSuggest,
       ];
 
   CreateIndividualF0FemaleState copyWith({
     AreaModel? area,
     String? name,
     String? familyCode,
-    String? origin,
     bool? isFamilyCodeExist,
+    OriginModel? origin,
+    List<OriginModel>? listOriginSuggest,
   }) {
     return CreateIndividualF0FemaleState(
       area: area ?? this.area,
       name: name ?? this.name,
       familyCode: familyCode ?? this.familyCode,
-      origin: origin ?? this.origin,
       isFamilyCodeExist: isFamilyCodeExist ?? this.isFamilyCodeExist,
+      origin: origin ?? this.origin,
+      listOriginSuggest: listOriginSuggest ?? this.listOriginSuggest,
     );
   }
 }

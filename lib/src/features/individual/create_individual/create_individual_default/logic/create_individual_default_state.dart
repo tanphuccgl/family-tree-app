@@ -8,8 +8,9 @@ class CreateIndividualDefaultState extends Equatable {
   final String familyCode;
   final bool isMale;
   final bool isFamilyCodeExist;
-  final String origin;
 
+  final OriginModel? origin;
+  final List<OriginModel> listOriginSuggest;
   final List<ProductModel> listFatherSuggest;
   final ProductModel? fatherSelected;
   final List<ProductModel> listMotherSuggest;
@@ -22,7 +23,8 @@ class CreateIndividualDefaultState extends Equatable {
     this.isMale = true,
     this.isFamilyCodeExist = false,
     this.type,
-    this.origin = "",
+    this.origin,
+    this.listOriginSuggest = const [],
     this.listFatherSuggest = const [],
     this.fatherSelected,
     this.listMotherSuggest = const [],
@@ -44,6 +46,8 @@ class CreateIndividualDefaultState extends Equatable {
         fatherSelected,
         listMotherSuggest,
         motherSelected,
+        origin,
+        listOriginSuggest,
       ];
 
   CreateIndividualDefaultState copyWith({
@@ -53,7 +57,8 @@ class CreateIndividualDefaultState extends Equatable {
     bool? isFamilyCodeExist,
     String? familyCode,
     ProductTypeEnum? type,
-    String? origin,
+    OriginModel? origin,
+    List<OriginModel>? listOriginSuggest,
     List<ProductModel>? listFatherSuggest,
     ProductModel? fatherSelected,
     List<ProductModel>? listMotherSuggest,
@@ -66,11 +71,12 @@ class CreateIndividualDefaultState extends Equatable {
       isMale: isMale ?? this.isMale,
       isFamilyCodeExist: isFamilyCodeExist ?? this.isFamilyCodeExist,
       type: type ?? this.type,
-      origin: origin ?? this.origin,
       listFatherSuggest: listFatherSuggest ?? this.listFatherSuggest,
       fatherSelected: fatherSelected ?? this.fatherSelected,
       listMotherSuggest: listMotherSuggest ?? this.listMotherSuggest,
       motherSelected: motherSelected ?? this.motherSelected,
+      origin: origin ?? this.origin,
+      listOriginSuggest: listOriginSuggest ?? this.listOriginSuggest,
     );
   }
 }
