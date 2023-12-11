@@ -56,8 +56,7 @@ class CreateOriginBloc extends Cubit<CreateOriginState> {
     if (result.isSuccess) {
       XToast.success("Tạo thành công");
       XToast.hideLoading();
-      Navigator.pop(context, result.data);
-
+      emit(CreateOriginState());
       return;
     }
     emit(CreateOriginState());

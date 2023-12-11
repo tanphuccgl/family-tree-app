@@ -3,8 +3,8 @@ import 'package:familytree/src/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ButtonCreateOrigin extends StatelessWidget {
-  const ButtonCreateOrigin({
+class ButtonRefreshOrigin extends StatelessWidget {
+  const ButtonRefreshOrigin({
     super.key,
   });
 

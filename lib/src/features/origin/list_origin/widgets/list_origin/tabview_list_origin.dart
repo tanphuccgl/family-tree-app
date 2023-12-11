@@ -1,5 +1,5 @@
 import 'package:familytree/src/features/origin/list_origin/logic/origin_bloc.dart';
-import 'package:familytree/src/features/origin/list_origin/widgets/list_origin/components/button_create_origin.dart';
+import 'package:familytree/src/features/origin/list_origin/widgets/list_origin/components/button_refresh_origin.dart';
 import 'package:familytree/src/features/origin/list_origin/widgets/list_origin/components/button_delete_origin.dart';
 import 'package:familytree/src/features/origin/list_origin/widgets/list_origin/components/item_origin.dart';
 
@@ -60,7 +60,7 @@ class TabViewListOrigin extends StatelessWidget {
                             Spacer(),
                             ButtonDeleteOrigin(),
                           ]
-                        : [ButtonCreateOrigin()],
+                        : [ButtonRefreshOrigin()],
                   ),
                 ),
                 divider(),

@@ -1,4 +1,5 @@
 import 'package:familytree/src/features/origin/list_origin/logic/origin_bloc.dart';
+import 'package:familytree/src/features/origin/list_origin/widgets/create_origin/tabview_create_origin.dart';
 
 import 'package:familytree/src/features/origin/list_origin/widgets/list_origin/tabview_list_origin.dart';
 import 'package:familytree/src/theme/colors.dart';
@@ -19,7 +20,7 @@ class _OriginPageState extends State<OriginPage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     tabController = TabController(
-      initialIndex: 0,
+      initialIndex: 1,
       length: 2,
       vsync: this,
     );
@@ -60,7 +61,7 @@ class _OriginPageState extends State<OriginPage> with TickerProviderStateMixin {
                       physics: NeverScrollableScrollPhysics(),
                       children: [
                         TabViewListOrigin(),
-                        TabViewListOrigin(),
+                        TabViewCreateOrigin(),
                       ],
                     ),
                   )

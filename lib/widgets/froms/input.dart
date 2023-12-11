@@ -152,15 +152,15 @@ class _XInputState extends State<XInput> {
   @override
   Widget build(BuildContext context) {
     final enabledBorder = OutlineInputBorder(
-      borderSide: const BorderSide(color: XColors.primary1, width: 0),
+      borderSide: const BorderSide(color: XColors.primary6, width: 0),
       borderRadius: BorderHelper.r10,
     );
     final focusedBorder = OutlineInputBorder(
-      borderSide: const BorderSide(color: XColors.primary1, width: 0),
+      borderSide: const BorderSide(color: XColors.primary6, width: 0),
       borderRadius: BorderHelper.r10,
     );
     final errorBorder = OutlineInputBorder(
-      borderSide: const BorderSide(color: XColors.primary1, width: 0),
+      borderSide: const BorderSide(color: XColors.primary6, width: 0),
       borderRadius: BorderHelper.r10,
     );
 
