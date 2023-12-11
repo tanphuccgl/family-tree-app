@@ -8,7 +8,6 @@ import 'package:familytree/src/utils/utils.dart';
 
 class OriginModel extends BaseModel {
   final String nameId;
-
   final String name;
 
   OriginModel({

@@ -83,6 +83,48 @@ class OriginBloc extends Cubit<OriginState> {
     emit(state.copyWith(listOriginSelected: []));
   }
 
+  void onTapTitleName() {
+    if (state.enableSortWithName) {
+      emit(state.copyWith(list: _sortOriginListByName(state.list)));
+    } else {
+      emit(state.copyWith(list: _sortOriginListByName(state.list, true)));
+    }
+    emit(state.copyWith(
+      enableSortWithName: !state.enableSortWithName,
+      enableSortWithNameId: false,
+    ));
+  }
+
+  void onTapTitleNameId() {
+    if (state.enableSortWithNameId) {
+      emit(state.copyWith(list: _sortOriginListByNameId(state.list)));
+    } else {
+      emit(state.copyWith(list: _sortOriginListByNameId(state.list, true)));
+    }
+    emit(state.copyWith(
+      enableSortWithNameId: !state.enableSortWithNameId,
+      enableSortWithName: false,
+    ));
+  }
+
+  List<OriginModel> _sortOriginListByName(List<OriginModel> originList,
+      [bool reverse = false]) {
+    originList.sort((a, b) => a.name.compareTo(b.name));
+    if (reverse) {
+      originList.sort((a, b) => b.name.compareTo(a.name));
+    }
+    return originList;
+  }
+
+  List<OriginModel> _sortOriginListByNameId(List<OriginModel> originList,
+      [bool reverse = false]) {
+    originList.sort((a, b) => a.nameId.compareTo(b.nameId));
+    if (reverse) {
+      originList.sort((a, b) => b.nameId.compareTo(a.nameId));
+    }
+    return originList;
+  }
+
   @override
   Future<void> close() {
     XToast.hideLoading();

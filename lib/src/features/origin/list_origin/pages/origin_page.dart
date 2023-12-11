@@ -101,21 +101,36 @@ class OriginPage extends StatelessWidget {
                             ),
                             Expanded(
                               flex: 2,
-                              child: Center(
-                                  child: Text(
-                                      size.width < 700 ? "Stt" : "Số thứ tự",
-                                      maxLines: 1,
-                                      style: style())),
+                              child: GestureDetector(
+                                onTap: () {
+                                  print("!23");
+                                },
+                                child: Center(
+                                    child: Text(
+                                        size.width < 700 ? "Stt" : "Số thứ tự",
+                                        maxLines: 1,
+                                        style: style())),
+                              ),
                             ),
                             GapHelper.w4,
                             Expanded(
                               flex: 4,
-                              child: Text("Tên", maxLines: 1, style: style()),
+                              child: GestureDetector(
+                                  onTap: () => context
+                                      .read<OriginBloc>()
+                                      .onTapTitleName(),
+                                  child:
+                                      Text("Tên", maxLines: 1, style: style())),
                             ),
                             GapHelper.w4,
                             Expanded(
                               flex: 4,
-                              child: Text("Mã", maxLines: 1, style: style()),
+                              child: GestureDetector(
+                                  onTap: () => context
+                                      .read<OriginBloc>()
+                                      .onTapTitleNameId(),
+                                  child:
+                                      Text("Mã", maxLines: 1, style: style())),
                             ),
                           ],
                         ),
