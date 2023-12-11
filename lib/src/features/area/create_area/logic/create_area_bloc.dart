@@ -54,10 +54,9 @@ class CreateAreaBloc extends Cubit<CreateAreaState> {
 
     final result = await domain.area.createArea(product);
     if (result.isSuccess) {
+      emit(CreateAreaState());
       XToast.success("Tạo thành công");
       XToast.hideLoading();
-      Navigator.pop(context, result.data);
-
       return;
     }
     emit(CreateAreaState());
