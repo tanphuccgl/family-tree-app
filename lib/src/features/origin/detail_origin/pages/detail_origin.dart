@@ -1,11 +1,11 @@
 import 'package:familytree/src/features/origin/detail_origin/logic/detail_origin_bloc.dart';
+import 'package:familytree/src/features/origin/detail_origin/widgets/button_cancel_edit_origin.dart';
+import 'package:familytree/src/features/origin/detail_origin/widgets/button_confirm_edit_origin.dart';
+import 'package:familytree/src/features/origin/detail_origin/widgets/button_edit_origin.dart';
+import 'package:familytree/src/features/origin/detail_origin/widgets/button_remove_origin.dart';
+import 'package:familytree/src/features/origin/detail_origin/widgets/name_detail_origin_widget.dart';
+import 'package:familytree/src/features/origin/detail_origin/widgets/name_id_detail_origin_widget.dart';
 import 'package:familytree/src/features/origin/list_origin/logic/origin_bloc.dart';
-import 'package:familytree/src/features/origin/list_origin/widgets/detail_origin/components/button_cancel_edit_origin.dart';
-import 'package:familytree/src/features/origin/list_origin/widgets/detail_origin/components/button_edit_origin.dart';
-import 'package:familytree/src/features/origin/list_origin/widgets/detail_origin/components/button_confirm_edit_origin.dart';
-import 'package:familytree/src/features/origin/list_origin/widgets/detail_origin/components/button_remove_origin.dart';
-import 'package:familytree/src/features/origin/list_origin/widgets/detail_origin/components/name_detail_origin_widget.dart';
-import 'package:familytree/src/features/origin/list_origin/widgets/detail_origin/components/name_id_detail_origin_widget.dart';
 
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';

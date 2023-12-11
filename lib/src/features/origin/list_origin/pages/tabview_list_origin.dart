@@ -1,7 +1,7 @@
 import 'package:familytree/src/features/origin/list_origin/logic/origin_bloc.dart';
-import 'package:familytree/src/features/origin/list_origin/widgets/list_origin/components/button_refresh_origin.dart';
-import 'package:familytree/src/features/origin/list_origin/widgets/list_origin/components/button_delete_origin.dart';
-import 'package:familytree/src/features/origin/list_origin/widgets/list_origin/components/item_origin.dart';
+import 'package:familytree/src/features/origin/list_origin/widgets/button_delete_origin.dart';
+import 'package:familytree/src/features/origin/list_origin/widgets/button_refresh_origin.dart';
+import 'package:familytree/src/features/origin/list_origin/widgets/item_origin.dart';
 
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';

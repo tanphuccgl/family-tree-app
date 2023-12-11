@@ -1,21 +1,22 @@
+import 'package:familytree/src/features/origin/detail_origin/pages/detail_origin.dart';
 import 'package:familytree/src/features/origin/list_origin/logic/origin_bloc.dart';
-import 'package:familytree/src/features/origin/list_origin/widgets/create_origin/tabview_create_origin.dart';
-import 'package:familytree/src/features/origin/list_origin/widgets/detail_origin/detail_origin.dart';
+import 'package:familytree/src/features/origin/create_origin/pages/tabview_create_origin.dart';
 
-import 'package:familytree/src/features/origin/list_origin/widgets/list_origin/tabview_list_origin.dart';
+import 'package:familytree/src/features/origin/list_origin/pages/tabview_list_origin.dart';
 import 'package:familytree/src/theme/colors.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class OriginPage extends StatefulWidget {
-  const OriginPage({super.key});
+class WrapperOriginPage extends StatefulWidget {
+  const WrapperOriginPage({super.key});
 
   @override
-  State<OriginPage> createState() => _OriginPageState();
+  State<WrapperOriginPage> createState() => _WrapperOriginPageState();
 }
 
-class _OriginPageState extends State<OriginPage> with TickerProviderStateMixin {
+class _WrapperOriginPageState extends State<WrapperOriginPage>
+    with TickerProviderStateMixin {
   late TabController tabController;
   @override
   void initState() {

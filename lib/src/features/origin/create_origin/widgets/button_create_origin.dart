@@ -1,4 +1,4 @@
-import 'package:familytree/src/features/origin/list_origin/logic/create_origin_bloc.dart';
+import 'package:familytree/src/features/origin/create_origin/logic/create_origin_bloc.dart';
 
 import 'package:familytree/src/theme/colors.dart';
 import 'package:flutter/material.dart';

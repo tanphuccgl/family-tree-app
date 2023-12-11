@@ -1,12 +1,13 @@
-import 'package:familytree/src/features/origin/list_origin/logic/create_origin_bloc.dart';
+import 'package:familytree/src/features/origin/create_origin/logic/create_origin_bloc.dart';
+
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
 import 'package:familytree/widgets/froms/input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NameIdOriginWidget extends StatelessWidget {
-  const NameIdOriginWidget({super.key});
+class NameOriginWidget extends StatelessWidget {
+  const NameOriginWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class NameIdOriginWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Mã",
+              "Tên",
               style: TextStyle(
                   color: XColors.primary5,
                   fontSize: 20,
@@ -27,10 +28,9 @@ class NameIdOriginWidget extends StatelessWidget {
               width: 300,
               height: 80,
               child: XInput(
-                  value: state.nameId,
-                  errorText: state.isNameIdExist == true ? "Đã tồn tại" : "",
+                  value: state.name,
                   onChanged: (value) =>
-                      context.read<CreateOriginBloc>().onChangedNameId(value)),
+                      context.read<CreateOriginBloc>().onChangedName(value)),
             ),
           ],
         );
