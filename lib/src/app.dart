@@ -3,6 +3,7 @@ import 'package:familytree/src/router/app_router.dart';
 import 'package:familytree/src/router/coordinator.dart';
 import 'package:familytree/src/router/route_observer.dart';
 import 'package:familytree/src/router/router_name.dart';
+import 'package:familytree/src/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -34,6 +35,12 @@ class MyApp extends StatelessWidget {
             );
             return child;
           },
+          theme: ThemeData(
+              unselectedWidgetColor: XColors.primary5,
+              checkboxTheme: CheckboxThemeData(
+                checkColor: MaterialStateProperty.all(XColors.primary6),
+                fillColor: MaterialStateProperty.all(XColors.primary7),
+              )),
           themeMode: ThemeMode.light,
           debugShowCheckedModeBanner: false,
         );

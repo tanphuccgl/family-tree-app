@@ -34,7 +34,7 @@ class DashboardBloc extends Cubit<DashboardState> {
   }
 
   void closeDrawer() {
-    Navigator.of(context).pop(); 
+    Navigator.of(context).pop();
   }
 
   @override

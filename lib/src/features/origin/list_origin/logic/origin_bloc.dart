@@ -34,6 +34,17 @@ class OriginBloc extends Cubit<OriginState> {
     XToast.hideLoading();
   }
 
+  Future<void> deleteOrigin() async {
+    XToast.showLoading();
+
+    await Future.wait(
+        state.listOriginSelected.map((id) => domain.origin.deleteOrigin(id)));
+
+    getAllOrigin();
+    onClearButton();
+    XToast.hideLoading();
+  }
+
   void moveTocreateOrigin() async {
     final OriginModel? result = await XCoordinator.push(CreateOriginPage());
     if (result != null) {
@@ -42,11 +53,34 @@ class OriginBloc extends Cubit<OriginState> {
   }
 
   void moveToDetailOrigin(String id) async {
-    await XCoordinator.push(DetailOriginPage(
-      id: id,
-    ));
-
+    await XCoordinator.push(DetailOriginPage(id: id));
     await getAllOrigin();
+  }
+
+  void onCheckBoxAll(bool value) {
+    if (value) {
+      emit(state.copyWith(
+          listOriginSelected: state.list.map((e) => e.id).toList()));
+    } else {
+      emit(state.copyWith(listOriginSelected: []));
+    }
+  }
+
+  void onCheckBoxItem(String id) {
+    final isExists = state.listOriginSelected.contains(id);
+    if (isExists) {
+      final List<String> result = [...state.listOriginSelected];
+      result.remove(id);
+
+      emit(state.copyWith(listOriginSelected: result));
+    } else {
+      emit(state
+          .copyWith(listOriginSelected: [...state.listOriginSelected, id]));
+    }
+  }
+
+  void onClearButton() {
+    emit(state.copyWith(listOriginSelected: []));
   }
 
   @override
