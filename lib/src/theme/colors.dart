@@ -13,6 +13,9 @@ class XColors {
   static const Color primary5 = Color(0xff97A8BF);
   static const Color primary6 = Color(0xffD4E2FE);
   static const Color primary7 = Color(0xff7CACF8);
+  static const Color primary8 = Color(0xff031625);
+  static const Color primary9 = Color(0xff172C46);
+  static const Color primary10 = Color(0xff0D2136);
 
   static const borderInput = Color(0x1A000000);
   static const diableButton = Color(0xff01878A);

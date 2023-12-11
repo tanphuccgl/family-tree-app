@@ -12,29 +12,26 @@ class DrawerCollapse extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<DashboardBloc, DashboardState>(
       builder: (context, state) {
-        return Expanded(
-          flex: 5,
-          child: Container(
-            color: XColors.primary1,
-            padding: EdgeInsets.fromLTRB(0, 30, 0, 10),
-            child: Column(
-              children: [
-                ListView(
-                    shrinkWrap: true,
-                    children: ItemDrawerEnum.values
-                        .map((e) => ItemDrawer(data: e))
-                        .toList()),
-                divider(),
-                IconButton(
-                  onPressed: () =>
-                      context.read<DashboardBloc>().onDrawerButton(),
-                  icon: Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    color: XColors.primary5,
-                  ),
-                )
-              ],
-            ),
+        return Container(
+          width: 70,
+          color: XColors.primary1,
+          padding: EdgeInsets.fromLTRB(0, 30, 0, 10),
+          child: ListView(
+            children: [
+              ListView(
+                  shrinkWrap: true,
+                  children: ItemDrawerEnum.values
+                      .map((e) => ItemDrawer(data: e))
+                      .toList()),
+              divider(),
+              IconButton(
+                onPressed: () => context.read<DashboardBloc>().onDrawerButton(),
+                icon: Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  color: XColors.primary5,
+                ),
+              )
+            ],
           ),
         );
       },

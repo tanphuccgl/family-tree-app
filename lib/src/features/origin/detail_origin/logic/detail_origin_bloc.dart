@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:familytree/src/features/origin/list_origin/logic/origin_bloc.dart';
 import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/origin_model.dart';
 
@@ -48,6 +49,11 @@ class DetailOriginBloc extends Cubit<DetailOriginState> {
     emit(state.copyWith(isNameIdExist: false));
   }
 
+  void onCancelButton() {
+    emit(DetailOriginState());
+    getOrigin();
+  }
+
   void createNewProduct() async {
     if (state.isNameIdExist) {
       XToast.error("Mã đã tồn tại");
@@ -69,28 +75,33 @@ class DetailOriginBloc extends Cubit<DetailOriginState> {
 
     final result = await domain.origin.createOrigin(product);
     if (result.isSuccess) {
-      Navigator.pop(context);
+      emit(DetailOriginState());
       XToast.success("Chỉnh sửa thành công");
       XToast.hideLoading();
+      context.read<OriginBloc>().onCloseButton();
       return;
     }
     emit(DetailOriginState());
     XToast.error("Chỉnh sửa thất bại");
     XToast.hideLoading();
+    context.read<OriginBloc>().onCloseButton();
   }
 
-  Future<void> deleteOrigin(BuildContext context) async {
+  Future<void> deleteOrigin() async {
     XToast.showLoading();
     final result = await domain.origin.deleteOrigin(id);
     if (result.isSuccess) {
+      emit(DetailOriginState());
       XToast.success("Xóa thành công");
       XToast.hideLoading();
+      context.read<OriginBloc>().onCloseButton();
 
-      Navigator.pop(context, OriginModel(id: ""));
       return;
     }
+    emit(DetailOriginState());
     XToast.error("Xóa thất bại");
     XToast.hideLoading();
+    context.read<OriginBloc>().onCloseButton();
   }
 
   void onChangeEdit() {

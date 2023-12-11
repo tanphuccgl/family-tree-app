@@ -7,10 +7,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'dashboard_state.dart';
 
 class DashboardBloc extends Cubit<DashboardState> {
-  DashboardBloc() : super(const DashboardState()) {
+  final BuildContext context;
+  DashboardBloc(this.context) : super(const DashboardState()) {
     init();
   }
-
+  final GlobalKey<ScaffoldState> scaffoldKeyDrawer = GlobalKey<ScaffoldState>();
   late final PageController pageController;
 
   void init() {
@@ -26,6 +27,14 @@ class DashboardBloc extends Cubit<DashboardState> {
 
   void onDrawerButton() {
     emit(state.copyWith(isExpandedDrawer: !state.isExpandedDrawer));
+  }
+
+  void openDrawer() {
+    scaffoldKeyDrawer.currentState?.openDrawer();
+  }
+
+  void closeDrawer() {
+    Navigator.of(context).pop();
   }
 
   @override

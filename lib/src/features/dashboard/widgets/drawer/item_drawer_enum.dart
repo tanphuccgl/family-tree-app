@@ -4,7 +4,7 @@ import 'package:familytree/src/features/copulate/pages/copulate_page.dart';
 
 import 'package:familytree/src/features/family_tree/pages/family_tree_page.dart';
 import 'package:familytree/src/features/individual/list_cathe/pages/list_cathe_page.dart';
-import 'package:familytree/src/features/origin/list_origin/pages/origin_page.dart';
+import 'package:familytree/src/features/origin/wrapper_origin_page.dart';
 
 import 'package:flutter/material.dart';
 
@@ -56,7 +56,7 @@ enum ItemDrawerEnum {
       case area:
         return AreaPage();
       case origin:
-        return OriginPage();
+        return WrapperOriginPage();
     }
   }
 }
