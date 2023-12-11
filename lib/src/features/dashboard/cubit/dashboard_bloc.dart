@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:familytree/src/features/dashboard/widgets/item_drawer_enum.dart';
+import 'package:familytree/src/features/dashboard/widgets/drawer/item_drawer_enum.dart';
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,6 +22,10 @@ class DashboardBloc extends Cubit<DashboardState> {
 
     pageController.animateToPage(index,
         duration: const Duration(milliseconds: 300), curve: Curves.ease);
+  }
+
+  void onDrawerButton() {
+    emit(state.copyWith(isExpandedDrawer: !state.isExpandedDrawer));
   }
 
   @override

@@ -19,7 +19,7 @@ class XIndicator extends StatelessWidget {
           height: radius * 2,
           child: CircularProgressIndicator(
             backgroundColor: Theme.of(context).colorScheme.onBackground,
-            color: XColors.primary,
+            color: XColors.primary1,
             strokeWidth: 1.5,
           ),
         ),
@@ -28,7 +28,7 @@ class XIndicator extends StatelessWidget {
 
     return Center(
       child: CupertinoActivityIndicator(
-        color: XColors.primary,
+        color: XColors.primary1,
         radius: radius,
       ),
     );
