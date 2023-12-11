@@ -17,14 +17,14 @@ class ButtonCreateOrigin extends StatelessWidget {
           ),
           backgroundColor: XColors.primary7,
           padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 15)),
-      onPressed: () => context.read<OriginBloc>().moveTocreateOrigin(),
+      onPressed: () => context.read<OriginBloc>().onRefreshButton(),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Icon(
-            Icons.upload,
+            Icons.refresh,
             color: XColors.primary2,
             size: 20,
           ),
@@ -32,7 +32,7 @@ class ButtonCreateOrigin extends StatelessWidget {
             width: 5,
           ),
           Text(
-            "Tạo xuất xứ",
+            "Làm mới",
             style: const TextStyle(
               fontSize: 17,
               color: XColors.primary2,

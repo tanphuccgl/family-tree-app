@@ -14,34 +14,30 @@ class CreateOriginPage extends StatelessWidget {
       create: (context) => CreateOriginBloc(context),
       child: BlocBuilder<CreateOriginBloc, CreateOriginState>(
         builder: (context, state) {
-          return Scaffold(
-            body: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 30),
-              child: Column(
-                children: [
-                  XTextRich(text: "Tên xuất xứ"),
-                  SizedBox(height: 20),
-                  XInput(
-                      value: state.name,
-                      onChanged: (value) => context
-                          .read<CreateOriginBloc>()
-                          .onChangedName(value)),
-                  XTextRich(text: "Mã xuất xứ"),
-                  SizedBox(height: 20),
-                  XInput(
-                      value: state.nameId,
-                      errorText:
-                          state.isNameIdExist == true ? "Đã tồn tại" : "",
-                      onChanged: (value) => context
-                          .read<CreateOriginBloc>()
-                          .onChangedNameId(value)),
-                  SizedBox(height: 20),
-                  XButton(
-                      onPressed: () =>
-                          context.read<CreateOriginBloc>().createNewProduct(),
-                      text: "Xác nhận"),
-                ],
-              ),
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 30),
+            child: Column(
+              children: [
+                XTextRich(text: "Tên xuất xứ"),
+                SizedBox(height: 20),
+                XInput(
+                    value: state.name,
+                    onChanged: (value) =>
+                        context.read<CreateOriginBloc>().onChangedName(value)),
+                XTextRich(text: "Mã xuất xứ"),
+                SizedBox(height: 20),
+                XInput(
+                    value: state.nameId,
+                    errorText: state.isNameIdExist == true ? "Đã tồn tại" : "",
+                    onChanged: (value) => context
+                        .read<CreateOriginBloc>()
+                        .onChangedNameId(value)),
+                SizedBox(height: 20),
+                XButton(
+                    onPressed: () =>
+                        context.read<CreateOriginBloc>().createNewProduct(),
+                    text: "Xác nhận"),
+              ],
             ),
           );
         },
