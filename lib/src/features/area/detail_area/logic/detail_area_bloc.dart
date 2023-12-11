@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:familytree/src/features/area/list_area/logic/area_bloc.dart';
 import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/area_model.dart';
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
@@ -47,6 +48,11 @@ class DetailAreaBloc extends Cubit<DetailAreaState> {
     emit(state.copyWith(isNameIdExist: false));
   }
 
+  void onCancelButton() {
+    emit(DetailAreaState());
+    getArea();
+  }
+
   void createNewProduct() async {
     if (state.isNameIdExist) {
       XToast.error("Mã đã tồn tại");
@@ -68,28 +74,33 @@ class DetailAreaBloc extends Cubit<DetailAreaState> {
 
     final result = await domain.area.createArea(product);
     if (result.isSuccess) {
-      Navigator.pop(context);
+      emit(DetailAreaState());
       XToast.success("Chỉnh sửa thành công");
       XToast.hideLoading();
+      context.read<AreaBloc>().onCloseButton();
       return;
     }
     emit(DetailAreaState());
     XToast.error("Chỉnh sửa thất bại");
     XToast.hideLoading();
+    context.read<AreaBloc>().onCloseButton();
   }
 
-  Future<void> deleteArea(BuildContext context) async {
+  Future<void> deleteArea() async {
     XToast.showLoading();
     final result = await domain.area.deleteArea(id);
     if (result.isSuccess) {
+      emit(DetailAreaState());
       XToast.success("Xóa thành công");
       XToast.hideLoading();
-
-      Navigator.pop(context, AreaModel(id: ""));
+      context.read<AreaBloc>().onCloseButton();
       return;
     }
+
+    emit(DetailAreaState());
     XToast.error("Xóa thất bại");
     XToast.hideLoading();
+    context.read<AreaBloc>().onCloseButton();
   }
 
   void onChangeEdit() {
