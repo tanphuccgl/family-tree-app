@@ -195,7 +195,7 @@ class _XInputState extends State<XInput> {
       textCapitalization: widget.textCapitalization,
       style: widget.style ??
           Theme.of(context).textTheme.labelLarge?.copyWith(
-              fontSize: 18, color: Colors.black, fontWeight: FontWeight.w500),
+              fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500),
       textAlign: widget.textAlign,
       readOnly: widget.readOnly,
       autofocus: widget.autofocus,

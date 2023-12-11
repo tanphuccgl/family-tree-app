@@ -1,5 +1,6 @@
 import 'package:familytree/src/features/origin/list_origin/logic/origin_bloc.dart';
 import 'package:familytree/src/features/origin/list_origin/widgets/create_origin/tabview_create_origin.dart';
+import 'package:familytree/src/features/origin/list_origin/widgets/detail_origin/detail_origin.dart';
 
 import 'package:familytree/src/features/origin/list_origin/widgets/list_origin/tabview_list_origin.dart';
 import 'package:familytree/src/theme/colors.dart';
@@ -20,7 +21,7 @@ class _OriginPageState extends State<OriginPage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     tabController = TabController(
-      initialIndex: 1,
+      initialIndex: 0,
       length: 2,
       vsync: this,
     );
@@ -32,6 +33,28 @@ class _OriginPageState extends State<OriginPage> with TickerProviderStateMixin {
       create: (context) => OriginBloc(context),
       child: BlocBuilder<OriginBloc, OriginState>(
         builder: (context, state) {
+          if (state.detailOriginSelectedId.isNotEmpty) {
+            return Scaffold(
+              backgroundColor: XColors.primary8,
+              body: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    Text(
+                      "Xuất xứ",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30),
+                    ),
+                    SizedBox(height: 40),
+                    DetailOrigin(originId: state.detailOriginSelectedId)
+                  ],
+                ),
+              ),
+            );
+          }
           return Scaffold(
             backgroundColor: XColors.primary8,
             body: Padding(

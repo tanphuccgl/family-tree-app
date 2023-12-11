@@ -1,10 +1,8 @@
 import 'package:equatable/equatable.dart';
-import 'package:familytree/src/features/origin/detail_origin/pages/detail_origin_page.dart';
 
 import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/origin_model.dart';
 
-import 'package:familytree/src/router/coordinator.dart';
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -50,9 +48,12 @@ class OriginBloc extends Cubit<OriginState> {
     getAllOrigin();
   }
 
-  void moveToDetailOrigin(String id) async {
-    await XCoordinator.push(DetailOriginPage(id: id));
-    await getAllOrigin();
+  void onShowDetailOrigin(String id) async {
+    emit(state.copyWith(detailOriginSelectedId: id));
+  }
+
+  void onCloseButton() {
+    emit(state.copyWith(detailOriginSelectedId: ""));
   }
 
   void onCheckBoxAll(bool value) {

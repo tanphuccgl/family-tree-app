@@ -24,7 +24,7 @@ class ItemOrigin extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () =>
-                  context.read<OriginBloc>().moveToDetailOrigin(data.id),
+                  context.read<OriginBloc>().onShowDetailOrigin(data.id),
               child: Container(
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
