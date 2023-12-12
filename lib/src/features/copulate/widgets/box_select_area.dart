@@ -18,7 +18,7 @@ class BoxSelectArea extends StatelessWidget {
         builder: (context, state) {
           return SingleChildScrollView(
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 100),
+              margin: EdgeInsets.symmetric(horizontal: size.width * 0.05),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: XColors.primary10,
