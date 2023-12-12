@@ -1,7 +1,7 @@
 import 'package:familytree/src/config/constants/images.dart';
 
 import 'package:familytree/src/features/area/wrapper_area_page.dart';
-import 'package:familytree/src/features/copulate/pages/copulate_page.dart';
+import 'package:familytree/src/features/copulate/pages/wrapper_copulate_page.dart';
 
 import 'package:familytree/src/features/family_tree/pages/family_tree_page.dart';
 import 'package:familytree/src/features/individual/list_cathe/pages/list_cathe_page.dart';
@@ -49,7 +49,7 @@ enum ItemDrawerEnum {
   Widget get pages {
     switch (this) {
       case copulate:
-        return CopulatePage();
+        return WrapperCopulatePage();
       case tree:
         return TreeViewPage();
       case list:

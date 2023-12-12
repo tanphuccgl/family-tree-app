@@ -4,7 +4,6 @@ part of "copulate_bloc.dart";
 class CopulateState extends Equatable {
   final ProductTypeEnum type;
   final List<ProductModel> listIndividualCurrent;
-  final bool emptyListAll;
 
   final ProductModel? maleSelected;
   final ProductModel? femaleSelected;
@@ -21,7 +20,6 @@ class CopulateState extends Equatable {
   CopulateState({
     this.type = ProductTypeEnum.f0,
     this.listIndividualCurrent = const [],
-    this.emptyListAll = true,
     this.maleSelected,
     this.femaleSelected,
   });
@@ -29,7 +27,6 @@ class CopulateState extends Equatable {
   List<Object?> get props => [
         type,
         listIndividualCurrent,
-        emptyListAll,
         maleSelected,
         femaleSelected,
       ];
@@ -37,7 +34,6 @@ class CopulateState extends Equatable {
   CopulateState copyWith({
     ProductTypeEnum? type,
     List<ProductModel>? listIndividualCurrent,
-    bool? emptyListAll,
     ProductModel? maleSelected,
     ProductModel? femaleSelected,
   }) {
@@ -45,15 +41,34 @@ class CopulateState extends Equatable {
       type: type ?? this.type,
       listIndividualCurrent:
           listIndividualCurrent ?? this.listIndividualCurrent,
-      emptyListAll: emptyListAll ?? this.emptyListAll,
       maleSelected: maleSelected ?? this.maleSelected,
       femaleSelected: femaleSelected ?? this.femaleSelected,
     );
   }
 
   CopulateState clearSelectIndividual() {
-    return copyWith(
+    return CopulateState(
+      type: this.type,
+      listIndividualCurrent: this.listIndividualCurrent,
       maleSelected: null,
+      femaleSelected: null,
+    );
+  }
+
+  CopulateState clearSelectMaleIndividual() {
+    return CopulateState(
+      type: this.type,
+      listIndividualCurrent: this.listIndividualCurrent,
+      maleSelected: null,
+      femaleSelected: this.femaleSelected,
+    );
+  }
+
+  CopulateState clearSelectFemaleIndividual() {
+    return CopulateState(
+      type: this.type,
+      listIndividualCurrent: this.listIndividualCurrent,
+      maleSelected: this.maleSelected,
       femaleSelected: null,
     );
   }
