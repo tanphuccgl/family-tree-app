@@ -1,8 +1,11 @@
 import 'package:familytree/src/features/copulate/logic/copulate_bloc.dart';
 import 'package:familytree/src/features/copulate/pages/tabview_copulate.dart';
+import 'package:familytree/src/features/copulate/widgets/box_select_area.dart';
+import 'package:familytree/src/features/copulate/widgets/button_select_area.dart';
 import 'package:familytree/src/network/model/product_model.dart';
 
 import 'package:familytree/src/theme/colors.dart';
+import 'package:familytree/src/utils/helper/gap.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,40 +43,56 @@ class _WrapperCopulatePageState extends State<WrapperCopulatePage>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Phối giống",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30),
-                  ),
-                  SizedBox(height: 40),
-                  TabBar(
-                    onTap: (value) {
-                      context.read<CopulateBloc>().onChangeGenerationSelected(
-                          ProductTypeEnum.values[value]);
-                    },
-                    controller: tabController,
-                    tabs: [
-                      Tab(text: 'Thế hệ F0'),
-                      Tab(text: 'Thế hệ F1'),
-                      Tab(text: 'Thế hệ F2'),
-                      Tab(text: 'Thế hệ F3'),
+                  Row(
+                    children: [
+                      Text(
+                        "Phối giống",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30),
+                      ),
+                      GapHelper.w8,
+                      ButtonSelectArea()
                     ],
                   ),
                   SizedBox(height: 40),
-                  Expanded(
-                    child: TabBarView(
-                      controller: tabController,
-                      physics: NeverScrollableScrollPhysics(),
-                      children: [
-                        TabViewCopulateWithGeneration(),
-                        TabViewCopulateWithGeneration(),
-                        TabViewCopulateWithGeneration(),
-                        TabViewCopulateWithGeneration(),
-                      ],
-                    ),
-                  )
+                  state.currnentArea == null
+                      ? BoxSelectArea()
+                      : Expanded(
+                          child: Column(
+                            children: [
+                              TabBar(
+                                onTap: (value) {
+                                  context
+                                      .read<CopulateBloc>()
+                                      .onChangeGenerationSelected(
+                                          ProductTypeEnum.values[value]);
+                                },
+                                controller: tabController,
+                                tabs: [
+                                  Tab(text: 'Thế hệ F0'),
+                                  Tab(text: 'Thế hệ F1'),
+                                  Tab(text: 'Thế hệ F2'),
+                                  Tab(text: 'Thế hệ F3'),
+                                ],
+                              ),
+                              SizedBox(height: 40),
+                              Expanded(
+                                child: TabBarView(
+                                  controller: tabController,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  children: [
+                                    TabViewCopulateWithGeneration(),
+                                    TabViewCopulateWithGeneration(),
+                                    TabViewCopulateWithGeneration(),
+                                    TabViewCopulateWithGeneration(),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        )
                 ],
               ),
             ),

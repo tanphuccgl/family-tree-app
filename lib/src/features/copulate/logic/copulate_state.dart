@@ -2,6 +2,8 @@
 part of "copulate_bloc.dart";
 
 class CopulateState extends Equatable {
+  final AreaModel? currnentArea;
+
   final ProductTypeEnum type;
   final List<ProductModel> listIndividualCurrent;
 
@@ -22,6 +24,7 @@ class CopulateState extends Equatable {
     this.listIndividualCurrent = const [],
     this.maleSelected,
     this.femaleSelected,
+    this.currnentArea,
   });
   @override
   List<Object?> get props => [
@@ -29,6 +32,7 @@ class CopulateState extends Equatable {
         listIndividualCurrent,
         maleSelected,
         femaleSelected,
+        currnentArea,
       ];
 
   CopulateState copyWith({
@@ -36,6 +40,7 @@ class CopulateState extends Equatable {
     List<ProductModel>? listIndividualCurrent,
     ProductModel? maleSelected,
     ProductModel? femaleSelected,
+    AreaModel? currnentArea,
   }) {
     return CopulateState(
       type: type ?? this.type,
@@ -43,6 +48,7 @@ class CopulateState extends Equatable {
           listIndividualCurrent ?? this.listIndividualCurrent,
       maleSelected: maleSelected ?? this.maleSelected,
       femaleSelected: femaleSelected ?? this.femaleSelected,
+      currnentArea: currnentArea ?? this.currnentArea,
     );
   }
 
@@ -50,6 +56,7 @@ class CopulateState extends Equatable {
     return CopulateState(
       type: this.type,
       listIndividualCurrent: this.listIndividualCurrent,
+      currnentArea: this.currnentArea,
       maleSelected: null,
       femaleSelected: null,
     );
@@ -58,6 +65,7 @@ class CopulateState extends Equatable {
   CopulateState clearSelectMaleIndividual() {
     return CopulateState(
       type: this.type,
+      currnentArea: this.currnentArea,
       listIndividualCurrent: this.listIndividualCurrent,
       maleSelected: null,
       femaleSelected: this.femaleSelected,
@@ -67,9 +75,26 @@ class CopulateState extends Equatable {
   CopulateState clearSelectFemaleIndividual() {
     return CopulateState(
       type: this.type,
+      currnentArea: this.currnentArea,
       listIndividualCurrent: this.listIndividualCurrent,
       maleSelected: this.maleSelected,
       femaleSelected: null,
+    );
+  }
+
+  CopulateState clearAreaCurrent() {
+    return CopulateState(
+      type: this.type,
+      currnentArea: null,
+      listIndividualCurrent: this.listIndividualCurrent,
+      maleSelected: this.maleSelected,
+      femaleSelected: this.femaleSelected,
+    );
+  }
+
+  CopulateState refreshData() {
+    return CopulateState(
+      currnentArea: this.currnentArea,
     );
   }
 }
