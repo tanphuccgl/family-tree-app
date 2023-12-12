@@ -52,12 +52,6 @@ class TreeViewPage extends StatelessWidget {
                     ],
                   ),
                   Spacer(),
-                  FloatingActionButton(
-                    heroTag: "btn1",
-                    onPressed: () =>
-                        context.read<FamilyTreeBloc>().navigateToCopulate(),
-                    child: const Icon(Icons.person),
-                  ),
                   SizedBox(width: 20.0),
                   FloatingActionButton(
                     heroTag: "btn2",
