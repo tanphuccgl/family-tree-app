@@ -16,4 +16,6 @@ abstract class ProductRepository {
   Future<XResult<List<ProductModel>>> getAllProduct();
 
   Future<XResult<List<ProductModel>>> getProductWithType(ProductTypeEnum value);
+
+  Future<XResult<List<ProductModel>>> getProductsWithArea(String areaId);
 }

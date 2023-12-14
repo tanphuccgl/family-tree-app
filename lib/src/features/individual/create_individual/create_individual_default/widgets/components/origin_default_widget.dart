@@ -1,5 +1,4 @@
 import 'package:familytree/src/features/individual/create_individual/create_individual_default/logic/create_individual_default_bloc.dart';
-import 'package:familytree/src/features/individual/create_individual/widgets/text_rich.dart';
 import 'package:familytree/src/network/model/origin_model.dart';
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
@@ -16,11 +15,21 @@ class OriginDefaultWidget extends StatelessWidget {
         CreateIndividualDefaultState>(
       builder: (context, state) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            XTextRich(text: "xuất xứ"),
-            GapHelper.h20,
+            Text(
+              "Xuất xứ",
+              style: TextStyle(
+                  color: XColors.primary5,
+                  fontSize: 20,
+                  fontWeight: FontWeight.normal),
+            ),
+            GapHelper.h12,
             state.listOriginSuggest.isEmpty
-                ? XInput(value: "N/A", readOnly: true)
+                ? SizedBox(
+                    width: 300,
+                    height: 80,
+                    child: XInput(value: "N/A", readOnly: true))
                 : dropdownListOriginSuggest(),
           ],
         );
@@ -32,7 +41,7 @@ class OriginDefaultWidget extends StatelessWidget {
     return BlocBuilder<CreateIndividualDefaultBloc,
         CreateIndividualDefaultState>(builder: (context, state) {
       return Container(
-        width: 200,
+        width: 300,
         height: 50,
         padding: const EdgeInsets.only(left: 5),
         decoration: BoxDecoration(
@@ -48,7 +57,13 @@ class OriginDefaultWidget extends StatelessWidget {
           items: state.listOriginSuggest.map((OriginModel data) {
             return DropdownMenuItem<OriginModel>(
               value: data,
-              child: Tooltip(message: 'Đây là tooltip', child: Text(data.name)),
+              child: Text(
+                data.name,
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500),
+              ),
             );
           }).toList(),
         ),

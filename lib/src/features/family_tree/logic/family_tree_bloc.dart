@@ -1,6 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:familytree/src/features/individual/create_individual/choose_type_individual/pages/choose_type_individual_page.dart';
-import 'package:familytree/src/features/individual/create_individual/create_individual_f0_root/pages/create_individual_f0_root_page.dart';
 import 'package:familytree/src/features/individual/detail_cathe/pages/detail_cathe_page.dart';
 
 import 'package:familytree/src/network/domain.dart';
@@ -92,22 +90,22 @@ class FamilyTreeBloc extends Cubit<FamilyTreeState> {
   }
 
   void moveToCreateProduct() async {
-    try {
-      AreaModel area = state.listArea
-          .singleWhere((element) => element.id == state.areaIdSelected);
+    // try {
+    //   AreaModel area = state.listArea
+    //       .singleWhere((element) => element.id == state.areaIdSelected);
 
-      if (state.list.isEmpty) {
-        XCoordinator.push(CreateIndividualF0RootPage(
-          area: area,
-        ));
-      } else {
-        XCoordinator.push(ChooseTypeIndividualPage(
-          area: area,
-        ));
-      }
-    } catch (e) {
-      XToast.error("Có lỗi xảy ra");
-    }
+    //   if (state.list.isEmpty) {
+    //     XCoordinator.push(CreateIndividualF0RootPage(
+    //       area: area,
+    //     ));
+    //   } else {
+    //     XCoordinator.push(ChooseTypeIndividualPage(
+    //       area: area,
+    //     ));
+    //   }
+    // } catch (e) {
+    //   XToast.error("Có lỗi xảy ra");
+    // }
   }
 
   void moveToItem(String id) async {

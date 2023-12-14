@@ -1,9 +1,9 @@
+import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
 import 'package:familytree/widgets/froms/input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../widgets/text_rich.dart';
 import '../logic/create_individual_f0_female_bloc.dart';
 
 class FemaleF0SexWidget extends StatelessWidget {
@@ -15,12 +15,24 @@ class FemaleF0SexWidget extends StatelessWidget {
         CreateIndividualF0FemaleState>(
       builder: (context, state) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            XTextRich(text: "Giới tính"),
-            GapHelper.h20,
-            XInput(
-              value: "Cái",
-              readOnly: true,
+            Text(
+              "Giới tính",
+              style: TextStyle(
+                  color: XColors.primary5,
+                  fontSize: 20,
+                  fontWeight: FontWeight.normal),
+            ),
+            GapHelper.h12,
+            SizedBox(
+              width: 300,
+              height: 80,
+              child: XInput(
+                value: "Cái",
+                readOnly: true,
+                fillColor: XColors.primary7,
+              ),
             ),
           ],
         );

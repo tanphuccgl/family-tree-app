@@ -38,4 +38,9 @@ class ProductRepositoryImpl extends ProductRepository {
       ProductTypeEnum value) async {
     return reference.getProductWithType(value);
   }
+
+  @override
+  Future<XResult<List<ProductModel>>> getProductsWithArea(String areaId) async {
+    return reference.getProductsWithArea(areaId);
+  }
 }

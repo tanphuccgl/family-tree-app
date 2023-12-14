@@ -2,6 +2,8 @@
 part of 'create_individual_bloc.dart';
 
 class CreateIndividualState extends Equatable {
+  final List<ProductModel> listIndividualWithArea;
+
   final AreaModel? currnentArea;
   final ProductTypeEnum? type;
   final bool isShowSelectArea;
@@ -19,6 +21,7 @@ class CreateIndividualState extends Equatable {
     this.nameId = "",
     this.isNameIdExist = false,
     this.currnentArea,
+    this.listIndividualWithArea = const [],
   });
 
   @override
@@ -30,6 +33,7 @@ class CreateIndividualState extends Equatable {
         isShowSelectType,
         isShowSelectArea,
         type,
+        listIndividualWithArea,
       ];
 
   CreateIndividualState copyWith({
@@ -40,6 +44,7 @@ class CreateIndividualState extends Equatable {
     bool? isShowSelectArea,
     bool? isShowSelectType,
     ProductTypeEnum? type,
+    List<ProductModel>? listIndividualWithArea,
   }) {
     return CreateIndividualState(
       name: name ?? this.name,
@@ -49,6 +54,8 @@ class CreateIndividualState extends Equatable {
       isShowSelectType: isShowSelectType ?? this.isShowSelectType,
       isShowSelectArea: isShowSelectArea ?? this.isShowSelectArea,
       type: type ?? this.type,
+      listIndividualWithArea:
+          listIndividualWithArea ?? this.listIndividualWithArea,
     );
   }
 
@@ -61,6 +68,7 @@ class CreateIndividualState extends Equatable {
       isShowSelectArea: this.isShowSelectArea,
       isShowSelectType: this.isShowSelectType,
       type: null,
+      listIndividualWithArea: [],
     );
   }
 
@@ -68,6 +76,7 @@ class CreateIndividualState extends Equatable {
     return CreateIndividualState(
       currnentArea: this.currnentArea,
       type: this.type,
+      listIndividualWithArea: this.listIndividualWithArea,
     );
   }
 }

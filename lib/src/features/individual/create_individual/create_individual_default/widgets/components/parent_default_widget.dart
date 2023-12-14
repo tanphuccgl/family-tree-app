@@ -1,5 +1,4 @@
 import 'package:familytree/src/features/individual/create_individual/create_individual_default/logic/create_individual_default_bloc.dart';
-import 'package:familytree/src/features/individual/create_individual/widgets/text_rich.dart';
 import 'package:familytree/src/network/model/product_model.dart';
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
@@ -16,13 +15,24 @@ class ParentDefaultWidget extends StatelessWidget {
         CreateIndividualDefaultState>(
       builder: (context, state) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            XTextRich(text: "Cha mẹ"),
-            GapHelper.h20,
+            Text(
+              "Cha mẹ",
+              style: TextStyle(
+                  color: XColors.primary5,
+                  fontSize: 20,
+                  fontWeight: FontWeight.normal),
+            ),
+            GapHelper.h12,
             state.listFatherSuggest.isEmpty
-                ? XInput(value: "N/A", readOnly: true)
+                ? SizedBox(
+                    width: 300,
+                    height: 80,
+                    child: XInput(value: "N/A", readOnly: true))
                 : Row(
                     children: [
+                      //TODO
                       dropdownListFatherSuggest(),
                       dropdownListMotherSuggest(),
                     ],
@@ -37,7 +47,7 @@ class ParentDefaultWidget extends StatelessWidget {
     return BlocBuilder<CreateIndividualDefaultBloc,
         CreateIndividualDefaultState>(builder: (context, state) {
       return Container(
-        width: 200,
+        width: 300,
         height: 50,
         padding: const EdgeInsets.only(left: 5),
         decoration: BoxDecoration(
@@ -53,7 +63,15 @@ class ParentDefaultWidget extends StatelessWidget {
           items: state.listFatherSuggest.map((ProductModel data) {
             return DropdownMenuItem<ProductModel>(
               value: data,
-              child: Tooltip(message: 'Đây là tooltip', child: Text(data.name)),
+              child: Tooltip(
+                  message: 'Đây là tooltip',
+                  child: Text(
+                    data.name,
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500),
+                  )),
             );
           }).toList(),
         ),
@@ -67,7 +85,7 @@ class ParentDefaultWidget extends StatelessWidget {
       return state.listMotherSuggest.isEmpty
           ? SizedBox()
           : Container(
-              width: 200,
+              width: 300,
               height: 50,
               padding: const EdgeInsets.only(left: 5),
               decoration: BoxDecoration(
@@ -87,7 +105,17 @@ class ParentDefaultWidget extends StatelessWidget {
                   return DropdownMenuItem<ProductModel>(
                     value: data,
                     child: Tooltip(
-                        message: 'Đây là tooltip', child: Text(data.name)),
+                        message: 'Đây là tooltip',
+                        child: Text(
+                          data.name,
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelLarge
+                              ?.copyWith(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500),
+                        )),
                   );
                 }).toList(),
               ),

@@ -180,7 +180,7 @@ class _XInputState extends State<XInput> {
         suffixIcon: _buildActions(),
         counterStyle: const TextStyle(color: XColors.borderInput),
         filled: true,
-        fillColor: XColors.primary2,
+        fillColor: widget.fillColor ?? XColors.primary2,
         errorBorder: widget.errorBorder ?? errorBorder,
         focusedBorder: widget.focusedBorder ?? focusedBorder,
         focusedErrorBorder: widget.focusedBorder ?? errorBorder,

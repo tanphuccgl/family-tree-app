@@ -1,4 +1,4 @@
-import 'package:familytree/src/features/individual/create_individual/widgets/text_rich.dart';
+import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
 import 'package:familytree/widgets/froms/input.dart';
 import 'package:flutter/material.dart';
@@ -15,14 +15,24 @@ class TypeDefaultWidget extends StatelessWidget {
         CreateIndividualDefaultState>(
       builder: (context, state) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            XTextRich(
-              text: "Loại",
+            Text(
+              "Thế hệ",
+              style: TextStyle(
+                  color: XColors.primary5,
+                  fontSize: 20,
+                  fontWeight: FontWeight.normal),
             ),
-            GapHelper.h20,
-            XInput(
-              value: state.type?.labelOf ?? "N/A",
-              readOnly: true,
+            GapHelper.h12,
+            SizedBox(
+              width: 300,
+              height: 80,
+              child: XInput(
+                value: state.type?.labelOf ?? "N/A",
+                readOnly: true,
+                fillColor: XColors.primary7,
+              ),
             ),
           ],
         );

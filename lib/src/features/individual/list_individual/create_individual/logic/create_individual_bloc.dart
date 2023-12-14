@@ -27,16 +27,29 @@ class CreateIndividualBloc extends Cubit<CreateIndividualState> {
 
   void onChangedNameId(String value) {
     emit(state.copyWith(nameId: value));
-    checkIdExist();
+    _checkIdExist();
   }
 
-  void onNextToSelectType() {
+  void onNextToSelectType() async {
     if (state.currnentArea == null) {
       XToast.error("Vui lòng chọn khu vực");
       return;
     }
+    await _getProductsWithArea(state.currnentArea!.id);
 
     emit(state.copyWith(isShowSelectType: true, isShowSelectArea: false));
+  }
+
+  Future<void> _getProductsWithArea(String areaId) async {
+    XToast.showLoading();
+    final result = await domain.product.getProductsWithArea(areaId);
+    if (result.isSuccess) {
+      emit(state.copyWith(listIndividualWithArea: result.data));
+      XToast.hideLoading();
+      return;
+    }
+    emit(CreateIndividualState());
+    XToast.hideLoading();
   }
 
   void onNextToCreateIndividual() {
@@ -44,7 +57,39 @@ class CreateIndividualBloc extends Cubit<CreateIndividualState> {
       XToast.error("Vui lòng chọn thế hệ");
       return;
     }
+
+    final parentType = _getParentType(state.type!);
+    final isTrue = _hasParent(parentType);
+    if (!isTrue && state.type != ProductTypeEnum.f0) {
+      XToast.error("Chưa có cha mẹ");
+      return;
+    }
+
     emit(state.copyWith(isShowSelectType: false, isShowSelectArea: false));
+  }
+
+  ProductTypeEnum _getParentType(ProductTypeEnum currentType) {
+    switch (currentType) {
+      case ProductTypeEnum.f1:
+        return ProductTypeEnum.f0;
+      case ProductTypeEnum.f2:
+        return ProductTypeEnum.f1;
+      case ProductTypeEnum.f3:
+        return ProductTypeEnum.f2;
+
+      default:
+        return ProductTypeEnum.f0;
+    }
+  }
+
+  bool _hasParent(ProductTypeEnum parentType) {
+    return state.listIndividualWithArea
+        .where((e) =>
+            e.isMale == true &&
+            e.listCopulateId.isNotEmpty &&
+            e.type == parentType)
+        .toList()
+        .isNotEmpty;
   }
 
   void onChangeCurrentType(ProductTypeEnum value) {
@@ -59,7 +104,7 @@ class CreateIndividualBloc extends Cubit<CreateIndividualState> {
     }
   }
 
-  void checkIdExist() async {
+  void _checkIdExist() async {
     final result = await domain.origin.getOriginWithNameId(state.nameId);
     if (result.isSuccess) {
       emit(state.copyWith(isNameIdExist: true));
