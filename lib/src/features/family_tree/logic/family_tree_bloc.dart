@@ -1,10 +1,8 @@
 import 'package:equatable/equatable.dart';
-import 'package:familytree/src/features/individual/detail_cathe/pages/detail_cathe_page.dart';
 
 import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/area_model.dart';
 import 'package:familytree/src/network/model/product_model.dart';
-import 'package:familytree/src/router/coordinator.dart';
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -109,13 +107,13 @@ class FamilyTreeBloc extends Cubit<FamilyTreeState> {
   }
 
   void moveToItem(String id) async {
-    final ProductModel? result =
-        await XCoordinator.push(DetailCathePage(id: id));
-    if (result != null) {
-      if (result.id == "") {
-        onChangeAreaIdSelected(state.areaIdSelected);
-      }
-    }
+    // final ProductModel? result =
+    //     await XCoordinator.push(DetailIndividualPage(id: id));
+    // if (result != null) {
+    //   if (result.id == "") {
+    //     onChangeAreaIdSelected(state.areaIdSelected);
+    //   }
+    // }
   }
 
   @override

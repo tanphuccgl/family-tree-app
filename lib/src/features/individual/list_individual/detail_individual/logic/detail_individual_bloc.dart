@@ -12,23 +12,26 @@ part 'detail_individual_state.dart';
 
 class DetailIndividualBloc extends Cubit<DetailIndividualState> {
   final BuildContext context;
-  final String id;
-  DetailIndividualBloc(this.context, this.id) : super(DetailIndividualState()) {
-    getOrigin();
+  final String individualId;
+  DetailIndividualBloc(this.context, this.individualId)
+      : super(DetailIndividualState()) {
+    getIndividual();
   }
 
   Domain get domain => GetIt.I<Domain>();
 
-  void getOrigin() async {
-    final result = await domain.origin.getOriginWithId(id);
+  void getIndividual() async {
+    XToast.showLoading();
+    final result = await domain.product.getProduct(individualId);
     if (result.isSuccess) {
       final data = result.data!;
-      emit(state.copyWith(name: data.name, nameId: data.nameId));
+      emit(state.copyWith(name: data.name, nameId: data.name));
+      XToast.hideLoading();
       return;
     }
 
     XToast.error("Không thể lấy dữ liệu");
-    Navigator.pop(context);
+    XToast.hideLoading();
   }
 
   void onChangedName(String value) {
@@ -37,10 +40,10 @@ class DetailIndividualBloc extends Cubit<DetailIndividualState> {
 
   void onChangedNameId(String value) {
     emit(state.copyWith(nameId: value));
-    checkIdExist();
+    _checkIdExist();
   }
 
-  void checkIdExist() async {
+  void _checkIdExist() async {
     final result = await domain.origin.getOriginWithNameId(state.nameId);
     if (result.isSuccess) {
       emit(state.copyWith(isNameIdExist: true));
@@ -51,7 +54,7 @@ class DetailIndividualBloc extends Cubit<DetailIndividualState> {
 
   void onCancelButton() {
     emit(DetailIndividualState());
-    getOrigin();
+    getIndividual();
   }
 
   void createNewProduct() async {
@@ -70,7 +73,7 @@ class DetailIndividualBloc extends Cubit<DetailIndividualState> {
     final product = OriginModel(
       name: state.name,
       nameId: state.nameId,
-      id: id,
+      id: individualId,
     );
 
     final result = await domain.origin.createOrigin(product);
@@ -89,7 +92,7 @@ class DetailIndividualBloc extends Cubit<DetailIndividualState> {
 
   Future<void> deleteOrigin() async {
     XToast.showLoading();
-    final result = await domain.origin.deleteOrigin(id);
+    final result = await domain.origin.deleteOrigin(individualId);
     if (result.isSuccess) {
       emit(DetailIndividualState());
       XToast.success("Xóa thành công");
