@@ -4,7 +4,7 @@ import 'package:familytree/src/features/area/wrapper_area_page.dart';
 import 'package:familytree/src/features/copulate/pages/wrapper_copulate_page.dart';
 
 import 'package:familytree/src/features/family_tree/pages/family_tree_page.dart';
-import 'package:familytree/src/features/individual/list_cathe/pages/list_cathe_page.dart';
+import 'package:familytree/src/features/individual/list_individual/wrapper_individual_page.dart';
 import 'package:familytree/src/features/origin/wrapper_origin_page.dart';
 
 import 'package:flutter/material.dart';
@@ -21,7 +21,7 @@ enum ItemDrawerEnum {
       case tree:
         return "Family tree";
       case list:
-        return "Danh sách cá thể";
+        return "Cá thể";
       case copulate:
         return "Phối giống";
       case area:
@@ -53,7 +53,7 @@ enum ItemDrawerEnum {
       case tree:
         return TreeViewPage();
       case list:
-        return ListCaThePage();
+        return WrapperIndividualPage();
       case area:
         return WrapperAreaPage();
       case origin:
