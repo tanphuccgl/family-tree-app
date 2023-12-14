@@ -4,8 +4,6 @@ import 'package:familytree/src/utils/helper/gap.dart';
 import 'package:familytree/widgets/froms/input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../widgets/text_rich.dart';
 import '../logic/create_individual_f0_root_bloc.dart';
 
 class OriginF0RootWidget extends StatelessWidget {
@@ -16,11 +14,21 @@ class OriginF0RootWidget extends StatelessWidget {
     return BlocBuilder<CreateIndividualF0RootBloc, CreateIndividualF0RootState>(
       builder: (context, state) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            XTextRich(text: "xuất xứ"),
-            GapHelper.h20,
+            Text(
+              "Xuất xứ",
+              style: TextStyle(
+                  color: XColors.primary5,
+                  fontSize: 20,
+                  fontWeight: FontWeight.normal),
+            ),
+            GapHelper.h12,
             state.listOriginSuggest.isEmpty
-                ? XInput(value: "N/A", readOnly: true)
+                ? SizedBox(
+                    width: 300,
+                    height: 80,
+                    child: XInput(value: "N/A", readOnly: true))
                 : dropdownListOriginSuggest(),
           ],
         );
@@ -32,11 +40,13 @@ class OriginF0RootWidget extends StatelessWidget {
     return BlocBuilder<CreateIndividualF0RootBloc, CreateIndividualF0RootState>(
         builder: (context, state) {
       return Container(
-        width: 200,
+        width: 300,
         height: 50,
         padding: const EdgeInsets.only(left: 5),
         decoration: BoxDecoration(
-            color: XColors.primary2, borderRadius: BorderRadius.circular(10)),
+            border: Border.all(color: XColors.primary6, width: 0),
+            color: XColors.primary2,
+            borderRadius: BorderRadius.circular(10)),
         child: DropdownButton<OriginModel>(
           icon: const Icon(Icons.arrow_drop_down),
           iconSize: 22,
@@ -48,7 +58,13 @@ class OriginF0RootWidget extends StatelessWidget {
           items: state.listOriginSuggest.map((OriginModel data) {
             return DropdownMenuItem<OriginModel>(
               value: data,
-              child: Tooltip(message: 'Đây là tooltip', child: Text(data.name)),
+              child: Text(
+                data.name,
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500),
+              ),
             );
           }).toList(),
         ),

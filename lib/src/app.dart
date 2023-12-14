@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
             return child;
           },
           theme: ThemeData(
+              canvasColor: XColors.primary2,
               unselectedWidgetColor: XColors.primary5,
               checkboxTheme: CheckboxThemeData(
                 checkColor: MaterialStateProperty.all(XColors.primary6),

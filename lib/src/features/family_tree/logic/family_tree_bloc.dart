@@ -1,12 +1,8 @@
 import 'package:equatable/equatable.dart';
-import 'package:familytree/src/features/individual/create_individual/choose_type_individual/pages/choose_type_individual_page.dart';
-import 'package:familytree/src/features/individual/create_individual/create_individual_f0_root/pages/create_individual_f0_root_page.dart';
-import 'package:familytree/src/features/individual/detail_cathe/pages/detail_cathe_page.dart';
 
 import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/area_model.dart';
 import 'package:familytree/src/network/model/product_model.dart';
-import 'package:familytree/src/router/coordinator.dart';
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -92,32 +88,32 @@ class FamilyTreeBloc extends Cubit<FamilyTreeState> {
   }
 
   void moveToCreateProduct() async {
-    try {
-      AreaModel area = state.listArea
-          .singleWhere((element) => element.id == state.areaIdSelected);
+    // try {
+    //   AreaModel area = state.listArea
+    //       .singleWhere((element) => element.id == state.areaIdSelected);
 
-      if (state.list.isEmpty) {
-        XCoordinator.push(CreateIndividualF0RootPage(
-          area: area,
-        ));
-      } else {
-        XCoordinator.push(ChooseTypeIndividualPage(
-          area: area,
-        ));
-      }
-    } catch (e) {
-      XToast.error("Có lỗi xảy ra");
-    }
+    //   if (state.list.isEmpty) {
+    //     XCoordinator.push(CreateIndividualF0RootPage(
+    //       area: area,
+    //     ));
+    //   } else {
+    //     XCoordinator.push(ChooseTypeIndividualPage(
+    //       area: area,
+    //     ));
+    //   }
+    // } catch (e) {
+    //   XToast.error("Có lỗi xảy ra");
+    // }
   }
 
   void moveToItem(String id) async {
-    final ProductModel? result =
-        await XCoordinator.push(DetailCathePage(id: id));
-    if (result != null) {
-      if (result.id == "") {
-        onChangeAreaIdSelected(state.areaIdSelected);
-      }
-    }
+    // final ProductModel? result =
+    //     await XCoordinator.push(DetailIndividualPage(id: id));
+    // if (result != null) {
+    //   if (result.id == "") {
+    //     onChangeAreaIdSelected(state.areaIdSelected);
+    //   }
+    // }
   }
 
   @override

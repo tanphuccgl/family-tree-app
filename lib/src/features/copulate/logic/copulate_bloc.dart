@@ -76,11 +76,11 @@ class CopulateBloc extends Cubit<CopulateState> {
           },
         ),
       ]);
-      emit(CopulateState());
+      onRefreshButton();
       XToast.success("Thành công");
       XToast.hideLoading();
     } catch (error) {
-      emit(CopulateState());
+      onRefreshButton();
       XToast.error("Đã xảy ra lỗi: $error");
       XToast.hideLoading();
     }
