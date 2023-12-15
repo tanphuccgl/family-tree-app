@@ -30,9 +30,8 @@ class ParentDefaultWidget extends StatelessWidget {
                     width: 300,
                     height: 80,
                     child: XInput(value: "N/A", readOnly: true))
-                : Row(
+                : Column(
                     children: [
-                      //TODO
                       dropdownListFatherSuggest(),
                       dropdownListMotherSuggest(),
                     ],

@@ -17,7 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../widgets/area_f0_female_widget.dart';
-import '../widgets/button/button_create_individual_f0_female.dart';
+import '../widgets/button_create_individual_f0_female.dart';
 import '../widgets/family_code_f0_female_widget.dart';
 import '../widgets/sex_f0_female_widget.dart';
 import '../widgets/name_f0_female_widget.dart';
@@ -40,10 +40,9 @@ class CreateIndividualF0FemalePage extends StatelessWidget {
       child: BlocBuilder<CreateIndividualF0FemaleBloc,
           CreateIndividualF0FemaleState>(
         builder: (context, state) {
-          //TODO
-          // if (state.area == null) {
-          //   return Text("Không tìm thấy khu vực");
-          // }
+          if (state.area == null) {
+            return Text("Không tìm thấy khu vực");
+          }
 
           return SingleChildScrollView(
             child: Container(

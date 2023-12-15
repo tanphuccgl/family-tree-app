@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../logic/create_individual_f0_female_bloc.dart';
+import '../logic/create_individual_f0_female_bloc.dart';
 
 import 'package:familytree/src/theme/colors.dart';
 
