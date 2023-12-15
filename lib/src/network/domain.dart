@@ -2,9 +2,9 @@ import 'package:familytree/src/network/repositories/area/area_repository.dart';
 import 'package:familytree/src/network/repositories/area/area_repository_impl.dart';
 import 'package:familytree/src/network/repositories/origin/origin_repository.dart';
 import 'package:familytree/src/network/repositories/origin/origin_repository_impl.dart';
-import 'package:familytree/src/network/repositories/product/product_repository.dart';
+import 'package:familytree/src/network/repositories/individual/individual_repository.dart';
 
-import 'repositories/product/product_repository_impl.dart';
+import 'repositories/individual/individual_repository_impl.dart';
 
 class Domain {
   static Domain? _internal;
@@ -13,12 +13,12 @@ class Domain {
 
     return _internal!;
   }
-  late ProductRepository product;
+  late IndividualRepository individual;
   late AreaRepository area;
   late OriginRepository origin;
 
   Domain._() {
-    product = ProductRepositoryImpl();
+    individual = IndividualRepositoryImpl();
     area = AreaRepositoryImpl();
     origin = OriginRepositoryImpl();
   }

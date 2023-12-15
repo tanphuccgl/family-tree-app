@@ -6,7 +6,7 @@ import 'package:familytree/src/features/individual/list_individual/create_indivi
 import 'package:familytree/src/features/individual/list_individual/create_individual/widgets/box_select_type.dart';
 import 'package:familytree/src/features/individual/list_individual/create_individual/widgets/button_next_to_create_individual.dart';
 import 'package:familytree/src/features/individual/list_individual/create_individual/widgets/button_next_to_select_type.dart';
-import 'package:familytree/src/network/model/product_model.dart';
+import 'package:familytree/src/network/model/individual_model.dart';
 
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
@@ -50,7 +50,7 @@ class TabViewCreateIndividual extends StatelessWidget {
               return CreateIndividualF0RootPage(area: state.currnentArea!);
             }
 
-            if (state.type == ProductTypeEnum.f0) {
+            if (state.type == GenerationEnum.f0) {
               return CreateIndividualF0FemalePage(area: state.currnentArea!);
             }
 

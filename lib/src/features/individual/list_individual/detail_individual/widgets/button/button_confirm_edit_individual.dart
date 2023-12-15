@@ -18,7 +18,8 @@ class ButtonConfirmEditIndividual extends StatelessWidget {
           ),
           backgroundColor: XColors.primary7,
           padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 20)),
-      onPressed: () => context.read<DetailIndividualBloc>().createNewProduct(),
+      onPressed: () =>
+          context.read<DetailIndividualBloc>().createNewIndividual(),
       child: Text(
         "Xác nhận",
         style: const TextStyle(

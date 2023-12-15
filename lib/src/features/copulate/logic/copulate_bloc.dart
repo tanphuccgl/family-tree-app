@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 
 import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/area_model.dart';
-import 'package:familytree/src/network/model/product_model.dart';
+import 'package:familytree/src/network/model/individual_model.dart';
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -16,14 +16,14 @@ class CopulateBloc extends Cubit<CopulateState> {
   Domain get domain => GetIt.I<Domain>();
 
   void init() {
-    getListIndividual(ProductTypeEnum.f0);
+    getListIndividual(GenerationEnum.f0);
   }
 
-  void getListIndividual(ProductTypeEnum type) async {
+  void getListIndividual(GenerationEnum type) async {
     if (state.currnentArea == null) {
       return;
     }
-    final result = await domain.product.getProductWithType(type);
+    final result = await domain.individual.getIndividualWithType(type);
     if (result.isSuccess) {
       final data = [...result.data!];
       final list = data
@@ -63,14 +63,14 @@ class CopulateBloc extends Cubit<CopulateState> {
 
     try {
       await Future.wait([
-        domain.product.updateProduct(
-          productId: femaleSelected.id,
+        domain.individual.updateIndividual(
+          individualId: femaleSelected.id,
           item: {
             "listCopulateId": FieldValue.arrayUnion(['${maleSelected.id}'])
           },
         ),
-        domain.product.updateProduct(
-          productId: maleSelected.id,
+        domain.individual.updateIndividual(
+          individualId: maleSelected.id,
           item: {
             "listCopulateId": FieldValue.arrayUnion(['${femaleSelected.id}'])
           },
@@ -86,12 +86,12 @@ class CopulateBloc extends Cubit<CopulateState> {
     }
   }
 
-  void onChangeGenerationSelected(ProductTypeEnum type) async {
+  void onChangeGenerationSelected(GenerationEnum type) async {
     emit(state.copyWith(type: type));
     getListIndividual(type);
   }
 
-  void onSelectMaleIndividual(ProductModel data) {
+  void onSelectMaleIndividual(IndividualModel data) {
     if (state.maleSelected?.id == data.id) {
       emit(state.clearSelectMaleIndividual());
       return;
@@ -99,7 +99,7 @@ class CopulateBloc extends Cubit<CopulateState> {
     emit(state.copyWith(maleSelected: data));
   }
 
-  void onSelectFemaleIndividual(ProductModel data) {
+  void onSelectFemaleIndividual(IndividualModel data) {
     if (state.femaleSelected?.id == data.id) {
       emit(state.clearSelectFemaleIndividual());
       return;

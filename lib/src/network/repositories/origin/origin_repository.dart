@@ -5,7 +5,7 @@ abstract class OriginRepository {
   Future<XResult<OriginModel>> createOrigin(OriginModel data);
 
   Future<XResult<bool>> updateOrigin({
-    required String productId,
+    required String originId,
     required Map<String, dynamic> item,
   });
 

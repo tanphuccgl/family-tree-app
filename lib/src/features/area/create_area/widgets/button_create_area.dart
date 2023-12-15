@@ -16,7 +16,7 @@ class ButtonCreateArea extends StatelessWidget {
           ),
           backgroundColor: XColors.primary7,
           padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 20)),
-      onPressed: () => context.read<CreateAreaBloc>().createNewProduct(),
+      onPressed: () => context.read<CreateAreaBloc>().createNewArea(),
       child: Text(
         "Tạo mới",
         style: const TextStyle(

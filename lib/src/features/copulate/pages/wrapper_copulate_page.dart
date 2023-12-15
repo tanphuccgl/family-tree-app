@@ -2,7 +2,7 @@ import 'package:familytree/src/features/copulate/logic/copulate_bloc.dart';
 import 'package:familytree/src/features/copulate/pages/tabview_copulate.dart';
 import 'package:familytree/src/features/copulate/widgets/box_select_area.dart';
 import 'package:familytree/src/features/copulate/widgets/button_select_area.dart';
-import 'package:familytree/src/network/model/product_model.dart';
+import 'package:familytree/src/network/model/individual_model.dart';
 
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
@@ -67,7 +67,7 @@ class _WrapperCopulatePageState extends State<WrapperCopulatePage>
                                   context
                                       .read<CopulateBloc>()
                                       .onChangeGenerationSelected(
-                                          ProductTypeEnum.values[value]);
+                                          GenerationEnum.values[value]);
                                 },
                                 controller: tabController,
                                 tabs: [

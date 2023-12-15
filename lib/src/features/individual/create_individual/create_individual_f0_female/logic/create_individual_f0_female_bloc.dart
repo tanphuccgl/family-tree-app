@@ -5,7 +5,7 @@ import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/area_model.dart';
 import 'package:familytree/src/network/model/info_more_model.dart';
 import 'package:familytree/src/network/model/origin_model.dart';
-import 'package:familytree/src/network/model/product_model.dart';
+import 'package:familytree/src/network/model/individual_model.dart';
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -44,7 +44,7 @@ class CreateIndividualF0FemaleBloc
     }
   }
 
-  void createNewProduct() async {
+  void createNewIndividual() async {
     if (state.name.isEmpty) {
       XToast.error("Vui lòng nhập tên");
       return;
@@ -74,10 +74,10 @@ class CreateIndividualF0FemaleBloc
 
     XToast.showLoading();
 
-    final product = ProductModel(
+    final model = IndividualModel(
       name: state.name,
       id: state.familyCode,
-      type: ProductTypeEnum.f0,
+      type: GenerationEnum.f0,
       area: area,
       isMale: false,
       origin: state.origin,
@@ -96,7 +96,7 @@ class CreateIndividualF0FemaleBloc
       weight: double.tryParse(state.weight) ?? 0,
     );
 
-    final result = await domain.product.createProduct(product);
+    final result = await domain.individual.createIndividual(model);
     if (result.isSuccess) {
       emit(CreateIndividualF0FemaleState.ds());
       XToast.success("Tạo mới cá thể thành công");
@@ -241,7 +241,7 @@ class CreateIndividualF0FemaleBloc
   }
 
   void _checkIdExist() async {
-    final result = await domain.product.getProduct(state.familyCode);
+    final result = await domain.individual.getIndividual(state.familyCode);
     if (result.isSuccess) {
       emit(state.copyWith(isFamilyCodeExist: true));
       return;

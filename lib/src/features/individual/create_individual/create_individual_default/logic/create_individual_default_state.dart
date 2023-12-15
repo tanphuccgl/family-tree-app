@@ -4,14 +4,14 @@ part of 'create_individual_default_bloc.dart';
 
 class CreateIndividualDefaultState extends Equatable {
   final AreaModel? area;
-  final ProductTypeEnum? type;
+  final GenerationEnum? type;
   final OriginModel? origin;
 
   final List<OriginModel> listOriginSuggest;
-  final List<ProductModel> listFatherSuggest;
-  final ProductModel? fatherSelected;
-  final List<ProductModel> listMotherSuggest;
-  final ProductModel? motherSelected;
+  final List<IndividualModel> listFatherSuggest;
+  final IndividualModel? fatherSelected;
+  final List<IndividualModel> listMotherSuggest;
+  final IndividualModel? motherSelected;
 
   final String name;
   final String familyCode;
@@ -90,13 +90,13 @@ class CreateIndividualDefaultState extends Equatable {
 
   CreateIndividualDefaultState copyWith({
     AreaModel? area,
-    ProductTypeEnum? type,
+    GenerationEnum? type,
     OriginModel? origin,
     List<OriginModel>? listOriginSuggest,
-    List<ProductModel>? listFatherSuggest,
-    ProductModel? fatherSelected,
-    List<ProductModel>? listMotherSuggest,
-    ProductModel? motherSelected,
+    List<IndividualModel>? listFatherSuggest,
+    IndividualModel? fatherSelected,
+    List<IndividualModel>? listMotherSuggest,
+    IndividualModel? motherSelected,
     String? name,
     String? familyCode,
     bool? isMale,

@@ -5,7 +5,7 @@ import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/area_model.dart';
 import 'package:familytree/src/network/model/info_more_model.dart';
 import 'package:familytree/src/network/model/origin_model.dart';
-import 'package:familytree/src/network/model/product_model.dart';
+import 'package:familytree/src/network/model/individual_model.dart';
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -21,7 +21,7 @@ part 'create_individual_default_state.dart';
 class CreateIndividualDefaultBloc extends Cubit<CreateIndividualDefaultState> {
   final BuildContext context;
   final AreaModel area;
-  final ProductTypeEnum type;
+  final GenerationEnum type;
 
   CreateIndividualDefaultBloc(
     this.context, {
@@ -46,7 +46,7 @@ class CreateIndividualDefaultBloc extends Cubit<CreateIndividualDefaultState> {
     }
   }
 
-  void createNewProduct() async {
+  void createNewIndividual() async {
     if (state.name.isEmpty) {
       XToast.error("Vui lòng nhập tên");
       return;
@@ -80,7 +80,7 @@ class CreateIndividualDefaultBloc extends Cubit<CreateIndividualDefaultState> {
 
     XToast.showLoading();
 
-    final product = ProductModel(
+    final product = IndividualModel(
       isMale: state.isMale,
       name: state.name,
       id: state.familyCode,
@@ -104,7 +104,7 @@ class CreateIndividualDefaultBloc extends Cubit<CreateIndividualDefaultState> {
       origin: state.origin,
     );
 
-    final result = await domain.product.createProduct(product);
+    final result = await domain.individual.createIndividual(product);
     if (result.isSuccess) {
       emit(CreateIndividualDefaultState.ds());
       XToast.success("Tạo mới cá thể thành công");
@@ -283,26 +283,26 @@ class CreateIndividualDefaultBloc extends Cubit<CreateIndividualDefaultState> {
   }
 
   void _getListParentSuggest() async {
-    ProductTypeEnum? typeQuery;
+    GenerationEnum? typeQuery;
     print(type);
     switch (type) {
-      case ProductTypeEnum.f0:
+      case GenerationEnum.f0:
         break;
-      case ProductTypeEnum.f1:
-        typeQuery = ProductTypeEnum.f0;
+      case GenerationEnum.f1:
+        typeQuery = GenerationEnum.f0;
         break;
-      case ProductTypeEnum.f2:
-        typeQuery = ProductTypeEnum.f1;
+      case GenerationEnum.f2:
+        typeQuery = GenerationEnum.f1;
         break;
-      case ProductTypeEnum.f3:
-        typeQuery = ProductTypeEnum.f2;
+      case GenerationEnum.f3:
+        typeQuery = GenerationEnum.f2;
         break;
     }
     if (typeQuery == null) {
       return;
     }
 
-    final result = await domain.product.getProductWithType(typeQuery);
+    final result = await domain.individual.getIndividualWithType(typeQuery);
     if (result.isSuccess) {
       final listParent = result.data!
           .where((e) => e.isMale == true && e.listCopulateId.isNotEmpty)
@@ -312,7 +312,7 @@ class CreateIndividualDefaultBloc extends Cubit<CreateIndividualDefaultState> {
   }
 
   void _checkIdExist() async {
-    final result = await domain.product.getProduct(state.familyCode);
+    final result = await domain.individual.getIndividual(state.familyCode);
     if (result.isSuccess) {
       emit(state.copyWith(isFamilyCodeExist: true));
       return;
@@ -337,24 +337,24 @@ class CreateIndividualDefaultBloc extends Cubit<CreateIndividualDefaultState> {
     emit(state.copyWith(origin: value));
   }
 
-  void onChangedMother(ProductModel value) {
+  void onChangedMother(IndividualModel value) {
     emit(state.copyWith(motherSelected: value));
   }
 
-  void onChangedFather(ProductModel value) async {
+  void onChangedFather(IndividualModel value) async {
     emit(state.copyWith(fatherSelected: value));
 
     final list = await Future.wait(value.listCopulateId.map((item) async {
-      final result = await _getProduct(item);
+      final result = await _getIndividual(item);
       return result;
     }));
 
     emit(state.copyWith(
-        listMotherSuggest: list.whereType<ProductModel>().toList()));
+        listMotherSuggest: list.whereType<IndividualModel>().toList()));
   }
 
-  Future<ProductModel?> _getProduct(String id) async {
-    final result = await domain.product.getProduct(id);
+  Future<IndividualModel?> _getIndividual(String id) async {
+    final result = await domain.individual.getIndividual(id);
     return result.isSuccess ? result.data! : null;
   }
 

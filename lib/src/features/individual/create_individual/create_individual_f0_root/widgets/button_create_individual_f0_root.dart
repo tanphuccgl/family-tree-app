@@ -22,7 +22,7 @@ class ButtonCreateIndividualF0Root extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(vertical: 25, horizontal: 20)),
           onPressed: () =>
-              context.read<CreateIndividualF0RootBloc>().createNewProduct(),
+              context.read<CreateIndividualF0RootBloc>().createNewIndividual(),
           child: Text(
             "Tạo cá thể",
             style: const TextStyle(

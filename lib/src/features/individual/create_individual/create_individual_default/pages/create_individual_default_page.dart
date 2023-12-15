@@ -20,7 +20,7 @@ import 'package:familytree/src/features/individual/create_individual/create_indi
 import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/video_default_widget.dart';
 import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/weight_default_widget.dart';
 import 'package:familytree/src/network/model/area_model.dart';
-import 'package:familytree/src/network/model/product_model.dart';
+import 'package:familytree/src/network/model/individual_model.dart';
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +28,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CreateIndividualDefaultPage extends StatelessWidget {
   final AreaModel area;
-  final ProductTypeEnum type;
+  final GenerationEnum type;
   const CreateIndividualDefaultPage({
     super.key,
     required this.area,

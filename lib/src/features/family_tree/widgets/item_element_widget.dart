@@ -1,10 +1,10 @@
 import 'package:familytree/src/features/family_tree/logic/family_tree_bloc.dart';
-import 'package:familytree/src/network/model/product_model.dart';
+import 'package:familytree/src/network/model/individual_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemElementWidget extends StatelessWidget {
-  final ProductModel data;
+  final IndividualModel data;
   const ItemElementWidget({super.key, required this.data});
 
   @override

@@ -5,11 +5,11 @@ class DetailIndividualState extends Equatable {
   final bool isEdit;
 
   final AreaModel? area;
-  final ProductTypeEnum? type;
+  final GenerationEnum? type;
   final OriginModel? origin;
 
-  final ProductModel? father;
-  final ProductModel? mother;
+  final IndividualModel? father;
+  final IndividualModel? mother;
 
   final String name;
   final String familyCode;
@@ -88,10 +88,10 @@ class DetailIndividualState extends Equatable {
   DetailIndividualState copyWith({
     bool? isEdit,
     AreaModel? area,
-    ProductTypeEnum? type,
+    GenerationEnum? type,
     OriginModel? origin,
-    ProductModel? father,
-    ProductModel? mother,
+    IndividualModel? father,
+    IndividualModel? mother,
     String? name,
     String? familyCode,
     bool? isMale,

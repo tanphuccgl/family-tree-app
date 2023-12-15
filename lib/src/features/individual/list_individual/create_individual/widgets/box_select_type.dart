@@ -1,5 +1,5 @@
 import 'package:familytree/src/features/individual/list_individual/create_individual/logic/create_individual_bloc.dart';
-import 'package:familytree/src/network/model/product_model.dart';
+import 'package:familytree/src/network/model/individual_model.dart';
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
 import 'package:flutter/material.dart';
@@ -50,26 +50,26 @@ class BoxSelectType extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      item(ProductTypeEnum.f0),
-                      item(ProductTypeEnum.f1),
+                      item(GenerationEnum.f0),
+                      item(GenerationEnum.f1),
                     ],
                   ),
                   GapHelper.h12,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      item(ProductTypeEnum.f2),
-                      item(ProductTypeEnum.f3),
+                      item(GenerationEnum.f2),
+                      item(GenerationEnum.f3),
                     ],
                   ),
                 ] else ...[
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      item(ProductTypeEnum.f0),
-                      item(ProductTypeEnum.f1),
-                      item(ProductTypeEnum.f2),
-                      item(ProductTypeEnum.f3),
+                      item(GenerationEnum.f0),
+                      item(GenerationEnum.f1),
+                      item(GenerationEnum.f2),
+                      item(GenerationEnum.f3),
                     ],
                   ),
                 ],
@@ -82,7 +82,7 @@ class BoxSelectType extends StatelessWidget {
     );
   }
 
-  Widget item(ProductTypeEnum type) {
+  Widget item(GenerationEnum type) {
     return BlocBuilder<CreateIndividualBloc, CreateIndividualState>(
       builder: (context, state) {
         final size = MediaQuery.of(context).size;

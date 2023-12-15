@@ -1,5 +1,5 @@
 import 'package:familytree/src/features/individual/list_individual/list_individual/logic/individual_bloc.dart';
-import 'package:familytree/src/network/model/product_model.dart';
+import 'package:familytree/src/network/model/individual_model.dart';
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
 
@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemIndividual extends StatelessWidget {
-  final ProductModel data;
+  final IndividualModel data;
   final int index;
   final bool isLastItem;
   const ItemIndividual(

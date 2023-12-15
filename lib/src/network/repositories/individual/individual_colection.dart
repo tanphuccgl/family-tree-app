@@ -1,21 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:familytree/src/network/data_sources/base_data_source.dart';
 import 'package:familytree/src/network/model/common/result.dart';
-import 'package:familytree/src/network/model/product_model.dart';
+import 'package:familytree/src/network/model/individual_model.dart';
 
-class ProductCollectionReference extends BaseCollectionReference<ProductModel> {
-  ProductCollectionReference()
+class IndividualCollectionReference
+    extends BaseCollectionReference<IndividualModel> {
+  IndividualCollectionReference()
       : super(
           FirebaseFirestore.instance
-              .collection("Products")
-              .withConverter<ProductModel>(
+              .collection("Individuals")
+              .withConverter<IndividualModel>(
                 fromFirestore: ((snapshot, _) =>
-                    ProductModel.fromDocument(snapshot)),
+                    IndividualModel.fromDocument(snapshot)),
                 toFirestore: (model, _) => model.toMap(),
               ),
         );
 
-  Future<XResult<ProductModel>> getProduct(String id) async {
+  Future<XResult<IndividualModel>> getIndividual(String id) async {
     try {
       var snapshot = await ref.where('id', isEqualTo: id).limit(1).get();
 
@@ -27,7 +28,7 @@ class ProductCollectionReference extends BaseCollectionReference<ProductModel> {
     }
   }
 
-  Future<XResult<List<ProductModel>>> getAllProduct() async {
+  Future<XResult<List<IndividualModel>>> getAllIndividual() async {
     try {
       var snapshot = await ref.get();
 
@@ -39,8 +40,8 @@ class ProductCollectionReference extends BaseCollectionReference<ProductModel> {
     }
   }
 
-  Future<XResult<List<ProductModel>>> getProductWithType(
-      ProductTypeEnum value) async {
+  Future<XResult<List<IndividualModel>>> getIndividualWithType(
+      GenerationEnum value) async {
     try {
       var snapshot = await ref.where('type', isEqualTo: value.nameOf).get();
 
@@ -52,8 +53,8 @@ class ProductCollectionReference extends BaseCollectionReference<ProductModel> {
     }
   }
 
-  Future<XResult<List<ProductModel>>> getListProductWithFather(
-      ProductTypeEnum value) async {
+  Future<XResult<List<IndividualModel>>> getListIndividualWithFather(
+      GenerationEnum value) async {
     try {
       var snapshot = await ref
           .where('type', isEqualTo: value.nameOf)
@@ -68,8 +69,8 @@ class ProductCollectionReference extends BaseCollectionReference<ProductModel> {
     }
   }
 
-  Future<XResult<List<ProductModel>>> getListProductWithMother(
-      ProductTypeEnum value) async {
+  Future<XResult<List<IndividualModel>>> getListIndividualWithMother(
+      GenerationEnum value) async {
     try {
       var snapshot = await ref
           .where('type', isEqualTo: value.nameOf)
@@ -84,7 +85,8 @@ class ProductCollectionReference extends BaseCollectionReference<ProductModel> {
     }
   }
 
-  Future<XResult<List<ProductModel>>> getProductsWithArea(String areaId) async {
+  Future<XResult<List<IndividualModel>>> getIndividualsWithArea(
+      String areaId) async {
     try {
       var snapshot = await ref.where('area.id', isEqualTo: areaId).get();
 

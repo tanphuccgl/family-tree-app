@@ -2,7 +2,7 @@
 part of 'family_tree_bloc.dart';
 
 class FamilyTreeState extends Equatable {
-  final List<ProductModel> list;
+  final List<IndividualModel> list;
   final String areaIdSelected;
   final List<AreaModel> listArea;
   final List<Edge> edges;
@@ -25,7 +25,7 @@ class FamilyTreeState extends Equatable {
       ];
 
   FamilyTreeState copyWith({
-    List<ProductModel>? list,
+    List<IndividualModel>? list,
     String? areaIdSelected,
     List<AreaModel>? listArea,
     List<Edge>? edges,

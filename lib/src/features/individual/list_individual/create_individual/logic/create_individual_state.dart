@@ -2,10 +2,10 @@
 part of 'create_individual_bloc.dart';
 
 class CreateIndividualState extends Equatable {
-  final List<ProductModel> listIndividualWithArea;
+  final List<IndividualModel> listIndividualWithArea;
 
   final AreaModel? currnentArea;
-  final ProductTypeEnum? type;
+  final GenerationEnum? type;
   final bool isShowSelectArea;
   final bool isShowSelectType;
 
@@ -43,8 +43,8 @@ class CreateIndividualState extends Equatable {
     AreaModel? currnentArea,
     bool? isShowSelectArea,
     bool? isShowSelectType,
-    ProductTypeEnum? type,
-    List<ProductModel>? listIndividualWithArea,
+    GenerationEnum? type,
+    List<IndividualModel>? listIndividualWithArea,
   }) {
     return CreateIndividualState(
       name: name ?? this.name,

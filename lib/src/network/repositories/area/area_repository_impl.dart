@@ -13,10 +13,10 @@ class AreaRepositoryImpl extends AreaRepository {
 
   @override
   Future<XResult<bool>> updateArea({
-    required String productId,
+    required String areaId,
     required Map<String, dynamic> item,
   }) async =>
-      reference.update(productId, item);
+      reference.update(areaId, item);
 
   @override
   Future<XResult<AreaModel>> getAreaWithNameId(String id) async {

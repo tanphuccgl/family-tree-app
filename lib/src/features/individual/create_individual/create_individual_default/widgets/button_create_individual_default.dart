@@ -23,7 +23,7 @@ class ButtonCreateIndividualDefault extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(vertical: 25, horizontal: 20)),
           onPressed: () =>
-              context.read<CreateIndividualDefaultBloc>().createNewProduct(),
+              context.read<CreateIndividualDefaultBloc>().createNewIndividual(),
           child: Text(
             "Tạo cá thể",
             style: const TextStyle(
