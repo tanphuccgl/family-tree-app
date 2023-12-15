@@ -1,4 +1,15 @@
 import 'package:familytree/src/features/individual/create_individual/create_individual_f0_female/logic/create_individual_f0_female_bloc.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_female/widgets/age_f0_female_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_female/widgets/color_f0_female_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_female/widgets/date_f0_female_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_female/widgets/field_info_f0_female_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_female/widgets/food_f0_female_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_female/widgets/image_f0_female_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_female/widgets/price_f0_female_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_female/widgets/review_f0_female_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_female/widgets/style_f0_female_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_female/widgets/video_f0_female_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_female/widgets/weight_f0_female_widget.dart';
 import 'package:familytree/src/network/model/area_model.dart';
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
@@ -8,7 +19,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../widgets/area_f0_female_widget.dart';
 import '../widgets/button/button_create_individual_f0_female.dart';
 import '../widgets/family_code_f0_female_widget.dart';
-import '../widgets/female_F0_sex_widget.dart';
+import '../widgets/sex_f0_female_widget.dart';
 import '../widgets/name_f0_female_widget.dart';
 import '../widgets/origin_f0_female_widget.dart';
 import '../widgets/type_f0_female_widget.dart';
@@ -72,31 +83,31 @@ class CreateIndividualF0FemalePage extends StatelessWidget {
                         if (size.width <= 1500 && size.width > 800)
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              leftWidget(),
+                              sessionOneWidget1(),
                               GapHelper.w20,
-                              leftWidget(),
+                              sessionTwoWidget1(),
                             ],
                           )
                         else if (size.width < 800)
                           Column(
                             children: [
-                              leftWidget(),
-                              leftWidget(),
-                              leftWidget(),
+                              sessionOneWidget(),
+                              sessionTwoWidget(),
+                              sessionThreeWidget(),
                             ],
                           )
                         else
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              leftWidget(),
+                              sessionOneWidget(),
                               GapHelper.w20,
-                              leftWidget(),
+                              sessionTwoWidget(),
                               GapHelper.w20,
-                              leftWidget(),
+                              sessionThreeWidget(),
                             ],
                           ),
                       ],
@@ -115,27 +126,91 @@ class CreateIndividualF0FemalePage extends StatelessWidget {
     );
   }
 
-  Widget leftWidget() {
+  Widget sessionOneWidget() {
     return SizedBox(
       width: 300,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           NameF0FemaleWidget(),
           AreaF0FemaleWidget(),
-          FemaleF0SexWidget(),
+          SexF0FemaleWidget(),
           TypeF0FemaleWidget(),
           FamilyCodeF0FemaleWidget(),
-          OriginF0FemaleWidget()
+          OriginF0FemaleWidget(),
+          PriceF0FemaleWidget(),
         ],
       ),
     );
   }
 
-  Widget rightWidget(BuildContext context) {
+  Widget sessionTwoWidget() {
     return SizedBox(
       width: 300,
       child: Column(
-        children: [],
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AgeF0FemaleWidget(),
+          ColorF0FemaleWidget(),
+          DateF0FemaleWidget(),
+          FoodF0FemaleWidget(),
+          StyleF0FemaleWidget(),
+          WeightF0FemaleWidget(),
+          ReviewF0FemaleWidget(),
+        ],
+      ),
+    );
+  }
+
+  Widget sessionThreeWidget() {
+    return SizedBox(
+      width: 300,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          FieldInfoF0FemaleWidget(),
+          ImageF0FemaleWidget(),
+          VideoF0FemaleWidget(),
+        ],
+      ),
+    );
+  }
+
+  Widget sessionOneWidget1() {
+    return SizedBox(
+      width: 300,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          NameF0FemaleWidget(),
+          AreaF0FemaleWidget(),
+          SexF0FemaleWidget(),
+          TypeF0FemaleWidget(),
+          FamilyCodeF0FemaleWidget(),
+          OriginF0FemaleWidget(),
+          PriceF0FemaleWidget(),
+          ImageF0FemaleWidget(),
+          VideoF0FemaleWidget(),
+        ],
+      ),
+    );
+  }
+
+  Widget sessionTwoWidget1() {
+    return SizedBox(
+      width: 300,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AgeF0FemaleWidget(),
+          ColorF0FemaleWidget(),
+          DateF0FemaleWidget(),
+          FoodF0FemaleWidget(),
+          StyleF0FemaleWidget(),
+          WeightF0FemaleWidget(),
+          ReviewF0FemaleWidget(),
+          FieldInfoF0FemaleWidget(),
+        ],
       ),
     );
   }

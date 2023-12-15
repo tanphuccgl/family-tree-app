@@ -40,11 +40,10 @@ class CreateIndividualF0RootPage extends StatelessWidget {
       child:
           BlocBuilder<CreateIndividualF0RootBloc, CreateIndividualF0RootState>(
         builder: (context, state) {
-          //TODO
-          // if (state.area == null) {
-          //   return Text("Không tìm thấy khu vực");
-          // }
-          print(size.width);
+          if (state.area == null) {
+            return Text("Không tìm thấy khu vực");
+          }
+
           return SingleChildScrollView(
             child: Container(
               decoration: BoxDecoration(

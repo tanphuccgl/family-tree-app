@@ -24,7 +24,7 @@ class TabViewCreateIndividual extends StatelessWidget {
       child: BlocBuilder<CreateIndividualBloc, CreateIndividualState>(
         builder: (context, state) {
           //TODO
-          return CreateIndividualF0RootPage(area: AreaModel());
+          return CreateIndividualF0FemalePage(area: AreaModel());
 
           if (state.isShowSelectArea && !state.isShowSelectType) {
             return Column(
