@@ -28,7 +28,10 @@ class OriginF0RootWidget extends StatelessWidget {
                 ? SizedBox(
                     width: 300,
                     height: 80,
-                    child: XInput(value: "N/A", readOnly: true))
+                    child: XInput(
+                      value: "N/A",
+                      readOnly: true,
+                    ))
                 : dropdownListOriginSuggest(),
           ],
         );
@@ -42,6 +45,7 @@ class OriginF0RootWidget extends StatelessWidget {
       return Container(
         width: 300,
         height: 50,
+        margin: EdgeInsets.only(bottom: 30),
         padding: const EdgeInsets.only(left: 5),
         decoration: BoxDecoration(
             border: Border.all(color: XColors.primary6, width: 0),

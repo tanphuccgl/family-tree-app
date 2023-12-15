@@ -58,10 +58,6 @@ class TabViewCreateIndividual extends StatelessWidget {
               area: state.currnentArea!,
               type: state.type!,
             );
-            // if()
-            // {
-
-            // }
           }
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 30),

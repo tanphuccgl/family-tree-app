@@ -52,6 +52,10 @@ class CreateIndividualBloc extends Cubit<CreateIndividualState> {
     XToast.hideLoading();
   }
 
+  void replaceCreatePage() {
+    emit(CreateIndividualState(isShowSelectArea: true));
+  }
+
   void onNextToCreateIndividual() {
     if (state.type == null) {
       XToast.error("Vui lòng chọn thế hệ");

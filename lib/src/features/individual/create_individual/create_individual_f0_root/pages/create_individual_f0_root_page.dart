@@ -1,3 +1,14 @@
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_root/widgets/age_f0_root_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_root/widgets/color_f0_root_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_root/widgets/date_f0_root_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_root/widgets/field_info_f0_root_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_root/widgets/food_f0_root_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_root/widgets/image_f0_root_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_root/widgets/price_f0_root_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_root/widgets/review_f0_root_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_root/widgets/style_f0_root_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_root/widgets/video_f0_root_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_f0_root/widgets/weight_f0_root_widget.dart';
 import 'package:familytree/src/network/model/area_model.dart';
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
@@ -29,10 +40,9 @@ class CreateIndividualF0RootPage extends StatelessWidget {
       child:
           BlocBuilder<CreateIndividualF0RootBloc, CreateIndividualF0RootState>(
         builder: (context, state) {
-          //TODO
-          // if (state.area == null) {
-          //   return Text("Không tìm thấy khu vực");
-          // }
+          if (state.area == null) {
+            return Text("Không tìm thấy khu vực");
+          }
 
           return SingleChildScrollView(
             child: Container(
@@ -69,34 +79,34 @@ class CreateIndividualF0RootPage extends StatelessWidget {
                         horizontal: 15, vertical: 30),
                     child: Column(
                       children: [
-                        if (size.width <= 1600 && size.width > 800)
+                        if (size.width <= 1500 && size.width > 800)
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              leftWidget(),
+                              sessionOneWidget1(),
                               GapHelper.w20,
-                              leftWidget(),
+                              sessionTwoWidget1(),
                             ],
                           )
                         else if (size.width < 800)
                           Column(
                             children: [
-                              leftWidget(),
-                              leftWidget(),
-                              leftWidget(),
+                              sessionOneWidget(),
+                              sessionTwoWidget(),
+                              sessionThreeWidget(),
                             ],
                           )
                         else
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              leftWidget(),
+                              sessionOneWidget(),
                               GapHelper.w20,
-                              leftWidget(),
+                              sessionTwoWidget(),
                               GapHelper.w20,
-                              leftWidget(),
+                              sessionThreeWidget(),
                             ],
                           ),
                       ],
@@ -115,10 +125,11 @@ class CreateIndividualF0RootPage extends StatelessWidget {
     );
   }
 
-  Widget leftWidget() {
+  Widget sessionOneWidget() {
     return SizedBox(
       width: 300,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           NameF0RootWidget(),
           AreaF0RootWidget(),
@@ -126,16 +137,79 @@ class CreateIndividualF0RootPage extends StatelessWidget {
           TypeF0RootWidget(),
           FamilyCodeF0RootWidget(),
           OriginF0RootWidget(),
+          PriceF0RootWidget(),
         ],
       ),
     );
   }
 
-  Widget rightWidget(BuildContext context) {
+  Widget sessionTwoWidget() {
     return SizedBox(
       width: 300,
       child: Column(
-        children: [],
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AgeF0RootWidget(),
+          ColorF0RootWidget(),
+          DateF0RootWidget(),
+          FoodF0RootWidget(),
+          StyleF0RootWidget(),
+          WeightF0RootWidget(),
+          ReviewF0RootWidget(),
+        ],
+      ),
+    );
+  }
+
+  Widget sessionThreeWidget() {
+    return SizedBox(
+      width: 300,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          FieldInfoF0RootWidget(),
+          ImageF0RootWidget(),
+          VideoF0RootWidget(),
+        ],
+      ),
+    );
+  }
+
+  Widget sessionOneWidget1() {
+    return SizedBox(
+      width: 300,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          NameF0RootWidget(),
+          AreaF0RootWidget(),
+          SexF0RootWidget(),
+          TypeF0RootWidget(),
+          FamilyCodeF0RootWidget(),
+          OriginF0RootWidget(),
+          PriceF0RootWidget(),
+          ImageF0RootWidget(),
+          VideoF0RootWidget(),
+        ],
+      ),
+    );
+  }
+
+  Widget sessionTwoWidget1() {
+    return SizedBox(
+      width: 300,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AgeF0RootWidget(),
+          ColorF0RootWidget(),
+          DateF0RootWidget(),
+          FoodF0RootWidget(),
+          StyleF0RootWidget(),
+          WeightF0RootWidget(),
+          ReviewF0RootWidget(),
+          FieldInfoF0RootWidget(),
+        ],
       ),
     );
   }
