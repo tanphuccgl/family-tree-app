@@ -43,6 +43,7 @@ class OriginDefaultWidget extends StatelessWidget {
       return Container(
         width: 300,
         height: 50,
+        margin: EdgeInsets.only(bottom: 30),
         padding: const EdgeInsets.only(left: 5),
         decoration: BoxDecoration(
             color: XColors.primary2, borderRadius: BorderRadius.circular(10)),

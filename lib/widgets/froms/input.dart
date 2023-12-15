@@ -170,7 +170,10 @@ class _XInputState extends State<XInput> {
       decoration: InputDecoration(
         labelStyle: const TextStyle(color: Color(0xCC50555C)),
         hintText: widget.hintText,
-        hintStyle: widget.hintStyle ?? Theme.of(context).textTheme.labelLarge,
+        hintStyle: widget.hintStyle ??
+            Theme.of(context).textTheme.labelLarge?.copyWith(
+                  color: XColors.primary5,
+                ),
         hintMaxLines: widget.hintMaxLines,
         floatingLabelBehavior: FloatingLabelBehavior.auto,
         isDense: widget.isDense,
