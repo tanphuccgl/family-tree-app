@@ -23,7 +23,6 @@ class FamilyTreeBloc extends Cubit<FamilyTreeState> {
     XToast.showLoading();
     builder..bendPointShape = CurvedBendPointShape(curveLength: 20);
     await getAllArea();
-    await getAllIndividual();
 
     XToast.hideLoading();
   }
@@ -32,17 +31,15 @@ class FamilyTreeBloc extends Cubit<FamilyTreeState> {
     final result = await domain.area.getAllArea();
     if (result.isSuccess) {
       emit(state.copyWith(listArea: result.data));
-      if (result.data!.isNotEmpty) {
-        emit(state.copyWith(areaIdSelected: result.data!.first.id));
-      }
-
-      return;
     }
   }
 
-  void onChangeAreaIdSelected(String id) async {
-    emit(state.copyWith(areaIdSelected: id));
-    await getAllIndividual();
+  void onChangeCurrentArea(AreaModel? value) {
+    if (value == null) {
+      emit(state.clearAreaCurrent());
+    } else {
+      emit(state.copyWith(currnentArea: value));
+    }
   }
 
   void createNode(List<IndividualModel> list) {
@@ -50,70 +47,92 @@ class FamilyTreeBloc extends Cubit<FamilyTreeState> {
     graph.removeNodes(state.nodes);
     final List<Edge> edges = [];
     final List<Node> nodes = [];
-    final root = list.singleWhere((e) => e.type == GenerationEnum.f0);
+    final root = list
+        .singleWhere((e) => e.type == GenerationEnum.f0 && e.isMale == true);
     final nodeRoot = Node.Id(root);
     nodes.add(nodeRoot);
     for (var element in list) {
-      if (element.type == GenerationEnum.f1) {
+      if (element.type == GenerationEnum.f0 && element.isMale == false) {
         edges.add(Edge(nodeRoot, Node.Id(element)));
-        nodes.add(Node.Id(element));
-        nodes.add(Node.Id(nodeRoot));
+        // nodes.add(Node.Id(element));
+        // nodes.add(Node.Id(nodeRoot));
       }
-      if (element.type != GenerationEnum.f0 &&
-          element.type != GenerationEnum.f1) {
+
+      if (element.fatherId.isNotEmpty && element.motherId.isNotEmpty) {
         final a = list.singleWhere((e) => e.id == element.fatherId);
         final b = list.singleWhere((e) => e.id == element.motherId);
         edges.add(Edge(Node.Id(a), Node.Id(element)));
         edges.add(Edge(Node.Id(b), Node.Id(element)));
-        nodes.add(Node.Id(a));
-        nodes.add(Node.Id(b));
-        nodes.add(Node.Id(element));
+// element.type == GenerationEnum.f1
       }
+      // if (element.type == GenerationEnum.f1) {
+      //   edges.add(Edge(nodeRoot, Node.Id(element)));
+      //   nodes.add(Node.Id(element));
+      //   nodes.add(Node.Id(nodeRoot));
+      // }
+      // if (element.type != GenerationEnum.f0 &&
+      //     element.type != GenerationEnum.f1) {
+      //   final a = list.singleWhere((e) => e.id == element.fatherId);
+      //   final b = list.singleWhere((e) => e.id == element.motherId);
+      //   edges.add(Edge(Node.Id(a), Node.Id(element)));
+      //   edges.add(Edge(Node.Id(b), Node.Id(element)));
+      //   nodes.add(Node.Id(a));
+      //   nodes.add(Node.Id(b));
+      //   nodes.add(Node.Id(element));
+      // }
     }
     emit(state.copyWith(edges: edges));
     emit(state.copyWith(nodes: nodes));
     graph.addEdges(edges);
   }
 
-  Future<void> getAllIndividual() async {
-    final result = await domain.individual.getAllIndividual();
+  // void createNode(List<IndividualModel> list) {
+  //   graph.removeEdges(state.edges);
+  //   graph.removeNodes(state.nodes);
+  //   final List<Edge> edges = [];
+  //   final List<Node> nodes = [];
+  //   final root = list.singleWhere((e) => e.type == GenerationEnum.f0);
+  //   final nodeRoot = Node.Id(root);
+  //   nodes.add(nodeRoot);
+  //   for (var element in list) {
+  //     if (element.type == GenerationEnum.f1) {
+  //       edges.add(Edge(nodeRoot, Node.Id(element)));
+  //       nodes.add(Node.Id(element));
+  //       nodes.add(Node.Id(nodeRoot));
+  //     }
+  //     // if (element.type != GenerationEnum.f0 &&
+  //     //     element.type != GenerationEnum.f1) {
+  //     //   final a = list.singleWhere((e) => e.id == element.fatherId);
+  //     //   final b = list.singleWhere((e) => e.id == element.motherId);
+  //     //   edges.add(Edge(Node.Id(a), Node.Id(element)));
+  //     //   edges.add(Edge(Node.Id(b), Node.Id(element)));
+  //     //   nodes.add(Node.Id(a));
+  //     //   nodes.add(Node.Id(b));
+  //     //   nodes.add(Node.Id(element));
+  //     // }
+  //   }
+  //   emit(state.copyWith(edges: edges));
+  //   emit(state.copyWith(nodes: nodes));
+  //   graph.addEdges(edges);
+  // }
+
+  Future<void> _getAllIndividual() async {
+    final result =
+        await domain.individual.getIndividualsWithArea(state.currnentArea!.id);
     if (result.isSuccess) {
-      final list = result.data!
-          .where((e) => e.area?.id == state.areaIdSelected)
-          .toList();
-      emit(state.copyWith(list: list));
-//TODO
-      // createNode(list);
+      emit(state.copyWith(list: result.data));
+      createNode(result.data!);
     }
   }
 
-  void moveToCreateIndividual() async {
-    // try {
-    //   AreaModel area = state.listArea
-    //       .singleWhere((element) => element.id == state.areaIdSelected);
+  void showFamilyTree() async {
+    if (state.currnentArea == null) {
+      XToast.error("Vui lòng chọn khu vực");
+      return;
+    }
 
-    //   if (state.list.isEmpty) {
-    //     XCoordinator.push(CreateIndividualF0RootPage(
-    //       area: area,
-    //     ));
-    //   } else {
-    //     XCoordinator.push(ChooseTypeIndividualPage(
-    //       area: area,
-    //     ));
-    //   }
-    // } catch (e) {
-    //   XToast.error("Có lỗi xảy ra");
-    // }
-  }
-
-  void moveToItem(String id) async {
-    // final ProductModel? result =
-    //     await XCoordinator.push(DetailIndividualPage(id: id));
-    // if (result != null) {
-    //   if (result.id == "") {
-    //     onChangeAreaIdSelected(state.areaIdSelected);
-    //   }
-    // }
+    await _getAllIndividual();
+    emit(state.copyWith(isShowSelectArea: false));
   }
 
   @override

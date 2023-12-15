@@ -8,7 +8,7 @@ class DashboardState extends Equatable {
   List<Widget> get pages => ItemDrawerEnum.values.map((e) => e.pages).toList();
 
   const DashboardState({
-    this.currentIndex = 1,
+    this.currentIndex = 0,
     this.isExpandedDrawer = true,
   });
 
