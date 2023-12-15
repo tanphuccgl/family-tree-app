@@ -1,23 +1,23 @@
-import 'package:familytree/src/features/individual/list_individual/detail_individual/logic/detail_individual_bloc.dart';
-
+import 'package:familytree/src/features/individual/create_individual/create_individual_default/logic/create_individual_default_bloc.dart';
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
 import 'package:familytree/widgets/froms/input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NameDetailIndividualWidget extends StatelessWidget {
-  const NameDetailIndividualWidget({super.key});
+class FamilyCodeDefaultWidget extends StatelessWidget {
+  const FamilyCodeDefaultWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DetailIndividualBloc, DetailIndividualState>(
+    return BlocBuilder<CreateIndividualDefaultBloc,
+        CreateIndividualDefaultState>(
       builder: (context, state) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Tên",
+              "Family code",
               style: TextStyle(
                   color: XColors.primary5,
                   fontSize: 20,
@@ -28,11 +28,12 @@ class NameDetailIndividualWidget extends StatelessWidget {
               width: 300,
               height: 80,
               child: XInput(
-                  readOnly: !state.isEdit,
-                  value: state.name,
-                  onChanged: (value) => context
-                      .read<DetailIndividualBloc>()
-                      .onChangedName(value)),
+                value: state.familyCode,
+                errorText: state.isFamilyCodeExist == true ? "Đã tồn tại" : "",
+                onChanged: (value) => context
+                    .read<CreateIndividualDefaultBloc>()
+                    .onChangedFamilyCode(value),
+              ),
             ),
           ],
         );

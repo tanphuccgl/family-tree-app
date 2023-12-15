@@ -1,7 +1,6 @@
+import 'package:familytree/src/features/individual/create_individual/create_individual_default/logic/create_individual_default_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../logic/create_individual_default_bloc.dart';
 
 import 'package:familytree/src/theme/colors.dart';
 

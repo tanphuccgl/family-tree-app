@@ -1,10 +1,8 @@
 import 'package:familytree/src/features/individual/list_individual/detail_individual/logic/detail_individual_bloc.dart';
-import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/button_cancel_edit_individual.dart';
-import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/button_confirm_edit_individual.dart';
-import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/button_edit_individual.dart';
-import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/button_remove_individual.dart';
-import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/name_detail_individual_widget.dart';
-import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/name_id_detail_individual_widget.dart';
+import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/button/button_cancel_edit_individual.dart';
+import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/button/button_confirm_edit_individual.dart';
+import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/button/button_edit_individual.dart';
+import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/button/button_remove_individual.dart';
 import 'package:familytree/src/features/individual/list_individual/list_individual/logic/individual_bloc.dart';
 
 import 'package:familytree/src/theme/colors.dart';
@@ -73,40 +71,145 @@ class DetailIndividual extends StatelessWidget {
                         horizontal: 15, vertical: 30),
                     child: Column(
                       children: [
-                        size.width < 750
-                            ? Column(
-                                children: [
-                                  NameDetailIndividualWidget(),
-                                  GapHelper.h8,
-                                  NameIdDetailIndividualWidget(),
-                                ],
-                              )
-                            : Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  NameDetailIndividualWidget(),
-                                  GapHelper.w20,
-                                  NameIdDetailIndividualWidget(),
-                                ],
-                              ),
-                        if (state.isEdit)
+                        if (size.width <= 1500 && size.width > 800)
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              ButtonCancelEditIndividual(),
-                              GapHelper.w8,
-                              ButtonConfirmEditIndividual()
+                              sessionOneWidget1(),
+                              GapHelper.w20,
+                              sessionTwoWidget1(),
                             ],
                           )
+                        else if (size.width < 800)
+                          Column(
+                            children: [
+                              sessionOneWidget(),
+                              sessionTwoWidget(),
+                              sessionThreeWidget(),
+                            ],
+                          )
+                        else
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              sessionOneWidget(),
+                              GapHelper.w20,
+                              sessionTwoWidget(),
+                              GapHelper.w20,
+                              sessionThreeWidget(),
+                            ],
+                          ),
                       ],
                     ),
-                  )
+                  ),
+                  if (state.isEdit)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        ButtonCancelEditIndividual(),
+                        GapHelper.w8,
+                        ButtonConfirmEditIndividual()
+                      ],
+                    ),
+                  GapHelper.h24,
                 ],
               ),
             ),
           );
         },
+      ),
+    );
+  }
+
+  Widget sessionOneWidget() {
+    return SizedBox(
+      width: 300,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          NameDefaultWidget(),
+          AreaDefaultWidget(),
+          SexDefaultWidget(),
+          TypeDefaultWidget(),
+          FamilyCodeDefaultWidget(),
+          OriginDefaultWidget(),
+          PriceDefaultWidget(),
+        ],
+      ),
+    );
+  }
+
+  Widget sessionTwoWidget() {
+    return SizedBox(
+      width: 300,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AgeDefaultWidget(),
+          ColorDefaultWidget(),
+          DateDefaultWidget(),
+          FoodDefaultWidget(),
+          StyleDefaultWidget(),
+          WeightDefaultWidget(),
+          ReviewDefaultWidget(),
+        ],
+      ),
+    );
+  }
+
+  Widget sessionThreeWidget() {
+    return SizedBox(
+      width: 300,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ParentDefaultWidget(),
+          FieldInfoDefaultWidget(),
+          ImageDefaultWidget(),
+          VideoDefaultWidget(),
+        ],
+      ),
+    );
+  }
+
+  Widget sessionOneWidget1() {
+    return SizedBox(
+      width: 300,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          NameDefaultWidget(),
+          AreaDefaultWidget(),
+          SexDefaultWidget(),
+          TypeDefaultWidget(),
+          FamilyCodeDefaultWidget(),
+          OriginDefaultWidget(),
+          PriceDefaultWidget(),
+          ImageDefaultWidget(),
+          VideoDefaultWidget(),
+        ],
+      ),
+    );
+  }
+
+  Widget sessionTwoWidget1() {
+    return SizedBox(
+      width: 300,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AgeDefaultWidget(),
+          ColorDefaultWidget(),
+          DateDefaultWidget(),
+          FoodDefaultWidget(),
+          StyleDefaultWidget(),
+          WeightDefaultWidget(),
+          ReviewDefaultWidget(),
+          ParentDefaultWidget(),
+          FieldInfoDefaultWidget(),
+        ],
       ),
     );
   }

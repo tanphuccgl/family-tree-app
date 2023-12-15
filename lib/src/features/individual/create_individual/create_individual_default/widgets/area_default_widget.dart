@@ -1,23 +1,23 @@
-import 'package:familytree/src/features/individual/list_individual/detail_individual/logic/detail_individual_bloc.dart';
-
+import 'package:familytree/src/features/individual/create_individual/create_individual_default/logic/create_individual_default_bloc.dart';
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
 import 'package:familytree/widgets/froms/input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NameIdDetailIndividualWidget extends StatelessWidget {
-  const NameIdDetailIndividualWidget({super.key});
+class AreaDefaultWidget extends StatelessWidget {
+  const AreaDefaultWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DetailIndividualBloc, DetailIndividualState>(
+    return BlocBuilder<CreateIndividualDefaultBloc,
+        CreateIndividualDefaultState>(
       builder: (context, state) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Mã",
+              "Xuất xứ hệ",
               style: TextStyle(
                   color: XColors.primary5,
                   fontSize: 20,
@@ -28,12 +28,10 @@ class NameIdDetailIndividualWidget extends StatelessWidget {
               width: 300,
               height: 80,
               child: XInput(
-                  value: state.nameId,
-                  readOnly: !state.isEdit,
-                  errorText: state.isNameIdExist == true ? "Đã tồn tại" : "",
-                  onChanged: (value) => context
-                      .read<DetailIndividualBloc>()
-                      .onChangedNameId(value)),
+                value: state.area!.name + " ( ${state.area!.nameId} )",
+                readOnly: true,
+                fillColor: XColors.primary7,
+              ),
             ),
           ],
         );

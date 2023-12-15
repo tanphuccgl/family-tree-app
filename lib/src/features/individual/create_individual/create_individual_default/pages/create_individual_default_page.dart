@@ -1,30 +1,30 @@
 import 'package:familytree/src/features/individual/create_individual/create_individual_default/logic/create_individual_default_bloc.dart';
-import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/components/age_f0_female_widget.dart';
-import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/components/area_default_widget.dart';
-import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/components/button_create_individual_default.dart';
-import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/components/color_f0_female_widget.dart';
-import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/components/date_f0_female_widget.dart';
-import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/components/family_code_default_widget.dart';
-import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/components/field_info_f0_female_widget.dart';
-import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/components/food_f0_female_widget.dart';
-import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/components/image_f0_female_widget.dart';
-import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/components/name_default_widget.dart';
-import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/components/origin_default_widget.dart';
-import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/components/price_f0_female_widget.dart';
-import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/components/review_f0_female_widget.dart';
-import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/components/sex_default_widget.dart';
-import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/components/style_f0_female_widget.dart';
-import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/components/type_default_widget.dart';
-import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/components/video_f0_female_widget.dart';
-import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/components/weight_f0_female_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/age_default_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/area_default_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/button_create_individual_default.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/color_default_widget.dart';
+
+import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/date_default_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/family_code_default_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/field_info_default_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/food_default_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/image_default_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/name_default_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/origin_default_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/parent_default_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/price_default_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/review_default_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/sex_default_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/style_default_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/type_default_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/video_default_widget.dart';
+import 'package:familytree/src/features/individual/create_individual/create_individual_default/widgets/weight_default_widget.dart';
 import 'package:familytree/src/network/model/area_model.dart';
 import 'package:familytree/src/network/model/product_model.dart';
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../widgets/components/parent_default_widget.dart';
 
 class CreateIndividualDefaultPage extends StatelessWidget {
   final AreaModel area;
