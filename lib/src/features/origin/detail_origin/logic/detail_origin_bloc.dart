@@ -54,7 +54,7 @@ class DetailOriginBloc extends Cubit<DetailOriginState> {
     getOrigin();
   }
 
-  void createNewProduct() async {
+  void createNewOrigin() async {
     if (state.isNameIdExist) {
       XToast.error("Mã đã tồn tại");
       return;
@@ -67,13 +67,13 @@ class DetailOriginBloc extends Cubit<DetailOriginState> {
 
     XToast.showLoading();
 
-    final product = OriginModel(
+    final model = OriginModel(
       name: state.name,
       nameId: state.nameId,
       id: id,
     );
 
-    final result = await domain.origin.createOrigin(product);
+    final result = await domain.origin.createOrigin(model);
     if (result.isSuccess) {
       emit(DetailOriginState());
       XToast.success("Chỉnh sửa thành công");

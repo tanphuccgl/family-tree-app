@@ -56,7 +56,7 @@ enum ProductTypeEnum {
   }
 }
 
-class ProductModel extends BaseModel {
+class IndividualModel extends BaseModel {
   final String date;
   final String review;
   final AreaModel? area;
@@ -77,7 +77,7 @@ class ProductModel extends BaseModel {
   final String style;
   final List<InfoMoreModel> listInfoMore;
 
-  ProductModel({
+  IndividualModel({
     String? id,
     this.listCopulateId = const [],
     Timestamp? createAt,
@@ -102,12 +102,12 @@ class ProductModel extends BaseModel {
     this.listInfoMore = const [],
   }) : super(id: id ?? "", createAt: createAt, updateAt: updateAt);
 
-  factory ProductModel.empty() {
-    return ProductModel();
+  factory IndividualModel.empty() {
+    return IndividualModel();
   }
 
-  factory ProductModel.fromDocument(DocumentSnapshot document) {
-    return ProductModel.fromMap(
+  factory IndividualModel.fromDocument(DocumentSnapshot document) {
+    return IndividualModel.fromMap(
       document.data() as Map<String, dynamic>,
       id: document.id,
     );
@@ -140,8 +140,8 @@ class ProductModel extends BaseModel {
     };
   }
 
-  static ProductModel fromMap(Map map, {String? id}) {
-    return ProductModel(
+  static IndividualModel fromMap(Map map, {String? id}) {
+    return IndividualModel(
       id: id ?? map['id'],
       createAt: Utils.convertMapToTimestamp(map['createAt'] ?? 0),
       updateAt: Utils.convertMapToTimestamp(map['updateAt'] ?? 0),
@@ -177,10 +177,10 @@ class ProductModel extends BaseModel {
 
   String toJson() => json.encode(toMap());
 
-  factory ProductModel.fromJson(String source) =>
-      ProductModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory IndividualModel.fromJson(String source) =>
+      IndividualModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
-  ProductModel copyWith({
+  IndividualModel copyWith({
     String? date,
     String? review,
     int? age,
@@ -204,7 +204,7 @@ class ProductModel extends BaseModel {
     String? style,
     List<InfoMoreModel>? listInfoMore,
   }) {
-    return ProductModel(
+    return IndividualModel(
       id: id ?? this.id,
       listCopulateId: listCopulateId ?? this.listCopulateId,
       origin: origin ?? this.origin,

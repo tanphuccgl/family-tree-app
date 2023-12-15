@@ -18,7 +18,7 @@ class ButtonCreateOrigin extends StatelessWidget {
           ),
           backgroundColor: XColors.primary7,
           padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 20)),
-      onPressed: () => context.read<CreateOriginBloc>().createNewProduct(),
+      onPressed: () => context.read<CreateOriginBloc>().createNewOrigin(),
       child: Text(
         "Tạo mới",
         style: const TextStyle(

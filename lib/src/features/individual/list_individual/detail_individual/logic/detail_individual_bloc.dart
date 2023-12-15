@@ -6,7 +6,7 @@ import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/area_model.dart';
 import 'package:familytree/src/network/model/info_more_model.dart';
 import 'package:familytree/src/network/model/origin_model.dart';
-import 'package:familytree/src/network/model/product_model.dart';
+import 'package:familytree/src/network/model/individual_model.dart';
 
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:file_picker/file_picker.dart';
@@ -36,7 +36,7 @@ class DetailIndividualBloc extends Cubit<DetailIndividualState> {
 
   Future<void> getIndividual() async {
     XToast.showLoading();
-    final result = await domain.product.getProduct(individualId);
+    final result = await domain.individual.getIndividual(individualId);
     if (result.isSuccess) {
       final data = result.data!;
       emit(state.copyWith(
@@ -59,11 +59,11 @@ class DetailIndividualBloc extends Cubit<DetailIndividualState> {
         listFieldInfo: data.listInfoMore,
         listCopulateId: data.listCopulateId,
       ));
-      final resultFather = await domain.product.getProduct(data.fatherId);
+      final resultFather = await domain.individual.getIndividual(data.fatherId);
       if (resultFather.isSuccess) {
         emit(state.copyWith(father: resultFather.data));
       }
-      final resultMother = await domain.product.getProduct(data.motherId);
+      final resultMother = await domain.individual.getIndividual(data.motherId);
       if (resultMother.isSuccess) {
         emit(state.copyWith(mother: resultMother.data));
       }
@@ -82,7 +82,7 @@ class DetailIndividualBloc extends Cubit<DetailIndividualState> {
     getIndividual();
   }
 
-  void createNewProduct() async {
+  void createNewIndividual() async {
     if (state.name.isEmpty) {
       XToast.error("Vui lòng nhập tên");
       return;
@@ -112,7 +112,7 @@ class DetailIndividualBloc extends Cubit<DetailIndividualState> {
 
     XToast.showLoading();
 
-    final product = ProductModel(
+    final model = IndividualModel(
       isMale: state.isMale,
       name: state.name,
       id: state.familyCode,
@@ -137,7 +137,7 @@ class DetailIndividualBloc extends Cubit<DetailIndividualState> {
       listCopulateId: state.listCopulateId,
     );
 
-    final result = await domain.product.createProduct(product);
+    final result = await domain.individual.createIndividual(model);
     if (result.isSuccess) {
       emit(DetailIndividualState());
       XToast.success("Chỉnh sửa thành công");
@@ -151,15 +151,14 @@ class DetailIndividualBloc extends Cubit<DetailIndividualState> {
     context.read<IndividualBloc>().onCloseButton();
   }
 
-  Future<void> deleteOrigin() async {
+  Future<void> deleteIndividual() async {
     XToast.showLoading();
-    final result = await domain.origin.deleteOrigin(individualId);
+    final result = await domain.individual.deleteIndividual(individualId);
     if (result.isSuccess) {
       emit(DetailIndividualState());
       XToast.success("Xóa thành công");
       XToast.hideLoading();
       context.read<IndividualBloc>().onCloseButton();
-
       return;
     }
     emit(DetailIndividualState());
@@ -337,7 +336,7 @@ class DetailIndividualBloc extends Cubit<DetailIndividualState> {
   }
 
   void _checkIdExist() async {
-    final result = await domain.product.getProduct(state.familyCode);
+    final result = await domain.individual.getIndividual(state.familyCode);
     if (result.isSuccess) {
       emit(state.copyWith(isFamilyCodeExist: true));
       return;

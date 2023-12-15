@@ -5,7 +5,7 @@ abstract class AreaRepository {
   Future<XResult<AreaModel>> createArea(AreaModel data);
 
   Future<XResult<bool>> updateArea({
-    required String productId,
+    required String areaId,
     required Map<String, dynamic> item,
   });
 

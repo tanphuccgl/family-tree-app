@@ -19,7 +19,7 @@ class ButtonRemoveIndividual extends StatelessWidget {
           ),
           backgroundColor: XColors.primary7,
           padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 15)),
-      onPressed: () => context.read<DetailIndividualBloc>().deleteOrigin(),
+      onPressed: () => context.read<DetailIndividualBloc>().deleteIndividual(),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,

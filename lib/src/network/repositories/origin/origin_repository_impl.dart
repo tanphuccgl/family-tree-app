@@ -14,10 +14,10 @@ class OriginRepositoryImpl extends OriginRepository {
 
   @override
   Future<XResult<bool>> updateOrigin({
-    required String productId,
+    required String originId,
     required Map<String, dynamic> item,
   }) async =>
-      reference.update(productId, item);
+      reference.update(originId, item);
 
   @override
   Future<XResult<OriginModel>> getOriginWithNameId(String id) async {

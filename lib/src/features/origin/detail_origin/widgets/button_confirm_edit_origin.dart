@@ -18,7 +18,7 @@ class ButtonConfirmEditOrigin extends StatelessWidget {
           ),
           backgroundColor: XColors.primary7,
           padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 20)),
-      onPressed: () => context.read<DetailOriginBloc>().createNewProduct(),
+      onPressed: () => context.read<DetailOriginBloc>().createNewOrigin(),
       child: Text(
         "Xác nhận",
         style: const TextStyle(

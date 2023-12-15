@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/area_model.dart';
-import 'package:familytree/src/network/model/product_model.dart';
+import 'package:familytree/src/network/model/individual_model.dart';
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -23,7 +23,7 @@ class FamilyTreeBloc extends Cubit<FamilyTreeState> {
     XToast.showLoading();
     builder..bendPointShape = CurvedBendPointShape(curveLength: 20);
     await getAllArea();
-    await getAllProduct();
+    await getAllIndividual();
 
     XToast.hideLoading();
   }
@@ -42,10 +42,10 @@ class FamilyTreeBloc extends Cubit<FamilyTreeState> {
 
   void onChangeAreaIdSelected(String id) async {
     emit(state.copyWith(areaIdSelected: id));
-    await getAllProduct();
+    await getAllIndividual();
   }
 
-  void createNode(List<ProductModel> list) {
+  void createNode(List<IndividualModel> list) {
     graph.removeEdges(state.edges);
     graph.removeNodes(state.nodes);
     final List<Edge> edges = [];
@@ -75,8 +75,8 @@ class FamilyTreeBloc extends Cubit<FamilyTreeState> {
     graph.addEdges(edges);
   }
 
-  Future<void> getAllProduct() async {
-    final result = await domain.product.getAllProduct();
+  Future<void> getAllIndividual() async {
+    final result = await domain.individual.getAllIndividual();
     if (result.isSuccess) {
       final list = result.data!
           .where((e) => e.area?.id == state.areaIdSelected)
@@ -87,7 +87,7 @@ class FamilyTreeBloc extends Cubit<FamilyTreeState> {
     }
   }
 
-  void moveToCreateProduct() async {
+  void moveToCreateIndividual() async {
     // try {
     //   AreaModel area = state.listArea
     //       .singleWhere((element) => element.id == state.areaIdSelected);

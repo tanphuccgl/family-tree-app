@@ -1,6 +1,6 @@
 import 'package:familytree/src/features/family_tree/logic/family_tree_bloc.dart';
 import 'package:familytree/src/features/family_tree/widgets/item_element_widget.dart';
-import 'package:familytree/src/network/model/product_model.dart';
+import 'package:familytree/src/network/model/individual_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graphview/GraphView.dart';
@@ -56,7 +56,7 @@ class TreeViewPage extends StatelessWidget {
                   FloatingActionButton(
                     heroTag: "btn2",
                     onPressed: () =>
-                        context.read<FamilyTreeBloc>().moveToCreateProduct(),
+                        context.read<FamilyTreeBloc>().moveToCreateIndividual(),
                     child: const Icon(Icons.add),
                   ),
                 ],
@@ -125,7 +125,8 @@ class TreeViewPage extends StatelessWidget {
                                     ..style = PaintingStyle.stroke,
                                   builder: (Node node) {
                                     // I can decide what widget should be shown here based on the id
-                                    var value = node.key?.value as ProductModel;
+                                    var value =
+                                        node.key?.value as IndividualModel;
 
                                     return ItemElementWidget(data: value);
                                   },

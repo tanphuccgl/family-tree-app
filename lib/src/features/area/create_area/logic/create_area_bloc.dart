@@ -33,7 +33,7 @@ class CreateAreaBloc extends Cubit<CreateAreaState> {
     emit(state.copyWith(isNameIdExist: false));
   }
 
-  void createNewProduct() async {
+  void createNewArea() async {
     if (state.isNameIdExist) {
       XToast.error("Mã đã tồn tại");
       return;
@@ -46,13 +46,13 @@ class CreateAreaBloc extends Cubit<CreateAreaState> {
 
     XToast.showLoading();
 
-    final product = AreaModel(
+    final model = AreaModel(
       name: state.name,
       nameId: state.nameId,
       id: Uuid().v4(),
     );
 
-    final result = await domain.area.createArea(product);
+    final result = await domain.area.createArea(model);
     if (result.isSuccess) {
       emit(CreateAreaState());
       XToast.success("Tạo thành công");

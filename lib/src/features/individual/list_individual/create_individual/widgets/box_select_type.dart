@@ -1,5 +1,5 @@
 import 'package:familytree/src/features/individual/list_individual/create_individual/logic/create_individual_bloc.dart';
-import 'package:familytree/src/network/model/product_model.dart';
+import 'package:familytree/src/network/model/individual_model.dart';
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
 import 'package:flutter/material.dart';

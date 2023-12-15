@@ -18,7 +18,8 @@ class ButtonCreateIndividual extends StatelessWidget {
           ),
           backgroundColor: XColors.primary7,
           padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 20)),
-      onPressed: () => context.read<CreateIndividualBloc>().createNewProduct(),
+      onPressed: () =>
+          context.read<CreateIndividualBloc>().createNewIndividual(),
       child: Text(
         "Tạo mới",
         style: const TextStyle(

@@ -5,16 +5,16 @@ class CopulateState extends Equatable {
   final AreaModel? currnentArea;
 
   final ProductTypeEnum type;
-  final List<ProductModel> listIndividualCurrent;
+  final List<IndividualModel> listIndividualCurrent;
 
-  final ProductModel? maleSelected;
-  final ProductModel? femaleSelected;
+  final IndividualModel? maleSelected;
+  final IndividualModel? femaleSelected;
 
-  List<ProductModel> get listMaleIndividual => listIndividualCurrent
+  List<IndividualModel> get listMaleIndividual => listIndividualCurrent
       .where((e) => e.isMale == true && e.origin != null)
       .toList();
 
-  List<ProductModel> get listFemaleIndividual => listIndividualCurrent
+  List<IndividualModel> get listFemaleIndividual => listIndividualCurrent
       .where((e) =>
           e.isMale == false && e.listCopulateId.isEmpty && e.origin != null)
       .toList();
@@ -37,9 +37,9 @@ class CopulateState extends Equatable {
 
   CopulateState copyWith({
     ProductTypeEnum? type,
-    List<ProductModel>? listIndividualCurrent,
-    ProductModel? maleSelected,
-    ProductModel? femaleSelected,
+    List<IndividualModel>? listIndividualCurrent,
+    IndividualModel? maleSelected,
+    IndividualModel? femaleSelected,
     AreaModel? currnentArea,
   }) {
     return CopulateState(

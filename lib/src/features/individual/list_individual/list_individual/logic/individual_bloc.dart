@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 import 'package:familytree/src/network/domain.dart';
-import 'package:familytree/src/network/model/product_model.dart';
+import 'package:familytree/src/network/model/individual_model.dart';
 
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +50,7 @@ class IndividualBloc extends Cubit<IndividualState> {
 
   Future<void> getAllIndividual() async {
     XToast.showLoading();
-    final result = await domain.product.getAllProduct();
+    final result = await domain.individual.getAllIndividual();
     if (result.isSuccess) {
       emit(state.copyWith(list: result.data));
       XToast.hideLoading();
@@ -63,7 +63,7 @@ class IndividualBloc extends Cubit<IndividualState> {
     XToast.showLoading();
 
     await Future.wait(state.listIndividualSelected
-        .map((id) => domain.product.deleteProduct(id)));
+        .map((id) => domain.individual.deleteIndividual(id)));
 
     getAllIndividual();
     onClearButton();
@@ -132,8 +132,8 @@ class IndividualBloc extends Cubit<IndividualState> {
     ));
   }
 
-  List<ProductModel> _sortIndividualListByName(
-      List<ProductModel> individualList,
+  List<IndividualModel> _sortIndividualListByName(
+      List<IndividualModel> individualList,
       [bool reverse = false]) {
     individualList.sort((a, b) => a.name.compareTo(b.name));
     if (reverse) {
@@ -142,8 +142,8 @@ class IndividualBloc extends Cubit<IndividualState> {
     return individualList;
   }
 
-  List<ProductModel> _sortIndividualListByNameId(
-      List<ProductModel> individualList,
+  List<IndividualModel> _sortIndividualListByNameId(
+      List<IndividualModel> individualList,
       [bool reverse = false]) {
     // individualList.sort((a, b) => a.nameId.compareTo(b.nameId));
     // if (reverse) {

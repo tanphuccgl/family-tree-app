@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/area_model.dart';
 import 'package:familytree/src/network/model/origin_model.dart';
-import 'package:familytree/src/network/model/product_model.dart';
+import 'package:familytree/src/network/model/individual_model.dart';
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,14 +35,14 @@ class CreateIndividualBloc extends Cubit<CreateIndividualState> {
       XToast.error("Vui lòng chọn khu vực");
       return;
     }
-    await _getProductsWithArea(state.currnentArea!.id);
+    await _getIndividualsWithArea(state.currnentArea!.id);
 
     emit(state.copyWith(isShowSelectType: true, isShowSelectArea: false));
   }
 
-  Future<void> _getProductsWithArea(String areaId) async {
+  Future<void> _getIndividualsWithArea(String areaId) async {
     XToast.showLoading();
-    final result = await domain.product.getProductsWithArea(areaId);
+    final result = await domain.individual.getIndividualsWithArea(areaId);
     if (result.isSuccess) {
       emit(state.copyWith(listIndividualWithArea: result.data));
       XToast.hideLoading();
@@ -117,7 +117,7 @@ class CreateIndividualBloc extends Cubit<CreateIndividualState> {
     emit(state.copyWith(isNameIdExist: false));
   }
 
-  void createNewProduct() async {
+  void createNewIndividual() async {
     if (state.isNameIdExist) {
       XToast.error("Mã đã tồn tại");
       return;
@@ -130,13 +130,13 @@ class CreateIndividualBloc extends Cubit<CreateIndividualState> {
 
     XToast.showLoading();
 
-    final product = OriginModel(
+    final model = OriginModel(
       name: state.name,
       nameId: state.nameId,
       id: Uuid().v4(),
     );
 
-    final result = await domain.origin.createOrigin(product);
+    final result = await domain.origin.createOrigin(model);
     if (result.isSuccess) {
       XToast.success("Tạo thành công");
       XToast.hideLoading();

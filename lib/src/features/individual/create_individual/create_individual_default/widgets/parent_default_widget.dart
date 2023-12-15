@@ -1,5 +1,5 @@
 import 'package:familytree/src/features/individual/create_individual/create_individual_default/logic/create_individual_default_bloc.dart';
-import 'package:familytree/src/network/model/product_model.dart';
+import 'package:familytree/src/network/model/individual_model.dart';
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
 import 'package:familytree/widgets/froms/input.dart';
@@ -52,16 +52,16 @@ class ParentDefaultWidget extends StatelessWidget {
         padding: const EdgeInsets.only(left: 5),
         decoration: BoxDecoration(
             color: XColors.primary2, borderRadius: BorderRadius.circular(10)),
-        child: DropdownButton<ProductModel>(
+        child: DropdownButton<IndividualModel>(
           icon: const Icon(Icons.arrow_drop_down),
           iconSize: 22,
           underline: const SizedBox(),
           value: state.fatherSelected,
-          onChanged: (ProductModel? value) {
+          onChanged: (IndividualModel? value) {
             context.read<CreateIndividualDefaultBloc>().onChangedFather(value!);
           },
-          items: state.listFatherSuggest.map((ProductModel data) {
-            return DropdownMenuItem<ProductModel>(
+          items: state.listFatherSuggest.map((IndividualModel data) {
+            return DropdownMenuItem<IndividualModel>(
               value: data,
               child: Tooltip(
                   message: 'Đây là tooltip',
@@ -92,18 +92,18 @@ class ParentDefaultWidget extends StatelessWidget {
               decoration: BoxDecoration(
                   color: XColors.primary2,
                   borderRadius: BorderRadius.circular(10)),
-              child: DropdownButton<ProductModel>(
+              child: DropdownButton<IndividualModel>(
                 icon: const Icon(Icons.arrow_drop_down),
                 iconSize: 22,
                 underline: const SizedBox(),
                 value: state.motherSelected,
-                onChanged: (ProductModel? value) {
+                onChanged: (IndividualModel? value) {
                   context
                       .read<CreateIndividualDefaultBloc>()
                       .onChangedMother(value!);
                 },
-                items: state.listMotherSuggest.map((ProductModel data) {
-                  return DropdownMenuItem<ProductModel>(
+                items: state.listMotherSuggest.map((IndividualModel data) {
+                  return DropdownMenuItem<IndividualModel>(
                     value: data,
                     child: Tooltip(
                         message: 'Đây là tooltip',

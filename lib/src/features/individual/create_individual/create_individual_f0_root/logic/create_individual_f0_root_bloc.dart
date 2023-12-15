@@ -5,7 +5,7 @@ import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/area_model.dart';
 import 'package:familytree/src/network/model/info_more_model.dart';
 import 'package:familytree/src/network/model/origin_model.dart';
-import 'package:familytree/src/network/model/product_model.dart';
+import 'package:familytree/src/network/model/individual_model.dart';
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -43,7 +43,7 @@ class CreateIndividualF0RootBloc extends Cubit<CreateIndividualF0RootState> {
     }
   }
 
-  void createNewProduct() async {
+  void createNewIndividual() async {
     if (state.name.isEmpty) {
       XToast.error("Vui lòng nhập tên");
       return;
@@ -68,7 +68,7 @@ class CreateIndividualF0RootBloc extends Cubit<CreateIndividualF0RootState> {
 
     XToast.showLoading();
 
-    final product = ProductModel(
+    final model = IndividualModel(
       name: state.name,
       id: state.familyCode,
       type: ProductTypeEnum.f0,
@@ -90,7 +90,7 @@ class CreateIndividualF0RootBloc extends Cubit<CreateIndividualF0RootState> {
       weight: double.tryParse(state.weight) ?? 0,
     );
 
-    final result = await domain.product.createProduct(product);
+    final result = await domain.individual.createIndividual(model);
     if (result.isSuccess) {
       emit(CreateIndividualF0RootState.ds());
       XToast.success("Tạo mới cá thể thành công");

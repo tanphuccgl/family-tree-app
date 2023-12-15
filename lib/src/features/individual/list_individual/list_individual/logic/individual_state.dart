@@ -2,7 +2,7 @@
 part of 'individual_bloc.dart';
 
 class IndividualState extends Equatable {
-  final List<ProductModel> list;
+  final List<IndividualModel> list;
   final List<String> listIndividualSelected;
 
   final bool enableSortWithName;
@@ -28,7 +28,7 @@ class IndividualState extends Equatable {
       ];
 
   IndividualState copyWith({
-    List<ProductModel>? list,
+    List<IndividualModel>? list,
     List<String>? listIndividualSelected,
     bool? enableSortWithName,
     bool? enableSortWithNameId,
