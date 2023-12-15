@@ -1,8 +1,26 @@
 import 'package:familytree/src/features/individual/list_individual/detail_individual/logic/detail_individual_bloc.dart';
+import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/age_detail_widget.dart';
+import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/area_detail_widget.dart';
 import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/button/button_cancel_edit_individual.dart';
 import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/button/button_confirm_edit_individual.dart';
 import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/button/button_edit_individual.dart';
 import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/button/button_remove_individual.dart';
+import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/color_detail_widget.dart';
+import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/date_detail_widget.dart';
+import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/family_code_detail_widget.dart';
+import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/field_info_detail_widget.dart';
+import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/food_detail_widget.dart';
+import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/image_detail_widget.dart';
+import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/name_detail_widget.dart';
+import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/origin_detail_widget.dart';
+import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/parent_detail_widget.dart';
+import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/price_detail_widget.dart';
+import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/review_detail_widget.dart';
+import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/sex_detail_widget.dart';
+import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/style_detail_widget.dart';
+import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/type_detail_widget.dart';
+import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/video_detail_widget.dart';
+import 'package:familytree/src/features/individual/list_individual/detail_individual/widgets/weight_detail_widget.dart';
 import 'package:familytree/src/features/individual/list_individual/list_individual/logic/individual_bloc.dart';
 
 import 'package:familytree/src/theme/colors.dart';
@@ -129,13 +147,13 @@ class DetailIndividual extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          NameDefaultWidget(),
-          AreaDefaultWidget(),
-          SexDefaultWidget(),
-          TypeDefaultWidget(),
-          FamilyCodeDefaultWidget(),
-          OriginDefaultWidget(),
-          PriceDefaultWidget(),
+          NameDetailWidget(),
+          AreaDetailWidget(),
+          SexDetailWidget(),
+          TypeDetailWidget(),
+          FamilyCodeDetailWidget(),
+          OriginDetailWidget(),
+          PriceDetailWidget(),
         ],
       ),
     );
@@ -147,13 +165,13 @@ class DetailIndividual extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AgeDefaultWidget(),
-          ColorDefaultWidget(),
-          DateDefaultWidget(),
-          FoodDefaultWidget(),
-          StyleDefaultWidget(),
-          WeightDefaultWidget(),
-          ReviewDefaultWidget(),
+          AgeDetailWidget(),
+          ColorDetailWidget(),
+          DateDetailWidget(),
+          FoodDetailWidget(),
+          StyleDetailWidget(),
+          WeightDetailWidget(),
+          ReviewDetailWidget(),
         ],
       ),
     );
@@ -165,10 +183,10 @@ class DetailIndividual extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ParentDefaultWidget(),
-          FieldInfoDefaultWidget(),
-          ImageDefaultWidget(),
-          VideoDefaultWidget(),
+          ParentDetailWidget(),
+          FieldInfoDetailWidget(),
+          ImageDetailWidget(),
+          VideoDetailWidget(),
         ],
       ),
     );
@@ -180,15 +198,15 @@ class DetailIndividual extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          NameDefaultWidget(),
-          AreaDefaultWidget(),
-          SexDefaultWidget(),
-          TypeDefaultWidget(),
-          FamilyCodeDefaultWidget(),
-          OriginDefaultWidget(),
-          PriceDefaultWidget(),
-          ImageDefaultWidget(),
-          VideoDefaultWidget(),
+          NameDetailWidget(),
+          AreaDetailWidget(),
+          SexDetailWidget(),
+          TypeDetailWidget(),
+          FamilyCodeDetailWidget(),
+          OriginDetailWidget(),
+          PriceDetailWidget(),
+          ImageDetailWidget(),
+          VideoDetailWidget(),
         ],
       ),
     );
@@ -200,15 +218,15 @@ class DetailIndividual extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AgeDefaultWidget(),
-          ColorDefaultWidget(),
-          DateDefaultWidget(),
-          FoodDefaultWidget(),
-          StyleDefaultWidget(),
-          WeightDefaultWidget(),
-          ReviewDefaultWidget(),
-          ParentDefaultWidget(),
-          FieldInfoDefaultWidget(),
+          AgeDetailWidget(),
+          ColorDetailWidget(),
+          DateDetailWidget(),
+          FoodDetailWidget(),
+          StyleDetailWidget(),
+          WeightDetailWidget(),
+          ReviewDetailWidget(),
+          ParentDetailWidget(),
+          FieldInfoDetailWidget(),
         ],
       ),
     );

@@ -22,7 +22,7 @@ class _WrapperIndividualPageState extends State<WrapperIndividualPage>
   void initState() {
     super.initState();
     tabController = TabController(
-      initialIndex: 1,
+      initialIndex: 0,
       length: 2,
       vsync: this,
     );
