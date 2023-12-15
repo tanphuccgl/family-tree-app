@@ -21,7 +21,7 @@ part 'create_individual_default_state.dart';
 class CreateIndividualDefaultBloc extends Cubit<CreateIndividualDefaultState> {
   final BuildContext context;
   final AreaModel area;
-  final ProductTypeEnum type;
+  final GenerationEnum type;
 
   CreateIndividualDefaultBloc(
     this.context, {
@@ -283,19 +283,19 @@ class CreateIndividualDefaultBloc extends Cubit<CreateIndividualDefaultState> {
   }
 
   void _getListParentSuggest() async {
-    ProductTypeEnum? typeQuery;
+    GenerationEnum? typeQuery;
     print(type);
     switch (type) {
-      case ProductTypeEnum.f0:
+      case GenerationEnum.f0:
         break;
-      case ProductTypeEnum.f1:
-        typeQuery = ProductTypeEnum.f0;
+      case GenerationEnum.f1:
+        typeQuery = GenerationEnum.f0;
         break;
-      case ProductTypeEnum.f2:
-        typeQuery = ProductTypeEnum.f1;
+      case GenerationEnum.f2:
+        typeQuery = GenerationEnum.f1;
         break;
-      case ProductTypeEnum.f3:
-        typeQuery = ProductTypeEnum.f2;
+      case GenerationEnum.f3:
+        typeQuery = GenerationEnum.f2;
         break;
     }
     if (typeQuery == null) {

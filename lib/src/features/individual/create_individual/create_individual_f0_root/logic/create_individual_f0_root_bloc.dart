@@ -71,7 +71,7 @@ class CreateIndividualF0RootBloc extends Cubit<CreateIndividualF0RootState> {
     final model = IndividualModel(
       name: state.name,
       id: state.familyCode,
-      type: ProductTypeEnum.f0,
+      type: GenerationEnum.f0,
       area: area,
       isMale: true,
       origin: state.origin,

@@ -5,7 +5,7 @@ class CreateIndividualState extends Equatable {
   final List<IndividualModel> listIndividualWithArea;
 
   final AreaModel? currnentArea;
-  final ProductTypeEnum? type;
+  final GenerationEnum? type;
   final bool isShowSelectArea;
   final bool isShowSelectType;
 
@@ -43,7 +43,7 @@ class CreateIndividualState extends Equatable {
     AreaModel? currnentArea,
     bool? isShowSelectArea,
     bool? isShowSelectType,
-    ProductTypeEnum? type,
+    GenerationEnum? type,
     List<IndividualModel>? listIndividualWithArea,
   }) {
     return CreateIndividualState(

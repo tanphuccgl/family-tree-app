@@ -41,7 +41,7 @@ class IndividualCollectionReference
   }
 
   Future<XResult<List<IndividualModel>>> getIndividualWithType(
-      ProductTypeEnum value) async {
+      GenerationEnum value) async {
     try {
       var snapshot = await ref.where('type', isEqualTo: value.nameOf).get();
 
@@ -54,7 +54,7 @@ class IndividualCollectionReference
   }
 
   Future<XResult<List<IndividualModel>>> getListIndividualWithFather(
-      ProductTypeEnum value) async {
+      GenerationEnum value) async {
     try {
       var snapshot = await ref
           .where('type', isEqualTo: value.nameOf)
@@ -70,7 +70,7 @@ class IndividualCollectionReference
   }
 
   Future<XResult<List<IndividualModel>>> getListIndividualWithMother(
-      ProductTypeEnum value) async {
+      GenerationEnum value) async {
     try {
       var snapshot = await ref
           .where('type', isEqualTo: value.nameOf)

@@ -16,7 +16,7 @@ abstract class IndividualRepository {
   Future<XResult<List<IndividualModel>>> getAllIndividual();
 
   Future<XResult<List<IndividualModel>>> getIndividualWithType(
-      ProductTypeEnum value);
+      GenerationEnum value);
 
   Future<XResult<List<IndividualModel>>> getIndividualsWithArea(String areaId);
 }

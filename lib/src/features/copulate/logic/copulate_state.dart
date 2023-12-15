@@ -4,7 +4,7 @@ part of "copulate_bloc.dart";
 class CopulateState extends Equatable {
   final AreaModel? currnentArea;
 
-  final ProductTypeEnum type;
+  final GenerationEnum type;
   final List<IndividualModel> listIndividualCurrent;
 
   final IndividualModel? maleSelected;
@@ -20,7 +20,7 @@ class CopulateState extends Equatable {
       .toList();
 
   CopulateState({
-    this.type = ProductTypeEnum.f0,
+    this.type = GenerationEnum.f0,
     this.listIndividualCurrent = const [],
     this.maleSelected,
     this.femaleSelected,
@@ -36,7 +36,7 @@ class CopulateState extends Equatable {
       ];
 
   CopulateState copyWith({
-    ProductTypeEnum? type,
+    GenerationEnum? type,
     List<IndividualModel>? listIndividualCurrent,
     IndividualModel? maleSelected,
     IndividualModel? femaleSelected,

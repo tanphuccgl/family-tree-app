@@ -64,7 +64,7 @@ class CreateIndividualBloc extends Cubit<CreateIndividualState> {
 
     final parentType = _getParentType(state.type!);
     final isTrue = _hasParent(parentType);
-    if (!isTrue && state.type != ProductTypeEnum.f0) {
+    if (!isTrue && state.type != GenerationEnum.f0) {
       XToast.error("Chưa có cha mẹ");
       return;
     }
@@ -72,21 +72,21 @@ class CreateIndividualBloc extends Cubit<CreateIndividualState> {
     emit(state.copyWith(isShowSelectType: false, isShowSelectArea: false));
   }
 
-  ProductTypeEnum _getParentType(ProductTypeEnum currentType) {
+  GenerationEnum _getParentType(GenerationEnum currentType) {
     switch (currentType) {
-      case ProductTypeEnum.f1:
-        return ProductTypeEnum.f0;
-      case ProductTypeEnum.f2:
-        return ProductTypeEnum.f1;
-      case ProductTypeEnum.f3:
-        return ProductTypeEnum.f2;
+      case GenerationEnum.f1:
+        return GenerationEnum.f0;
+      case GenerationEnum.f2:
+        return GenerationEnum.f1;
+      case GenerationEnum.f3:
+        return GenerationEnum.f2;
 
       default:
-        return ProductTypeEnum.f0;
+        return GenerationEnum.f0;
     }
   }
 
-  bool _hasParent(ProductTypeEnum parentType) {
+  bool _hasParent(GenerationEnum parentType) {
     return state.listIndividualWithArea
         .where((e) =>
             e.isMale == true &&
@@ -96,7 +96,7 @@ class CreateIndividualBloc extends Cubit<CreateIndividualState> {
         .isNotEmpty;
   }
 
-  void onChangeCurrentType(ProductTypeEnum value) {
+  void onChangeCurrentType(GenerationEnum value) {
     emit(state.copyWith(type: value));
   }
 

@@ -16,10 +16,10 @@ class CopulateBloc extends Cubit<CopulateState> {
   Domain get domain => GetIt.I<Domain>();
 
   void init() {
-    getListIndividual(ProductTypeEnum.f0);
+    getListIndividual(GenerationEnum.f0);
   }
 
-  void getListIndividual(ProductTypeEnum type) async {
+  void getListIndividual(GenerationEnum type) async {
     if (state.currnentArea == null) {
       return;
     }
@@ -86,7 +86,7 @@ class CopulateBloc extends Cubit<CopulateState> {
     }
   }
 
-  void onChangeGenerationSelected(ProductTypeEnum type) async {
+  void onChangeGenerationSelected(GenerationEnum type) async {
     emit(state.copyWith(type: type));
     getListIndividual(type);
   }

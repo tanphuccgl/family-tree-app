@@ -50,7 +50,7 @@ class TabViewCreateIndividual extends StatelessWidget {
               return CreateIndividualF0RootPage(area: state.currnentArea!);
             }
 
-            if (state.type == ProductTypeEnum.f0) {
+            if (state.type == GenerationEnum.f0) {
               return CreateIndividualF0FemalePage(area: state.currnentArea!);
             }
 

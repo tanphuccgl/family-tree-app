@@ -50,17 +50,17 @@ class FamilyTreeBloc extends Cubit<FamilyTreeState> {
     graph.removeNodes(state.nodes);
     final List<Edge> edges = [];
     final List<Node> nodes = [];
-    final root = list.singleWhere((e) => e.type == ProductTypeEnum.f0);
+    final root = list.singleWhere((e) => e.type == GenerationEnum.f0);
     final nodeRoot = Node.Id(root);
     nodes.add(nodeRoot);
     for (var element in list) {
-      if (element.type == ProductTypeEnum.f1) {
+      if (element.type == GenerationEnum.f1) {
         edges.add(Edge(nodeRoot, Node.Id(element)));
         nodes.add(Node.Id(element));
         nodes.add(Node.Id(nodeRoot));
       }
-      if (element.type != ProductTypeEnum.f0 &&
-          element.type != ProductTypeEnum.f1) {
+      if (element.type != GenerationEnum.f0 &&
+          element.type != GenerationEnum.f1) {
         final a = list.singleWhere((e) => e.id == element.fatherId);
         final b = list.singleWhere((e) => e.id == element.motherId);
         edges.add(Edge(Node.Id(a), Node.Id(element)));

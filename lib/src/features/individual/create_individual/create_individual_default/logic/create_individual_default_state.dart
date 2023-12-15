@@ -4,7 +4,7 @@ part of 'create_individual_default_bloc.dart';
 
 class CreateIndividualDefaultState extends Equatable {
   final AreaModel? area;
-  final ProductTypeEnum? type;
+  final GenerationEnum? type;
   final OriginModel? origin;
 
   final List<OriginModel> listOriginSuggest;
@@ -90,7 +90,7 @@ class CreateIndividualDefaultState extends Equatable {
 
   CreateIndividualDefaultState copyWith({
     AreaModel? area,
-    ProductTypeEnum? type,
+    GenerationEnum? type,
     OriginModel? origin,
     List<OriginModel>? listOriginSuggest,
     List<IndividualModel>? listFatherSuggest,

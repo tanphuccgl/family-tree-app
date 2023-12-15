@@ -9,48 +9,48 @@ import 'package:familytree/src/network/model/info_more_model.dart';
 import 'package:familytree/src/network/model/origin_model.dart';
 import 'package:familytree/src/utils/utils.dart';
 
-enum ProductTypeEnum {
+enum GenerationEnum {
   f0,
   f1,
   f2,
   f3;
 
-  static ProductTypeEnum fromString(String? type) {
+  static GenerationEnum fromString(String? type) {
     switch (type) {
       case "F0":
-        return ProductTypeEnum.f0;
+        return GenerationEnum.f0;
       case "F1":
-        return ProductTypeEnum.f1;
+        return GenerationEnum.f1;
       case "F2":
-        return ProductTypeEnum.f2;
+        return GenerationEnum.f2;
       case "F3":
-        return ProductTypeEnum.f3;
+        return GenerationEnum.f3;
     }
-    return ProductTypeEnum.f0;
+    return GenerationEnum.f0;
   }
 
   String get nameOf {
     switch (this) {
-      case ProductTypeEnum.f0:
+      case GenerationEnum.f0:
         return "F0";
-      case ProductTypeEnum.f1:
+      case GenerationEnum.f1:
         return "F1";
-      case ProductTypeEnum.f2:
+      case GenerationEnum.f2:
         return "F2";
-      case ProductTypeEnum.f3:
+      case GenerationEnum.f3:
         return "F3";
     }
   }
 
   String get labelOf {
     switch (this) {
-      case ProductTypeEnum.f0:
+      case GenerationEnum.f0:
         return "F0";
-      case ProductTypeEnum.f1:
+      case GenerationEnum.f1:
         return "F1";
-      case ProductTypeEnum.f2:
+      case GenerationEnum.f2:
         return "F2";
-      case ProductTypeEnum.f3:
+      case GenerationEnum.f3:
         return "F3";
     }
   }
@@ -70,7 +70,7 @@ class IndividualModel extends BaseModel {
   final String videoLink;
   final bool isMale;
   final String image;
-  final ProductTypeEnum type;
+  final GenerationEnum type;
   final String fatherId;
   final String motherId;
   final String food;
@@ -93,7 +93,7 @@ class IndividualModel extends BaseModel {
     this.name = "",
     this.videoLink = "",
     this.isMale = true,
-    this.type = ProductTypeEnum.f0,
+    this.type = GenerationEnum.f0,
     this.image = "",
     this.fatherId = "",
     this.motherId = "",
@@ -146,8 +146,8 @@ class IndividualModel extends BaseModel {
       createAt: Utils.convertMapToTimestamp(map['createAt'] ?? 0),
       updateAt: Utils.convertMapToTimestamp(map['updateAt'] ?? 0),
       type: map["type"] == null
-          ? ProductTypeEnum.f0
-          : ProductTypeEnum.fromString(map["type"]),
+          ? GenerationEnum.f0
+          : GenerationEnum.fromString(map["type"]),
       date: map['date'] as String,
       review: map['review'] as String,
       age: map['age'] as int,
@@ -194,7 +194,7 @@ class IndividualModel extends BaseModel {
     Timestamp? updateAt,
     bool? isMale,
     List<String>? listCopulateId,
-    ProductTypeEnum? type,
+    GenerationEnum? type,
     String? image,
     AreaModel? area,
     OriginModel? origin,

@@ -77,7 +77,7 @@ class CreateIndividualF0FemaleBloc
     final model = IndividualModel(
       name: state.name,
       id: state.familyCode,
-      type: ProductTypeEnum.f0,
+      type: GenerationEnum.f0,
       area: area,
       isMale: false,
       origin: state.origin,

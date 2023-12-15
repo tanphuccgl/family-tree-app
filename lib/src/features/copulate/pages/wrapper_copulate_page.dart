@@ -67,7 +67,7 @@ class _WrapperCopulatePageState extends State<WrapperCopulatePage>
                                   context
                                       .read<CopulateBloc>()
                                       .onChangeGenerationSelected(
-                                          ProductTypeEnum.values[value]);
+                                          GenerationEnum.values[value]);
                                 },
                                 controller: tabController,
                                 tabs: [

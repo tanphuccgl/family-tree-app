@@ -37,7 +37,7 @@ class IndividualRepositoryImpl extends IndividualRepository {
 
   @override
   Future<XResult<List<IndividualModel>>> getIndividualWithType(
-      ProductTypeEnum value) async {
+      GenerationEnum value) async {
     return reference.getIndividualWithType(value);
   }
 

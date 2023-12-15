@@ -28,7 +28,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CreateIndividualDefaultPage extends StatelessWidget {
   final AreaModel area;
-  final ProductTypeEnum type;
+  final GenerationEnum type;
   const CreateIndividualDefaultPage({
     super.key,
     required this.area,
