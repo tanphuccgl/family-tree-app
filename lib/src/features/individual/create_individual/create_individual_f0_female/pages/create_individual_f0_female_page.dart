@@ -69,7 +69,7 @@ class CreateIndividualF0FemalePage extends StatelessWidget {
                         horizontal: 15, vertical: 30),
                     child: Column(
                       children: [
-                        if (size.width <= 1600 && size.width > 800)
+                        if (size.width <= 1500 && size.width > 800)
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,

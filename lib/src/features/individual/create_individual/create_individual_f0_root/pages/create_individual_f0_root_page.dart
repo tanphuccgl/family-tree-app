@@ -33,7 +33,7 @@ class CreateIndividualF0RootPage extends StatelessWidget {
           // if (state.area == null) {
           //   return Text("Không tìm thấy khu vực");
           // }
-
+          print(size.width);
           return SingleChildScrollView(
             child: Container(
               decoration: BoxDecoration(
@@ -69,7 +69,7 @@ class CreateIndividualF0RootPage extends StatelessWidget {
                         horizontal: 15, vertical: 30),
                     child: Column(
                       children: [
-                        if (size.width <= 1600 && size.width > 800)
+                        if (size.width <= 1500 && size.width > 800)
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
