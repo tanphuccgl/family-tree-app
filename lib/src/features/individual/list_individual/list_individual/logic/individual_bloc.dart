@@ -70,6 +70,28 @@ class IndividualBloc extends Cubit<IndividualState> {
     XToast.hideLoading();
   }
 
+  void onChangedSearchText(String value) {
+    emit(state.copyWith(searchText: value));
+  }
+
+  void onSearchButton() async {
+    if (state.searchText.isEmpty) {
+      return;
+    }
+
+    final result = await domain.individual.getAllIndividual();
+    if (result.isSuccess) {
+      final list = result.data!
+          .where((element) =>
+              element.id.toLowerCase() == state.searchText.toLowerCase())
+          .toList();
+      emit(state.copyWith(list: list));
+      return;
+    }
+
+    XToast.error("Tìm kiếm thất bại");
+  }
+
   void onRefreshButton() async {
     getAllIndividual();
   }

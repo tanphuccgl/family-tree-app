@@ -6,6 +6,7 @@ import 'package:familytree/src/features/individual/list_individual/list_individu
 
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
+import 'package:familytree/widgets/froms/input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,6 +15,8 @@ class TabViewListIndividual extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return BlocBuilder<IndividualBloc, IndividualState>(
       builder: (context, state) {
         final hasSelected = state.listIndividualSelected.isNotEmpty;
@@ -61,7 +64,26 @@ class TabViewListIndividual extends StatelessWidget {
                             Spacer(),
                             ButtonDeleteIndividual(),
                           ]
-                        : [ButtonRefreshIndividual()],
+                        : [
+                            Container(
+                              width: size.width * 0.5,
+                              height: 50,
+                              child: Center(
+                                child: XInput(
+                                    hintText: "Tìm kiếm với family code",
+                                    onChanged: (value) => context
+                                        .read<IndividualBloc>()
+                                        .onChangedSearchText(value),
+                                    value: state.searchText,
+                                    showArrowIcon: true,
+                                    onSearchButton: () => context
+                                        .read<IndividualBloc>()
+                                        .onSearchButton()),
+                              ),
+                            ),
+                            Spacer(),
+                            ButtonRefreshIndividual()
+                          ],
                   ),
                 ),
                 divider(),
