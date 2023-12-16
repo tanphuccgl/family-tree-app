@@ -128,7 +128,6 @@ class CreateIndividualF0RootBloc extends Cubit<CreateIndividualF0RootState> {
     emit(state.copyWith(listFieldInfo: [
       ...state.listFieldInfo,
     ]));
-    print(state.listFieldInfo.first.name);
   }
 
   void updateDataTolistFieldInfo(InfoMoreModel data, String noidung) {

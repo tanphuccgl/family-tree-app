@@ -195,7 +195,6 @@ class DetailIndividualBloc extends Cubit<DetailIndividualState> {
     emit(state.copyWith(listFieldInfo: [
       ...state.listFieldInfo,
     ]));
-    print(state.listFieldInfo.first.name);
   }
 
   void updateDataTolistFieldInfo(InfoMoreModel data, String noidung) {

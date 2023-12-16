@@ -19,7 +19,7 @@ class OriginF0FemaleWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Thế hệ",
+              "Xuất xứ",
               style: TextStyle(
                   color: XColors.primary5,
                   fontSize: 20,
