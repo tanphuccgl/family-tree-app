@@ -54,8 +54,7 @@ class TabbarFieldIndividual extends StatelessWidget {
               SizedBox(
                 width: 150,
                 child: GestureDetector(
-                    onTap: () =>
-                        context.read<IndividualBloc>().onTapTitleNameId(),
+                    onTap: () => context.read<IndividualBloc>().onTapTitleId(),
                     child: Center(
                         child:
                             Text("Family code", maxLines: 1, style: style()))),
@@ -65,7 +64,7 @@ class TabbarFieldIndividual extends StatelessWidget {
                 width: 100,
                 child: GestureDetector(
                     onTap: () =>
-                        context.read<IndividualBloc>().onTapTitleNameId(),
+                        context.read<IndividualBloc>().onTapTitleType(),
                     child: Center(
                         child: Text("Thế hệ", maxLines: 1, style: style()))),
               ),
@@ -73,8 +72,7 @@ class TabbarFieldIndividual extends StatelessWidget {
               SizedBox(
                 width: 100,
                 child: GestureDetector(
-                    onTap: () =>
-                        context.read<IndividualBloc>().onTapTitleNameId(),
+                    onTap: () => context.read<IndividualBloc>().onTapTitleSex(),
                     child: Center(
                         child: Text("Giới tính", maxLines: 1, style: style()))),
               ),
@@ -83,7 +81,7 @@ class TabbarFieldIndividual extends StatelessWidget {
                 width: 150,
                 child: GestureDetector(
                     onTap: () =>
-                        context.read<IndividualBloc>().onTapTitleNameId(),
+                        context.read<IndividualBloc>().onTapTitleOrigin(),
                     child: Center(
                         child: Text("Xuất xứ", maxLines: 1, style: style()))),
               ),
@@ -92,7 +90,7 @@ class TabbarFieldIndividual extends StatelessWidget {
                 width: 150,
                 child: GestureDetector(
                     onTap: () =>
-                        context.read<IndividualBloc>().onTapTitleNameId(),
+                        context.read<IndividualBloc>().onTapTitleArea(),
                     child: Center(
                         child: Text("Khu vực", maxLines: 1, style: style()))),
               ),
@@ -101,25 +99,25 @@ class TabbarFieldIndividual extends StatelessWidget {
                 width: 150,
                 child: GestureDetector(
                     onTap: () =>
-                        context.read<IndividualBloc>().onTapTitleNameId(),
+                        context.read<IndividualBloc>().onTapTitleFatherId(),
                     child: Center(
-                        child: Text("Cha", maxLines: 1, style: style()))),
+                        child: Text("ID Cha", maxLines: 1, style: style()))),
               ),
               GapHelper.w4,
               SizedBox(
                 width: 150,
                 child: GestureDetector(
                     onTap: () =>
-                        context.read<IndividualBloc>().onTapTitleNameId(),
-                    child:
-                        Center(child: Text("Mẹ", maxLines: 1, style: style()))),
+                        context.read<IndividualBloc>().onTapTitleMotherId(),
+                    child: Center(
+                        child: Text("ID Mẹ", maxLines: 1, style: style()))),
               ),
               GapHelper.w4,
               SizedBox(
                 width: 100,
                 child: GestureDetector(
                     onTap: () =>
-                        context.read<IndividualBloc>().onTapTitleNameId(),
+                        context.read<IndividualBloc>().onTapTitleDate(),
                     child: Center(
                         child: Text("Ngày", maxLines: 1, style: style()))),
               ),
@@ -127,8 +125,7 @@ class TabbarFieldIndividual extends StatelessWidget {
               SizedBox(
                 width: 100,
                 child: GestureDetector(
-                    onTap: () =>
-                        context.read<IndividualBloc>().onTapTitleNameId(),
+                    onTap: () => context.read<IndividualBloc>().onTapTitleAge(),
                     child: Center(
                         child: Text("Tuổi", maxLines: 1, style: style()))),
               ),
@@ -137,7 +134,7 @@ class TabbarFieldIndividual extends StatelessWidget {
                 width: 100,
                 child: GestureDetector(
                     onTap: () =>
-                        context.read<IndividualBloc>().onTapTitleNameId(),
+                        context.read<IndividualBloc>().onTapTitleColor(),
                     child: Center(
                         child: Text("Màu", maxLines: 1, style: style()))),
               ),
@@ -146,7 +143,7 @@ class TabbarFieldIndividual extends StatelessWidget {
                 width: 100,
                 child: GestureDetector(
                     onTap: () =>
-                        context.read<IndividualBloc>().onTapTitleNameId(),
+                        context.read<IndividualBloc>().onTapTitleFood(),
                     child: Center(
                         child: Text("Thức ăn", maxLines: 1, style: style()))),
               ),
@@ -155,7 +152,7 @@ class TabbarFieldIndividual extends StatelessWidget {
                 width: 100,
                 child: GestureDetector(
                     onTap: () =>
-                        context.read<IndividualBloc>().onTapTitleNameId(),
+                        context.read<IndividualBloc>().onTapTitlePrice(),
                     child: Center(
                         child: Text("Giá", maxLines: 1, style: style()))),
               ),
@@ -164,7 +161,7 @@ class TabbarFieldIndividual extends StatelessWidget {
                 width: 100,
                 child: GestureDetector(
                     onTap: () =>
-                        context.read<IndividualBloc>().onTapTitleNameId(),
+                        context.read<IndividualBloc>().onTapTitleReview(),
                     child: Center(
                         child: Text("Đánh giá", maxLines: 1, style: style()))),
               ),
@@ -173,7 +170,7 @@ class TabbarFieldIndividual extends StatelessWidget {
                 width: 100,
                 child: GestureDetector(
                     onTap: () =>
-                        context.read<IndividualBloc>().onTapTitleNameId(),
+                        context.read<IndividualBloc>().onTapTitleWeight(),
                     child: Center(
                         child: Text("Cân nặng", maxLines: 1, style: style()))),
               ),
