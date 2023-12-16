@@ -38,6 +38,7 @@ class XInput extends StatefulWidget {
     this.cursorColor,
     this.fillColor,
     this.showArrowIcon = false,
+    this.onSearchButton,
   }) : super(key: key);
 
   final String value;
@@ -72,6 +73,7 @@ class XInput extends StatefulWidget {
   final Color? cursorColor;
   final Color? fillColor;
   final bool showArrowIcon;
+  final Function()? onSearchButton;
 
   @override
   State<XInput> createState() => _XInputState();
@@ -133,7 +135,8 @@ class _XInputState extends State<XInput> {
 
     if (widget.showArrowIcon) {
       actions.add(
-        const Icon(Icons.arrow_drop_down_outlined),
+        GestureDetector(
+            onTap: widget.onSearchButton, child: const Icon(Icons.search)),
       );
     }
     if (actions.isEmpty) {
@@ -189,8 +192,8 @@ class _XInputState extends State<XInput> {
         focusedErrorBorder: widget.focusedBorder ?? errorBorder,
         enabledBorder: widget.enabledBorder ?? enabledBorder,
         border: widget.border,
-        helperText: "",
-        counterText: "",
+        helperText: null,
+        counterText: null,
         errorText: widget.errorText,
       ),
       onTapOutside: (e) => FocusScope.of(context).unfocus(),

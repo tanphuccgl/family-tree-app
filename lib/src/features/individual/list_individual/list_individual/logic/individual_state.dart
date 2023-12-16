@@ -6,6 +6,8 @@ class IndividualState extends Equatable {
   final List<String> listIndividualSelected;
   final String detailIndividualSelectedId;
 
+  final String searchText;
+
   final bool enableSortWithName;
   final bool enableSortWithId;
   final bool enableSortWithType;
@@ -42,6 +44,7 @@ class IndividualState extends Equatable {
     this.enableSortWithReview = false,
     this.enableSortWithWeight = false,
     this.detailIndividualSelectedId = "",
+    this.searchText = "",
   });
 
   @override
@@ -50,6 +53,7 @@ class IndividualState extends Equatable {
         listIndividualSelected,
         enableSortWithArea,
         enableSortWithSex,
+        searchText,
         enableSortWithName,
         enableSortWithType,
         enableSortWithId,
@@ -70,6 +74,7 @@ class IndividualState extends Equatable {
     List<IndividualModel>? list,
     List<String>? listIndividualSelected,
     String? detailIndividualSelectedId,
+    String? searchText,
     bool? enableSortWithName,
     bool? enableSortWithId,
     bool? enableSortWithType,
@@ -92,6 +97,7 @@ class IndividualState extends Equatable {
           listIndividualSelected ?? this.listIndividualSelected,
       detailIndividualSelectedId:
           detailIndividualSelectedId ?? this.detailIndividualSelectedId,
+      searchText: searchText ?? this.searchText,
       enableSortWithName: enableSortWithName ?? this.enableSortWithName,
       enableSortWithId: enableSortWithId ?? this.enableSortWithId,
       enableSortWithType: enableSortWithType ?? this.enableSortWithType,
