@@ -62,38 +62,7 @@ class CreateIndividualBloc extends Cubit<CreateIndividualState> {
       return;
     }
 
-    final parentType = _getParentType(state.type!);
-    final isTrue = _hasParent(parentType);
-    if (!isTrue && state.type != GenerationEnum.f0) {
-      XToast.error("Chưa có cha mẹ");
-      return;
-    }
-
     emit(state.copyWith(isShowSelectType: false, isShowSelectArea: false));
-  }
-
-  GenerationEnum _getParentType(GenerationEnum currentType) {
-    switch (currentType) {
-      case GenerationEnum.f1:
-        return GenerationEnum.f0;
-      case GenerationEnum.f2:
-        return GenerationEnum.f1;
-      case GenerationEnum.f3:
-        return GenerationEnum.f2;
-
-      default:
-        return GenerationEnum.f0;
-    }
-  }
-
-  bool _hasParent(GenerationEnum parentType) {
-    return state.listIndividualWithArea
-        .where((e) =>
-            e.isMale == true &&
-            e.listCopulateId.isNotEmpty &&
-            e.type == parentType)
-        .toList()
-        .isNotEmpty;
   }
 
   void onChangeCurrentType(GenerationEnum value) {

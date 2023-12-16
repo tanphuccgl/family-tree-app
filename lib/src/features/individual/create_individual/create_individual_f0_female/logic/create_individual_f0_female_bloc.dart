@@ -134,7 +134,6 @@ class CreateIndividualF0FemaleBloc
     emit(state.copyWith(listFieldInfo: [
       ...state.listFieldInfo,
     ]));
-    print(state.listFieldInfo.first.name);
   }
 
   void updateDataTolistFieldInfo(InfoMoreModel data, String noidung) {

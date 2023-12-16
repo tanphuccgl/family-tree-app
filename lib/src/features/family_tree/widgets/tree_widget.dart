@@ -10,39 +10,43 @@ class TreeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TransformationController _transformationController =
-        TransformationController();
     final size = MediaQuery.of(context).size;
 
     return BlocBuilder<FamilyTreeBloc, FamilyTreeState>(
       builder: (context, state) {
-        return context.read<FamilyTreeBloc>().graph.edges.isEmpty
-            ? const Center(child: Text("Không có dữ liệu"))
-            : SizedBox(
-                width: size.width,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: FittedBox(
-                    child: Center(
-                      child: GraphView(
-                        graph: context.read<FamilyTreeBloc>().graph,
-                        algorithm: SugiyamaAlgorithm(
-                          context.read<FamilyTreeBloc>().builder,
-                        ),
-                        paint: Paint()
-                          ..color = Colors.black
-                          ..strokeWidth = 1
-                          ..style = PaintingStyle.stroke,
-                        builder: (Node node) {
-                          var value = node.key?.value as IndividualModel;
+        final graph = context.read<FamilyTreeBloc>().graph;
+        final builder = context.read<FamilyTreeBloc>().builder;
+        if (graph.edges.isEmpty) {
+          return Center(child: Text("Không có dữ liệu"));
+        }
 
-                          return ItemElementWidget(data: value);
-                        },
-                      ),
-                    ),
+        return Padding(
+          padding: EdgeInsets.symmetric(vertical: 10),
+          child: SizedBox(
+            width: size.width,
+            child: Align(
+              alignment: Alignment.center,
+              child: FittedBox(
+                child: Center(
+                  child: GraphView(
+                    graph: graph,
+                    algorithm: BuchheimWalkerAlgorithm(
+                        builder, TreeEdgeRenderer(builder)),
+                    paint: Paint()
+                      ..color = Colors.white
+                      ..strokeWidth = 1
+                      ..style = PaintingStyle.stroke,
+                    builder: (Node node) {
+                      var value = node.key?.value as IndividualModel;
+
+                      return ItemElementWidget(data: value);
+                    },
                   ),
                 ),
-              );
+              ),
+            ),
+          ),
+        );
       },
     );
   }

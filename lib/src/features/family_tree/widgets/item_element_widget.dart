@@ -1,4 +1,5 @@
 import 'package:familytree/src/network/model/individual_model.dart';
+import 'package:familytree/src/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class ItemElementWidget extends StatelessWidget {
@@ -14,11 +15,17 @@ class ItemElementWidget extends StatelessWidget {
           children: [
             Text.rich(
               TextSpan(
-                text: "ID: ",
+                text: data.type.labelOf,
                 style: const TextStyle(
-                  color: Colors.black,
+                  color: XColors.primary4,
                 ),
                 children: <TextSpan>[
+                  TextSpan(
+                    text: " - ",
+                    style: const TextStyle(
+                      color: XColors.primary5,
+                    ),
+                  ),
                   TextSpan(
                     text: data.id,
                     style: const TextStyle(
@@ -41,7 +48,8 @@ class ItemElementWidget extends StatelessWidget {
         ),
         data.isMale
             ? Container(
-                padding: const EdgeInsets.all(16),
+                width: 100,
+                height: 50,
                 decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
                     color: Colors.blue,
@@ -50,9 +58,22 @@ class ItemElementWidget extends StatelessWidget {
                       colorFilter: new ColorFilter.mode(
                           Colors.black.withOpacity(0.5), BlendMode.dstATop),
                     )),
-                child: Text(data.name))
+                child: Center(
+                  child: Text(
+                    data.name,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      color: XColors.primary8,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ))
             : Container(
-                padding: const EdgeInsets.all(30),
+                width: 80,
+                height: 80,
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.yellow,
@@ -60,7 +81,19 @@ class ItemElementWidget extends StatelessWidget {
                         colorFilter: new ColorFilter.mode(
                             Colors.black.withOpacity(0.5), BlendMode.dstATop),
                         image: NetworkImage(data.image))),
-                child: Text(data.name)),
+                child: Center(
+                  child: Text(
+                    data.name,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      color: XColors.primary8,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                )),
       ],
     );
   }

@@ -73,10 +73,6 @@ class CreateIndividualDefaultBloc extends Cubit<CreateIndividualDefaultState> {
       XToast.error("Mã đã tồn tại");
       return;
     }
-    if (state.fatherSelected == null || state.motherSelected == null) {
-      XToast.error("Chọn bố mẹ");
-      return;
-    }
 
     XToast.showLoading();
 
@@ -86,8 +82,8 @@ class CreateIndividualDefaultBloc extends Cubit<CreateIndividualDefaultState> {
       id: state.familyCode,
       type: type,
       area: area,
-      fatherId: state.fatherSelected!.id,
-      motherId: state.motherSelected!.id,
+      fatherId: state.fatherSelected?.id ?? "",
+      motherId: state.motherSelected?.id ?? "",
       updateAt: Timestamp.now(),
       createAt: Timestamp.now(),
       age: int.tryParse(state.age) ?? 0,
@@ -142,7 +138,6 @@ class CreateIndividualDefaultBloc extends Cubit<CreateIndividualDefaultState> {
     emit(state.copyWith(listFieldInfo: [
       ...state.listFieldInfo,
     ]));
-    print(state.listFieldInfo.first.name);
   }
 
   void updateDataTolistFieldInfo(InfoMoreModel data, String noidung) {
@@ -284,7 +279,7 @@ class CreateIndividualDefaultBloc extends Cubit<CreateIndividualDefaultState> {
 
   void _getListParentSuggest() async {
     GenerationEnum? typeQuery;
-    print(type);
+
     switch (type) {
       case GenerationEnum.f0:
         break;
