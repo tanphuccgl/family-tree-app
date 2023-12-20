@@ -18,6 +18,7 @@ class DashboardPage extends StatelessWidget {
     final isMobile = ResponsiveBreakpoints.of(context).isMobile;
 
     return AutoTabsRouter.pageView(
+      physics: NeverScrollableScrollPhysics(),
       routes: [
         TreeViewPageView(),
         IndividualWrapperRoute(),
