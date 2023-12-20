@@ -1,56 +1,60 @@
-import 'package:familytree/src/utils/helper/logger.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 
-class XRouteObserver extends NavigatorObserver {
+class RoutePrinter extends LogPrinter {
+  RoutePrinter();
+
+  @override
+  List<String> log(LogEvent event) {
+    /* 
+    - AnsiColor docs: https://en.wikipedia.org/wiki/ANSI_escape_code
+    - Emoji:
+      + Mac: Control + Command + Space. 
+      + Windows: "Windows key" + ; (semicolon).
+    */
+    AnsiColor color = AnsiColor.fg(40);
+    final message = event.message;
+    return [color('🛣 $message')];
+  }
+}
+
+class XRouteObserver extends AutoRouterObserver {
+  final Logger log = Logger(printer: RoutePrinter());
+
+  @override
+  void didInitTabRoute(TabPageRoute route, TabPageRoute? previousRoute) {
+    log.i('Tab route visited: ${route.name}');
+  }
+
+  @override
+  void didChangeTabRoute(TabPageRoute route, TabPageRoute previousRoute) {
+    log.i('Tab route re-visited: ${route.name}');
+  }
+
   @override
   void didPush(Route route, Route? previousRoute) {
-    final text = 'New route pushed: ${route.settings.name}';
-    LoggerHelper.navigator(text);
-    super.didPush(route, previousRoute);
+    if (route.settings.name != null) {}
+    log.i('New route pushed: ${route.settings.name}');
   }
 
   @override
-  void didPop(
-    Route route,
-    Route? previousRoute,
-  ) {
-    final text = 'New route poped: ${route.settings.name}';
-    LoggerHelper.navigator(text);
-    super.didPop(
-      route,
-      previousRoute,
-    );
+  void didPop(Route route, Route? previousRoute) {
+    log.i('New route poped: ${route.settings.name}');
   }
 
-  @override
-  void didRemove(
-    Route<dynamic> route,
-    Route<dynamic>? previousRoute,
-  ) {
-    final text = 'New route removed: ${route.settings.name}';
-    LoggerHelper.navigator(text);
-    super.didRemove(
-      route,
-      previousRoute,
-    );
+  void didRemove(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    log.i('New route removed: ${route.settings.name}');
   }
 
-  @override
   void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
-    final text = 'New route replace: ${newRoute?.settings.name}'
-        '\n'
-        'Old route replace: ${oldRoute?.settings.name}';
-    LoggerHelper.navigator(text);
-    super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
+    log.i('New route replace: ${newRoute?.settings.name}' +
+        '\n' +
+        'Old route replace: ${oldRoute?.settings.name}');
   }
 
-  @override
   void didStartUserGesture(
-    Route<dynamic> route,
-    Route<dynamic>? previousRoute,
-  ) {
-    final text = 'New route start user gesture: ${route.settings.name}';
-    LoggerHelper.navigator(text);
-    super.didStartUserGesture(route, previousRoute);
+      Route<dynamic> route, Route<dynamic>? previousRoute) {
+    log.i('New route start user gesture: ${route.settings.name}');
   }
 }

@@ -62,6 +62,7 @@ dependencies:
   
   # STATE MANAGEMENT
   flutter_bloc: ^8.1.2
+  auto_route: ^5.0.2
 
 
   # OTHER
