@@ -11,6 +11,8 @@ lint:
 	dart analyze
 runner: 
 	flutter packages pub run build_runner build
+runnerForce: 
+	@flutter packages pub run build_runner build --delete-conflicting-outputs
 pod:
 	pod update --project-directory=ios && pod install --project-directory=ios
 signingReport:

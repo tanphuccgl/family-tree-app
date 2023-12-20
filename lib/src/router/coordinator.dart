@@ -1,28 +1,14 @@
-import 'package:familytree/src/router/router_name.dart';
+import 'package:familytree/src/router/app_router.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 class XCoordinator {
-  static final GlobalKey<NavigatorState> navigatorKey =
-      GlobalKey<NavigatorState>();
+  static XRouter get rootRouter => GetIt.I<XRouter>();
 
-  static BuildContext get context => navigatorKey.currentState!.context;
-  static NavigatorState get navigator => navigatorKey.currentState!;
-  static void pop<T extends Object?>([T? result]) async {
-    return navigatorKey.currentState!.pop(result);
+  static BuildContext get context =>
+      rootRouter.navigatorKey.currentState!.context;
+
+  static Future<bool> pop<T extends Object?>([T? result]) async {
+    return rootRouter.pop(result);
   }
-
-  static Future<T?> pushNamed<T extends Object?>(
-    String routeName, {
-    Object? arguments,
-  }) =>
-      navigator.pushNamed(
-        routeName,
-        arguments: arguments,
-      );
-
-  static Future<T?> push<T extends Object?>(Widget screen) => navigator.push(
-        MaterialPageRoute(builder: (context) => screen),
-      );
-
-  static Future showDashboard() => pushNamed(XRouterName.dashboard);
 }

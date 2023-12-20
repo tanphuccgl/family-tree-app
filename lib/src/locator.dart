@@ -1,5 +1,6 @@
 import 'package:familytree/firebase_options.dart';
 import 'package:familytree/src/network/domain.dart';
+import 'package:familytree/src/router/app_router.gr.dart';
 import 'package:familytree/src/services/user_prefs.dart';
 import 'package:familytree/src/theme/themes.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -29,7 +30,10 @@ class ConfigApp {
   }
 
   static void _locator() {
-    GetIt.I.registerLazySingleton(() => Domain());
+    GetIt.I
+      ..registerLazySingleton(() => Domain())
+      ..registerLazySingleton(() => XRouter());
+
     //   ..registerLazySingleton(() => AccountBloc())
     //   ..registerLazySingleton(() => ListScheduleBloc());
   }
