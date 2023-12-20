@@ -4,6 +4,7 @@ import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
 import 'package:familytree/widgets/froms/input.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class OriginOverlayWidget extends StatelessWidget {
   final IndividualModel individual;
@@ -11,6 +12,7 @@ class OriginOverlayWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = ResponsiveBreakpoints.of(context).isMobile;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -23,8 +25,8 @@ class OriginOverlayWidget extends StatelessWidget {
         ),
         GapHelper.h4,
         SizedBox(
-            width: 150,
-            height: 40,
+            width: isMobile ? 100 : 150,
+            height: isMobile ? 30 : 40,
             child: XInput(
               value: individual.origin?.name ?? "N/A",
               readOnly: true,
