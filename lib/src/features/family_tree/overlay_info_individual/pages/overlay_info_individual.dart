@@ -7,8 +7,8 @@ import 'package:familytree/src/features/family_tree/overlay_info_individual/widg
 import 'package:familytree/src/network/model/individual_model.dart';
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
+import 'package:familytree/src/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 
 class OverlayInfoIndividual extends StatelessWidget {
   final Offset position;
@@ -20,9 +20,7 @@ class OverlayInfoIndividual extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    final isMobile = ResponsiveBreakpoints.of(context).isMobile;
-
-    if (isMobile || size.width < 1120) {
+    if (Utils.isWebMobile || size.width < 1120) {
       return body(context);
     }
     return Positioned(
@@ -30,11 +28,10 @@ class OverlayInfoIndividual extends StatelessWidget {
   }
 
   Widget body(BuildContext context) {
-    final isMobile = ResponsiveBreakpoints.of(context).isMobile;
     return Align(
       alignment: Alignment.center,
       child: Container(
-        constraints: isMobile
+        constraints: Utils.isWebMobile
             ? BoxConstraints(maxHeight: 250, maxWidth: 300)
             : BoxConstraints(maxHeight: 300, maxWidth: 400),
         decoration: BoxDecoration(
@@ -86,9 +83,8 @@ class OverlayInfoIndividual extends StatelessWidget {
   }
 
   Widget sessionOneWidget(BuildContext context) {
-    final isMobile = ResponsiveBreakpoints.of(context).isMobile;
     return SizedBox(
-      width: isMobile ? 100 : 150,
+      width: Utils.isWebMobile ? 100 : 150,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -107,9 +103,8 @@ class OverlayInfoIndividual extends StatelessWidget {
   }
 
   Widget sessionTwoWidget(BuildContext context) {
-    final isMobile = ResponsiveBreakpoints.of(context).isMobile;
     return SizedBox(
-      width: isMobile ? 100 : 150,
+      width: Utils.isWebMobile ? 100 : 150,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

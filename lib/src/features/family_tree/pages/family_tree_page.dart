@@ -2,6 +2,8 @@ import 'package:familytree/src/features/family_tree/logic/family_tree_bloc.dart'
 import 'package:familytree/src/features/family_tree/widgets/box_area_family_tree.dart';
 import 'package:familytree/src/features/family_tree/widgets/button_next_to_family_tree.dart';
 import 'package:familytree/src/features/family_tree/widgets/tree_widget.dart';
+import 'package:familytree/src/utils/utils.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,6 +15,8 @@ class TreeViewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Orientation currentOrientation = MediaQuery.of(context).orientation;
+
     return BlocProvider(
       create: (context) => FamilyTreeBloc(),
       child: BlocBuilder<FamilyTreeBloc, FamilyTreeState>(
@@ -24,14 +28,17 @@ class TreeViewPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
               child: Column(
                 children: [
-                  Text(
-                    "Family tree",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30),
-                  ),
-                  SizedBox(height: 40),
+                  if (!(currentOrientation == Orientation.landscape &&
+                      Utils.isWebMobile)) ...[
+                    Text(
+                      "Family tree",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30),
+                    ),
+                    SizedBox(height: 40),
+                  ],
                   TreeWidget()
                 ],
               ),

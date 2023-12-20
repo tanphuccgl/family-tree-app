@@ -5,9 +5,9 @@ import 'package:familytree/src/features/dashboard/widgets/drawer/expanded/drawer
 
 import 'package:familytree/src/router/app_router.gr.dart';
 import 'package:familytree/src/theme/colors.dart';
+import 'package:familytree/src/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -15,8 +15,6 @@ class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
-    final isMobile = ResponsiveBreakpoints.of(context).isMobile;
 
     return AutoTabsRouter.pageView(
       physics: NeverScrollableScrollPhysics(),
@@ -34,7 +32,7 @@ class DashboardPage extends StatelessWidget {
           create: (context) => DashboardBloc(context, tabsRouter),
           child: BlocBuilder<DashboardBloc, DashboardState>(
             builder: (context, state) {
-              if (isMobile || size.width < 1120) {
+              if (Utils.isWebMobile || size.width < 1120) {
                 return Scaffold(
                     key: context.read<DashboardBloc>().scaffoldKeyDrawer,
                     drawer: Drawer(
