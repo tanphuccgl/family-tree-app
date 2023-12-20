@@ -23,7 +23,8 @@ class ItemArea extends StatelessWidget {
         return Column(
           children: [
             GestureDetector(
-              onTap: () => context.read<AreaBloc>().onShowDetailArea(data.id),
+              onTap: () =>
+                  context.read<AreaBloc>().onShowDetailArea(context, data.id),
               child: Container(
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 15),

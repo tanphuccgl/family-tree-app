@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:equatable/equatable.dart';
 
 import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/area_model.dart';
+import 'package:familytree/src/router/app_router.gr.dart';
 
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:flutter/material.dart';
@@ -48,12 +50,8 @@ class AreaBloc extends Cubit<AreaState> {
     getAllArea();
   }
 
-  void onShowDetailArea(String id) async {
-    emit(state.copyWith(detailAreaSelectedId: id));
-  }
-
-  void onCloseButton() {
-    emit(state.copyWith(detailAreaSelectedId: ""));
+  void onShowDetailArea(BuildContext context, String areaId) {
+    context.router.push(DetailAreaRoute(areaId: areaId));
   }
 
   void onCheckBoxAll(bool value) {
