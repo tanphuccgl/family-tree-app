@@ -120,19 +120,21 @@ class TabViewCopulateWithGeneration extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 30),
                       child: Text("Chưa có dữ liệu", style: style()),
                     )
-                  : ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: list.length,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                            onTap: () => context
-                                .read<CopulateBloc>()
-                                .onSelectFemaleIndividual(list[index]),
-                            child: IndividualItemWidget(
-                              data: list[index],
-                              isLastItem: index == list.length - 1,
-                            ));
-                      },
+                  : Expanded(
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: list.length,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                              onTap: () => context
+                                  .read<CopulateBloc>()
+                                  .onSelectFemaleIndividual(list[index]),
+                              child: IndividualItemWidget(
+                                data: list[index],
+                                isLastItem: index == list.length - 1,
+                              ));
+                        },
+                      ),
                     ),
             ],
           ),
@@ -179,19 +181,21 @@ class TabViewCopulateWithGeneration extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 30),
                       child: Text("Chưa có dữ liệu", style: style()),
                     )
-                  : ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: list.length,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                            onTap: () => context
-                                .read<CopulateBloc>()
-                                .onSelectMaleIndividual(list[index]),
-                            child: IndividualItemWidget(
-                              data: list[index],
-                              isLastItem: index == list.length - 1,
-                            ));
-                      },
+                  : Expanded(
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: list.length,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                              onTap: () => context
+                                  .read<CopulateBloc>()
+                                  .onSelectMaleIndividual(list[index]),
+                              child: IndividualItemWidget(
+                                data: list[index],
+                                isLastItem: index == list.length - 1,
+                              ));
+                        },
+                      ),
                     ),
             ],
           ),
