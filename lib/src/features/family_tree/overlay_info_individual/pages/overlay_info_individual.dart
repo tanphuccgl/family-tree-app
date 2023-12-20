@@ -8,6 +8,7 @@ import 'package:familytree/src/network/model/individual_model.dart';
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class OverlayInfoIndividual extends StatelessWidget {
   final Offset position;
@@ -17,42 +18,52 @@ class OverlayInfoIndividual extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
+    final isMobile = ResponsiveBreakpoints.of(context).isMobile;
+
+    if (isMobile || size.width < 1120) {
+      return body(context);
+    }
     return Positioned(
-      width: position.dx,
-      height: position.dy,
-      child: Align(
-        alignment: Alignment.center,
-        child: Container(
-          constraints: BoxConstraints(maxHeight: 300, maxWidth: 400),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: XColors.primary10,
-          ),
-          child: Column(
-            children: [
-              GapHelper.h8,
-              Text(
-                "Thông tin",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20),
-              ),
-              GapHelper.h8,
-              Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 2, vertical: 5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      sessionOneWidget(),
-                      GapHelper.w8,
-                      sessionTwoWidget(),
-                    ],
-                  )),
-            ],
-          ),
+        width: position.dx, height: position.dy, child: body(context));
+  }
+
+  Widget body(BuildContext context) {
+    final isMobile = ResponsiveBreakpoints.of(context).isMobile;
+    return Align(
+      alignment: Alignment.center,
+      child: Container(
+        constraints: isMobile
+            ? BoxConstraints(maxHeight: 250, maxWidth: 300)
+            : BoxConstraints(maxHeight: 300, maxWidth: 400),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: XColors.primary10,
+        ),
+        child: Column(
+          children: [
+            GapHelper.h8,
+            Text(
+              "Thông tin",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 20),
+            ),
+            GapHelper.h8,
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    sessionOneWidget(context),
+                    GapHelper.w8,
+                    sessionTwoWidget(context),
+                  ],
+                )),
+          ],
         ),
       ),
     );
@@ -74,9 +85,10 @@ class OverlayInfoIndividual extends StatelessWidget {
     );
   }
 
-  Widget sessionOneWidget() {
+  Widget sessionOneWidget(BuildContext context) {
+    final isMobile = ResponsiveBreakpoints.of(context).isMobile;
     return SizedBox(
-      width: 150,
+      width: isMobile ? 100 : 150,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -94,9 +106,10 @@ class OverlayInfoIndividual extends StatelessWidget {
     );
   }
 
-  Widget sessionTwoWidget() {
+  Widget sessionTwoWidget(BuildContext context) {
+    final isMobile = ResponsiveBreakpoints.of(context).isMobile;
     return SizedBox(
-      width: 150,
+      width: isMobile ? 100 : 150,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

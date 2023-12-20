@@ -13,14 +13,19 @@ class ItemElementWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () =>
           context.read<FamilyTreeBloc>().onSelectIndividual(context, data.id),
-      child: MouseRegion(
-        onEnter: (value) {
+      onLongPressStart: (details) =>
           context.read<FamilyTreeBloc>().onEnterHover(
                 context,
                 individual: data,
-                position: value.position,
-              );
-        },
+                position: details.localPosition,
+              ),
+      onLongPressEnd: (_) => context.read<FamilyTreeBloc>().onExitHover(),
+      child: MouseRegion(
+        onEnter: (details) => context.read<FamilyTreeBloc>().onEnterHover(
+              context,
+              individual: data,
+              position: details.position,
+            ),
         onExit: (_) => context.read<FamilyTreeBloc>().onExitHover(),
         child: Column(
           key: ValueKey(data.id),
