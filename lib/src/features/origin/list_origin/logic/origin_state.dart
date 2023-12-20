@@ -8,14 +8,11 @@ class OriginState extends Equatable {
   final bool enableSortWithName;
   final bool enableSortWithNameId;
 
-  final String detailOriginSelectedId;
-
   OriginState({
     this.list = const [],
     this.listOriginSelected = const [],
     this.enableSortWithName = false,
     this.enableSortWithNameId = false,
-    this.detailOriginSelectedId = "",
   });
 
   @override
@@ -24,7 +21,6 @@ class OriginState extends Equatable {
         listOriginSelected,
         enableSortWithName,
         enableSortWithNameId,
-        detailOriginSelectedId,
       ];
 
   OriginState copyWith({
@@ -32,15 +28,12 @@ class OriginState extends Equatable {
     List<String>? listOriginSelected,
     bool? enableSortWithName,
     bool? enableSortWithNameId,
-    String? detailOriginSelectedId,
   }) {
     return OriginState(
       list: list ?? this.list,
       listOriginSelected: listOriginSelected ?? this.listOriginSelected,
       enableSortWithName: enableSortWithName ?? this.enableSortWithName,
       enableSortWithNameId: enableSortWithNameId ?? this.enableSortWithNameId,
-      detailOriginSelectedId:
-          detailOriginSelectedId ?? this.detailOriginSelectedId,
     );
   }
 }
