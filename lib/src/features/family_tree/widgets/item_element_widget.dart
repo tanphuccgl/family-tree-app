@@ -13,93 +13,105 @@ class ItemElementWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () =>
           context.read<FamilyTreeBloc>().onSelectIndividual(context, data.id),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text.rich(
-                TextSpan(
-                  text: data.type.labelOf,
-                  style: const TextStyle(
-                    color: XColors.primary4,
+      child: MouseRegion(
+        onEnter: (value) {
+          context.read<FamilyTreeBloc>().onEnterHover(
+                context,
+                individual: data,
+                position: value.position,
+              );
+        },
+        onExit: (_) => context.read<FamilyTreeBloc>().onExitHover(),
+        child: Column(
+          key: ValueKey(data.id),
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text.rich(
+                  TextSpan(
+                    text: data.type.labelOf,
+                    style: const TextStyle(
+                      color: XColors.primary4,
+                    ),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: " - ",
+                        style: const TextStyle(
+                          color: XColors.primary5,
+                        ),
+                      ),
+                      TextSpan(
+                        text: data.id,
+                        style: const TextStyle(
+                          color: Colors.red,
+                        ),
+                      ),
+                    ],
                   ),
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: " - ",
-                      style: const TextStyle(
-                        color: XColors.primary5,
-                      ),
-                    ),
-                    TextSpan(
-                      text: data.id,
-                      style: const TextStyle(
-                        color: Colors.red,
-                      ),
-                    ),
-                  ],
                 ),
-              ),
-              data.isMale
-                  ? const Icon(
-                      Icons.male,
-                      color: Colors.blue,
-                    )
-                  : const Icon(
-                      Icons.female,
-                      color: Colors.yellow,
-                    )
-            ],
-          ),
-          data.isMale
-              ? Container(
-                  width: 100,
-                  height: 50,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      color: Colors.blue,
-                      image: DecorationImage(
-                        image: NetworkImage(data.image),
-                        colorFilter: new ColorFilter.mode(
-                            Colors.black.withOpacity(0.5), BlendMode.dstATop),
-                      )),
-                  child: Center(
-                    child: Text(
-                      data.name,
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 15,
-                        color: XColors.primary8,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ))
-              : Container(
-                  width: 80,
-                  height: 80,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.yellow,
-                      image: DecorationImage(
+                data.isMale
+                    ? const Icon(
+                        Icons.male,
+                        color: Colors.blue,
+                      )
+                    : const Icon(
+                        Icons.female,
+                        color: Colors.yellow,
+                      )
+              ],
+            ),
+            data.isMale
+                ? Container(
+                    width: 100,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        color: Colors.blue,
+                        image: DecorationImage(
+                          image: NetworkImage(data.image),
                           colorFilter: new ColorFilter.mode(
                               Colors.black.withOpacity(0.5), BlendMode.dstATop),
-                          image: NetworkImage(data.image))),
-                  child: Center(
-                    child: Text(
-                      data.name,
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 15,
-                        color: XColors.primary8,
-                        fontWeight: FontWeight.w500,
+                        )),
+                    child: Center(
+                      child: Text(
+                        data.name,
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          color: XColors.primary8,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
-                  )),
-        ],
+                    ))
+                : Container(
+                    width: 80,
+                    height: 80,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.yellow,
+                        image: DecorationImage(
+                            colorFilter: new ColorFilter.mode(
+                                Colors.black.withOpacity(0.5),
+                                BlendMode.dstATop),
+                            image: NetworkImage(data.image))),
+                    child: Center(
+                      child: Text(
+                        data.name,
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          color: XColors.primary8,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    )),
+          ],
+        ),
       ),
     );
   }

@@ -11,6 +11,8 @@ class FamilyTreeState extends Equatable {
   final List<Edge> edges;
   final List<Node> nodes;
 
+  final String hoveredIndividualId;
+
   const FamilyTreeState({
     this.list = const [],
     this.isShowSelectArea = true,
@@ -18,6 +20,7 @@ class FamilyTreeState extends Equatable {
     this.currnentArea,
     this.edges = const [],
     this.nodes = const [],
+    this.hoveredIndividualId = "",
   });
   @override
   List<Object?> get props => [
@@ -27,6 +30,7 @@ class FamilyTreeState extends Equatable {
         listArea,
         edges,
         nodes,
+        hoveredIndividualId,
       ];
 
   FamilyTreeState copyWith({
@@ -36,6 +40,7 @@ class FamilyTreeState extends Equatable {
     List<AreaModel>? listArea,
     List<Edge>? edges,
     List<Node>? nodes,
+    String? hoveredIndividualId,
   }) {
     return FamilyTreeState(
       isShowSelectArea: isShowSelectArea ?? this.isShowSelectArea,
@@ -44,6 +49,7 @@ class FamilyTreeState extends Equatable {
       listArea: listArea ?? this.listArea,
       edges: edges ?? this.edges,
       nodes: nodes ?? this.nodes,
+      hoveredIndividualId: hoveredIndividualId ?? this.hoveredIndividualId,
     );
   }
 
@@ -55,6 +61,7 @@ class FamilyTreeState extends Equatable {
       listArea: [],
       edges: [],
       nodes: [],
+      hoveredIndividualId: "",
     );
   }
 }

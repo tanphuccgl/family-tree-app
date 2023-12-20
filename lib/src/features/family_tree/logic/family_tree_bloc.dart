@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:equatable/equatable.dart';
+import 'package:familytree/src/features/family_tree/overlay_info_individual/pages/overlay_info_individual.dart';
 
 import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/area_model.dart';
@@ -21,6 +22,7 @@ class FamilyTreeBloc extends Cubit<FamilyTreeState> {
   Domain get domain => GetIt.I<Domain>();
   final Graph graph = Graph()..isTree = true;
   BuchheimWalkerConfiguration builder = BuchheimWalkerConfiguration();
+  OverlayEntry? overlayEntry;
 
   void init() async {
     XToast.showLoading();
@@ -119,36 +121,6 @@ class FamilyTreeBloc extends Cubit<FamilyTreeState> {
     graph.addEdges(edges);
   }
 
-  // void createNode(List<IndividualModel> list) {
-  //   graph.removeEdges(state.edges);
-  //   graph.removeNodes(state.nodes);
-  //   final List<Edge> edges = [];
-  //   final List<Node> nodes = [];
-  //   final root = list.singleWhere((e) => e.type == GenerationEnum.f0);
-  //   final nodeRoot = Node.Id(root);
-  //   nodes.add(nodeRoot);
-  //   for (var element in list) {
-  //     if (element.type == GenerationEnum.f1) {
-  //       edges.add(Edge(nodeRoot, Node.Id(element)));
-  //       nodes.add(Node.Id(element));
-  //       nodes.add(Node.Id(nodeRoot));
-  //     }
-  //     // if (element.type != GenerationEnum.f0 &&
-  //     //     element.type != GenerationEnum.f1) {
-  //     //   final a = list.singleWhere((e) => e.id == element.fatherId);
-  //     //   final b = list.singleWhere((e) => e.id == element.motherId);
-  //     //   edges.add(Edge(Node.Id(a), Node.Id(element)));
-  //     //   edges.add(Edge(Node.Id(b), Node.Id(element)));
-  //     //   nodes.add(Node.Id(a));
-  //     //   nodes.add(Node.Id(b));
-  //     //   nodes.add(Node.Id(element));
-  //     // }
-  //   }
-  //   emit(state.copyWith(edges: edges));
-  //   emit(state.copyWith(nodes: nodes));
-  //   graph.addEdges(edges);
-  // }
-
   Future<void> _getAllIndividual() async {
     final result =
         await domain.individual.getIndividualsWithArea(state.currnentArea!.id);
@@ -166,6 +138,64 @@ class FamilyTreeBloc extends Cubit<FamilyTreeState> {
 
     await _getAllIndividual();
     emit(state.copyWith(isShowSelectArea: false));
+  }
+
+  void onEnterHover(
+    BuildContext context, {
+    required IndividualModel individual,
+    required Offset position,
+  }) {
+    if (state.hoveredIndividualId != "") {
+      return;
+    }
+
+    if (state.hoveredIndividualId == individual) {
+      return;
+    }
+
+    emit(state.copyWith(hoveredIndividualId: individual.id));
+
+    Future.delayed(Duration(milliseconds: 200), () {
+      _showOverlay(
+        context,
+        position: position,
+        individual: individual,
+      );
+    });
+  }
+
+  void onExitHover() {
+    if (state.hoveredIndividualId == "") {
+      return;
+    }
+    emit(state.copyWith(hoveredIndividualId: ""));
+    Future.delayed(Duration(milliseconds: 200), () {
+      _hideOverlay();
+    });
+  }
+
+  void _showOverlay(
+    BuildContext context, {
+    required IndividualModel individual,
+    required Offset position,
+  }) {
+    if (overlayEntry != null) {
+      return;
+    }
+    overlayEntry = OverlayEntry(
+        builder: (context) => OverlayInfoIndividual(
+              position: position,
+              individual: individual,
+            ));
+
+    Overlay.of(context).insert(overlayEntry!);
+  }
+
+  void _hideOverlay() {
+    if (overlayEntry != null) {
+      overlayEntry!.remove();
+      overlayEntry = null;
+    }
   }
 
   @override
