@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:familytree/src/features/dashboard/cubit/dashboard_bloc.dart';
 import 'package:familytree/src/features/dashboard/widgets/drawer/drawer_dashboard.dart';
 import 'package:familytree/src/features/dashboard/widgets/drawer/expanded/drawer_expanded.dart';
+
 import 'package:familytree/src/router/app_router.gr.dart';
 import 'package:familytree/src/theme/colors.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class DashboardPage extends StatelessWidget {
     return AutoTabsRouter.pageView(
       physics: NeverScrollableScrollPhysics(),
       routes: [
-        TreeViewPageView(),
+        TreeWrapperRoute(),
         IndividualWrapperRoute(),
         WrapperCopulatePageView(),
         AreaWrapperRoute(),

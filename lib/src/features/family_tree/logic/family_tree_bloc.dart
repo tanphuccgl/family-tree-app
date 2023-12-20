@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:equatable/equatable.dart';
 
 import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/area_model.dart';
 import 'package:familytree/src/network/model/individual_model.dart';
+import 'package:familytree/src/router/app_router.gr.dart';
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,6 +47,10 @@ class FamilyTreeBloc extends Cubit<FamilyTreeState> {
     } else {
       emit(state.copyWith(currnentArea: value));
     }
+  }
+
+  void onSelectIndividual(BuildContext context, String individualId) {
+    context.router.push(DetailIndividualRoute(individualId: individualId));
   }
 
   Paint _colorPaint(Color color) {
