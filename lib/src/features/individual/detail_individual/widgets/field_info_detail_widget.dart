@@ -1,4 +1,3 @@
-import 'package:familytree/src/features/individual/create_individual/sub_create_individual/create_individual_default/logic/info_more_bloc.dart';
 import 'package:familytree/src/features/individual/detail_individual/logic/detail_individual_bloc.dart';
 
 import 'package:familytree/src/theme/colors.dart';
@@ -8,6 +7,8 @@ import 'package:familytree/src/utils/helper/gap.dart';
 import 'package:familytree/widgets/froms/input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../sub_create_individual/create_individual_default/logic/info_more_bloc.dart';
 
 class FieldInfoDetailWidget extends StatelessWidget {
   const FieldInfoDetailWidget({super.key});

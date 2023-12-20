@@ -1,7 +1,5 @@
 import 'package:familytree/src/features/individual/create_individual/logic/create_individual_bloc.dart';
-import 'package:familytree/src/features/individual/create_individual/sub_create_individual/create_individual_default/pages/create_individual_default_page.dart';
-import 'package:familytree/src/features/individual/create_individual/sub_create_individual/create_individual_f0_female/pages/create_individual_f0_female_page.dart';
-import 'package:familytree/src/features/individual/create_individual/sub_create_individual/create_individual_f0_root/pages/create_individual_f0_root_page.dart';
+
 import 'package:familytree/src/features/individual/create_individual/widgets/box_select_area.dart';
 import 'package:familytree/src/features/individual/create_individual/widgets/box_select_type.dart';
 import 'package:familytree/src/features/individual/create_individual/widgets/button_next_to_create_individual.dart';
@@ -13,6 +11,10 @@ import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../sub_create_individual/create_individual_default/pages/create_individual_default_page.dart';
+import '../../sub_create_individual/create_individual_f0_female/pages/create_individual_f0_female_page.dart';
+import '../../sub_create_individual/create_individual_f0_root/pages/create_individual_f0_root_page.dart';
 
 class CreateIndividualPage extends StatelessWidget {
   const CreateIndividualPage({super.key});

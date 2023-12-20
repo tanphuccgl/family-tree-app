@@ -4,7 +4,6 @@ part of 'individual_bloc.dart';
 class IndividualState extends Equatable {
   final List<IndividualModel> list;
   final List<String> listIndividualSelected;
-  final String detailIndividualSelectedId;
 
   final String searchText;
 
@@ -43,7 +42,6 @@ class IndividualState extends Equatable {
     this.enableSortWithPrice = false,
     this.enableSortWithReview = false,
     this.enableSortWithWeight = false,
-    this.detailIndividualSelectedId = "",
     this.searchText = "",
   });
 
@@ -58,7 +56,6 @@ class IndividualState extends Equatable {
         enableSortWithType,
         enableSortWithId,
         enableSortWithOrigin,
-        detailIndividualSelectedId,
         enableSortWithFatherId,
         enableSortWithMotherId,
         enableSortWithDate,
@@ -73,7 +70,6 @@ class IndividualState extends Equatable {
   IndividualState copyWith({
     List<IndividualModel>? list,
     List<String>? listIndividualSelected,
-    String? detailIndividualSelectedId,
     String? searchText,
     bool? enableSortWithName,
     bool? enableSortWithId,
@@ -95,8 +91,6 @@ class IndividualState extends Equatable {
       list: list ?? this.list,
       listIndividualSelected:
           listIndividualSelected ?? this.listIndividualSelected,
-      detailIndividualSelectedId:
-          detailIndividualSelectedId ?? this.detailIndividualSelectedId,
       searchText: searchText ?? this.searchText,
       enableSortWithName: enableSortWithName ?? this.enableSortWithName,
       enableSortWithId: enableSortWithId ?? this.enableSortWithId,

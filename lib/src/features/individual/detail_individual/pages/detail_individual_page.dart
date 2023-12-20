@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:familytree/src/features/individual/detail_individual/logic/detail_individual_bloc.dart';
 import 'package:familytree/src/features/individual/detail_individual/widgets/age_detail_widget.dart';
 import 'package:familytree/src/features/individual/detail_individual/widgets/area_detail_widget.dart';
@@ -21,7 +22,6 @@ import 'package:familytree/src/features/individual/detail_individual/widgets/sty
 import 'package:familytree/src/features/individual/detail_individual/widgets/type_detail_widget.dart';
 import 'package:familytree/src/features/individual/detail_individual/widgets/video_detail_widget.dart';
 import 'package:familytree/src/features/individual/detail_individual/widgets/weight_detail_widget.dart';
-import 'package:familytree/src/features/individual/list_individual/logic/individual_bloc.dart';
 
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
@@ -30,108 +30,136 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DetailIndividualPage extends StatelessWidget {
   final String individualId;
-  const DetailIndividualPage({super.key, required this.individualId});
+  const DetailIndividualPage({
+    super.key,
+    @PathParam('individualId') required this.individualId,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return BlocProvider(
       create: (context) => DetailIndividualBloc(context, individualId),
       child: BlocBuilder<DetailIndividualBloc, DetailIndividualState>(
         builder: (context, state) {
-          final size = MediaQuery.of(context).size;
-
-          return SingleChildScrollView(
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: XColors.primary10,
-              ),
-              child: Column(
+          return Scaffold(
+            backgroundColor: XColors.primary8,
+            body: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+              child: ListView(
+                shrinkWrap: true,
                 children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10)),
-                      color: XColors.primary9,
-                    ),
-                    child: Row(
-                      children: [
-                        Text(
-                          state.isEdit ? "Chỉnh sửa" : "Chi tiết cá thể",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 25),
-                        ),
-                        Spacer(),
-                        if (!state.isEdit) ButtonEditIndividual(),
-                        GapHelper.w4,
-                        ButtonRemoveIndividual(),
-                        GapHelper.w4,
-                        IconButton(
-                            iconSize: 30,
-                            onPressed: () =>
-                                context.read<IndividualBloc>().onCloseButton(),
-                            icon: Icon(
-                              Icons.clear,
-                              color: XColors.primary6,
-                              size: 30,
-                            )),
-                      ],
-                    ),
+                  Text(
+                    "Cá thể",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30),
                   ),
-                  divider(),
-                  GapHelper.h12,
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 30),
-                    child: Column(
-                      children: [
-                        if (size.width <= 1500 && size.width > 800)
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              sessionOneWidget1(),
-                              GapHelper.w20,
-                              sessionTwoWidget1(),
-                            ],
-                          )
-                        else if (size.width < 800)
-                          Column(
-                            children: [
-                              sessionOneWidget(),
-                              sessionTwoWidget(),
-                              sessionThreeWidget(),
-                            ],
-                          )
-                        else
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              sessionOneWidget(),
-                              GapHelper.w20,
-                              sessionTwoWidget(),
-                              GapHelper.w20,
-                              sessionThreeWidget(),
-                            ],
+                  SizedBox(height: 40),
+                  SingleChildScrollView(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: XColors.primary10,
+                      ),
+                      child: Column(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 20, horizontal: 15),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(10),
+                                  topRight: Radius.circular(10)),
+                              color: XColors.primary9,
+                            ),
+                            child: Row(
+                              children: [
+                                Text(
+                                  state.isEdit
+                                      ? "Chỉnh sửa"
+                                      : "Chi tiết cá thể",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 25),
+                                ),
+                                Spacer(),
+                                if (!state.isEdit) ButtonEditIndividual(),
+                                GapHelper.w4,
+                                ButtonRemoveIndividual(),
+                                GapHelper.w4,
+                                IconButton(
+                                    iconSize: 30,
+                                    onPressed: () => context
+                                        .read<DetailIndividualBloc>()
+                                        .onCloseButton(),
+                                    icon: Icon(
+                                      Icons.clear,
+                                      color: XColors.primary6,
+                                      size: 30,
+                                    )),
+                              ],
+                            ),
                           ),
-                      ],
+                          divider(),
+                          GapHelper.h12,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 30),
+                            child: Column(
+                              children: [
+                                if (size.width <= 1500 && size.width > 800)
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      sessionOneWidget1(),
+                                      GapHelper.w20,
+                                      sessionTwoWidget1(),
+                                    ],
+                                  )
+                                else if (size.width < 800)
+                                  Column(
+                                    children: [
+                                      sessionOneWidget(),
+                                      sessionTwoWidget(),
+                                      sessionThreeWidget(),
+                                    ],
+                                  )
+                                else
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      sessionOneWidget(),
+                                      GapHelper.w20,
+                                      sessionTwoWidget(),
+                                      GapHelper.w20,
+                                      sessionThreeWidget(),
+                                    ],
+                                  ),
+                              ],
+                            ),
+                          ),
+                          if (state.isEdit)
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                ButtonCancelEditIndividual(),
+                                GapHelper.w8,
+                                ButtonConfirmEditIndividual()
+                              ],
+                            ),
+                          GapHelper.h24,
+                        ],
+                      ),
                     ),
-                  ),
-                  if (state.isEdit)
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        ButtonCancelEditIndividual(),
-                        GapHelper.w8,
-                        ButtonConfirmEditIndividual()
-                      ],
-                    ),
-                  GapHelper.h24,
+                  )
                 ],
               ),
             ),

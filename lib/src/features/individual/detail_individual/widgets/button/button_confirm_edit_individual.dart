@@ -1,4 +1,3 @@
-
 import 'package:familytree/src/features/individual/detail_individual/logic/detail_individual_bloc.dart';
 import 'package:familytree/src/theme/colors.dart';
 import 'package:flutter/material.dart';

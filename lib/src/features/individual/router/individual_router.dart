@@ -10,7 +10,7 @@ import 'package:familytree/src/features/individual/router/individual_wrapper_rou
 class IndividualTabView {
   static const String list = 'list';
   static const String create = 'create';
-  static const String info = 'info';
+  static const String info = 'info/:individualId';
 }
 
 class IndividualCoordinator {
@@ -36,13 +36,13 @@ class IndividualCoordinator {
               path: IndividualTabView.create,
               page: CreateIndividualPage,
             ),
-            AutoRoute(
-              name: "DetailIndividualTab",
-              path: IndividualTabView.info,
-              page: DetailIndividualPage,
-            ),
             RedirectRoute(path: '*', redirectTo: ''),
           ]),
+      AutoRoute(
+        name: "DetailIndividualRoute",
+        path: IndividualTabView.info,
+        page: DetailIndividualPage,
+      ),
       RedirectRoute(path: '*', redirectTo: ''),
     ],
   );

@@ -1,12 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import 'package:familytree/src/features/individual/list_individual/logic/individual_bloc.dart';
 
 import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/area_model.dart';
 import 'package:familytree/src/network/model/info_more_model.dart';
 import 'package:familytree/src/network/model/origin_model.dart';
 import 'package:familytree/src/network/model/individual_model.dart';
+import 'package:familytree/src/router/app_router.gr.dart';
 
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:file_picker/file_picker.dart';
@@ -74,7 +75,7 @@ class DetailIndividualBloc extends Cubit<DetailIndividualState> {
     XToast.error("Không thể lấy dữ liệu");
 
     XToast.hideLoading();
-    context.read<IndividualBloc>().onCloseButton();
+    onCloseButton();
   }
 
   void onCancelButton() {
@@ -142,13 +143,13 @@ class DetailIndividualBloc extends Cubit<DetailIndividualState> {
       emit(DetailIndividualState());
       XToast.success("Chỉnh sửa thành công");
       XToast.hideLoading();
-      context.read<IndividualBloc>().onCloseButton();
+      onCloseButton();
       return;
     }
     emit(DetailIndividualState());
     XToast.error("Chỉnh sửa thất bại");
     XToast.hideLoading();
-    context.read<IndividualBloc>().onCloseButton();
+    onCloseButton();
   }
 
   Future<void> deleteIndividual() async {
@@ -158,13 +159,20 @@ class DetailIndividualBloc extends Cubit<DetailIndividualState> {
       emit(DetailIndividualState());
       XToast.success("Xóa thành công");
       XToast.hideLoading();
-      context.read<IndividualBloc>().onCloseButton();
+      onCloseButton();
       return;
     }
     emit(DetailIndividualState());
     XToast.error("Xóa thất bại");
     XToast.hideLoading();
-    context.read<IndividualBloc>().onCloseButton();
+    onCloseButton();
+  }
+
+  void onCloseButton() {
+    context.router.canPop()
+        ? context.router.pop()
+        : context.router
+            .pushAndPopUntil(IndividualRoute(), predicate: (_) => false);
   }
 
   void onChangeEdit() {

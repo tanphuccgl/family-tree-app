@@ -21,12 +21,12 @@ import '../features/dashboard/pages/dashboard_page.dart' as _i2;
 import '../features/dashboard/router/dashboard_wrapper_router.dart' as _i1;
 import '../features/family_tree/pages/family_tree_page.dart' as _i3;
 import '../features/individual/create_individual/pages/create_individual_page.dart'
-    as _i10;
-import '../features/individual/detail_individual/pages/detail_individual_page.dart'
     as _i11;
+import '../features/individual/detail_individual/pages/detail_individual_page.dart'
+    as _i9;
 import '../features/individual/individual_page.dart' as _i8;
 import '../features/individual/list_individual/pages/list_individual_page.dart'
-    as _i9;
+    as _i10;
 import '../features/individual/router/individual_wrapper_router.dart' as _i4;
 import '../features/origin/wrapper_origin_page.dart' as _i7;
 
@@ -84,26 +84,29 @@ class XRouter extends _i12.RootStackRouter {
         child: const _i8.IndividualPage(),
       );
     },
+    DetailIndividualRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<DetailIndividualRouteArgs>(
+          orElse: () => DetailIndividualRouteArgs(
+              individualId: pathParams.getString('individualId')));
+      return _i12.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: _i9.DetailIndividualPage(
+          key: args.key,
+          individualId: args.individualId,
+        ),
+      );
+    },
     ListIndividualTab.name: (routeData) {
       return _i12.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i9.ListIndividualPage(),
+        child: const _i10.ListIndividualPage(),
       );
     },
     CreateIndividualTab.name: (routeData) {
       return _i12.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i10.CreateIndividualPage(),
-      );
-    },
-    DetailIndividualTab.name: (routeData) {
-      final args = routeData.argsAs<DetailIndividualTabArgs>();
-      return _i12.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: _i11.DetailIndividualPage(
-          key: args.key,
-          individualId: args.individualId,
-        ),
+        child: const _i11.CreateIndividualPage(),
       );
     },
   };
@@ -165,11 +168,6 @@ class XRouter extends _i12.RootStackRouter {
                           parent: IndividualRoute.name,
                         ),
                         _i12.RouteConfig(
-                          DetailIndividualTab.name,
-                          path: 'info',
-                          parent: IndividualRoute.name,
-                        ),
-                        _i12.RouteConfig(
                           '*#redirect',
                           path: '*',
                           parent: IndividualRoute.name,
@@ -177,6 +175,11 @@ class XRouter extends _i12.RootStackRouter {
                           fullMatch: true,
                         ),
                       ],
+                    ),
+                    _i12.RouteConfig(
+                      DetailIndividualRoute.name,
+                      path: 'info/:individualId',
+                      parent: IndividualWrapperRoute.name,
                     ),
                     _i12.RouteConfig(
                       '*#redirect',
@@ -330,7 +333,43 @@ class IndividualRoute extends _i12.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i9.ListIndividualPage]
+/// [_i9.DetailIndividualPage]
+class DetailIndividualRoute
+    extends _i12.PageRouteInfo<DetailIndividualRouteArgs> {
+  DetailIndividualRoute({
+    _i14.Key? key,
+    required String individualId,
+  }) : super(
+          DetailIndividualRoute.name,
+          path: 'info/:individualId',
+          args: DetailIndividualRouteArgs(
+            key: key,
+            individualId: individualId,
+          ),
+          rawPathParams: {'individualId': individualId},
+        );
+
+  static const String name = 'DetailIndividualRoute';
+}
+
+class DetailIndividualRouteArgs {
+  const DetailIndividualRouteArgs({
+    this.key,
+    required this.individualId,
+  });
+
+  final _i14.Key? key;
+
+  final String individualId;
+
+  @override
+  String toString() {
+    return 'DetailIndividualRouteArgs{key: $key, individualId: $individualId}';
+  }
+}
+
+/// generated route for
+/// [_i10.ListIndividualPage]
 class ListIndividualTab extends _i12.PageRouteInfo<void> {
   const ListIndividualTab()
       : super(
@@ -342,7 +381,7 @@ class ListIndividualTab extends _i12.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i10.CreateIndividualPage]
+/// [_i11.CreateIndividualPage]
 class CreateIndividualTab extends _i12.PageRouteInfo<void> {
   const CreateIndividualTab()
       : super(
@@ -351,38 +390,4 @@ class CreateIndividualTab extends _i12.PageRouteInfo<void> {
         );
 
   static const String name = 'CreateIndividualTab';
-}
-
-/// generated route for
-/// [_i11.DetailIndividualPage]
-class DetailIndividualTab extends _i12.PageRouteInfo<DetailIndividualTabArgs> {
-  DetailIndividualTab({
-    _i14.Key? key,
-    required String individualId,
-  }) : super(
-          DetailIndividualTab.name,
-          path: 'info',
-          args: DetailIndividualTabArgs(
-            key: key,
-            individualId: individualId,
-          ),
-        );
-
-  static const String name = 'DetailIndividualTab';
-}
-
-class DetailIndividualTabArgs {
-  const DetailIndividualTabArgs({
-    this.key,
-    required this.individualId,
-  });
-
-  final _i14.Key? key;
-
-  final String individualId;
-
-  @override
-  String toString() {
-    return 'DetailIndividualTabArgs{key: $key, individualId: $individualId}';
-  }
 }

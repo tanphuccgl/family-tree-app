@@ -1,4 +1,3 @@
-
 import 'package:familytree/src/network/model/area_model.dart';
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';

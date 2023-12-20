@@ -25,7 +25,7 @@ class ItemIndividual extends StatelessWidget {
             GestureDetector(
               onTap: () => context
                   .read<IndividualBloc>()
-                  .onShowDetailIndividual(data.id),
+                  .onShowDetailIndividual(context, data.id),
               child: Container(
                 width: double.infinity,
                 height: 70,
