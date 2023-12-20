@@ -10,8 +10,6 @@ class TreeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return BlocBuilder<FamilyTreeBloc, FamilyTreeState>(
       builder: (context, state) {
         final graph = context.read<FamilyTreeBloc>().graph;
@@ -20,30 +18,25 @@ class TreeWidget extends StatelessWidget {
           return Center(child: Text("Không có dữ liệu"));
         }
 
-        return Padding(
-          padding: EdgeInsets.symmetric(vertical: 10),
-          child: SizedBox(
-            width: size.width,
-            child: Align(
-              alignment: Alignment.center,
-              child: FittedBox(
-                child: Center(
-                  child: GraphView(
-                    graph: graph,
-                    algorithm: BuchheimWalkerAlgorithm(
-                        builder, TreeEdgeRenderer(builder)),
-                    paint: Paint()
-                      ..color = Colors.white
-                      ..strokeWidth = 1
-                      ..style = PaintingStyle.stroke,
-                    builder: (Node node) {
-                      var value = node.key?.value as IndividualModel;
+        return Expanded(
+          child: InteractiveViewer(
+            constrained: false,
+            minScale: 0.1,
+            maxScale: 5.0,
+            boundaryMargin: const EdgeInsets.all(double.infinity),
+            child: GraphView(
+              graph: graph,
+              algorithm:
+                  BuchheimWalkerAlgorithm(builder, TreeEdgeRenderer(builder)),
+              paint: Paint()
+                ..color = Colors.white
+                ..strokeWidth = 1
+                ..style = PaintingStyle.stroke,
+              builder: (Node node) {
+                var value = node.key?.value as IndividualModel;
 
-                      return ItemElementWidget(data: value);
-                    },
-                  ),
-                ),
-              ),
+                return ItemElementWidget(data: value);
+              },
             ),
           ),
         );
