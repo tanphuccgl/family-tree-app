@@ -15,6 +15,7 @@ class IndividualPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter.tabBar(
+      physics: NeverScrollableScrollPhysics(),
       routes: [
         ListIndividualTab(),
         CreateIndividualTab(),
