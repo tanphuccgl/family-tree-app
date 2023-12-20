@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:equatable/equatable.dart';
-import 'package:familytree/src/features/origin/list_origin/logic/origin_bloc.dart';
+
 import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/origin_model.dart';
+import 'package:familytree/src/router/app_router.gr.dart';
 
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:flutter/material.dart';
@@ -78,13 +80,13 @@ class DetailOriginBloc extends Cubit<DetailOriginState> {
       emit(DetailOriginState());
       XToast.success("Chỉnh sửa thành công");
       XToast.hideLoading();
-      context.read<OriginBloc>().onCloseButton();
+      onCloseButton();
       return;
     }
     emit(DetailOriginState());
     XToast.error("Chỉnh sửa thất bại");
     XToast.hideLoading();
-    context.read<OriginBloc>().onCloseButton();
+    onCloseButton();
   }
 
   Future<void> deleteOrigin() async {
@@ -94,18 +96,25 @@ class DetailOriginBloc extends Cubit<DetailOriginState> {
       emit(DetailOriginState());
       XToast.success("Xóa thành công");
       XToast.hideLoading();
-      context.read<OriginBloc>().onCloseButton();
+      onCloseButton();
 
       return;
     }
     emit(DetailOriginState());
     XToast.error("Xóa thất bại");
     XToast.hideLoading();
-    context.read<OriginBloc>().onCloseButton();
+    onCloseButton();
   }
 
   void onChangeEdit() {
     emit(state.copyWith(isEdit: true));
+  }
+
+  void onCloseButton() {
+    context.router.canPop()
+        ? context.router.pop()
+        : context.router
+            .pushAndPopUntil(OriginRoute(), predicate: (_) => false);
   }
 
   @override

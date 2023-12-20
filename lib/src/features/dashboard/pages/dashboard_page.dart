@@ -24,7 +24,7 @@ class DashboardPage extends StatelessWidget {
         IndividualWrapperRoute(),
         WrapperCopulatePageView(),
         WrapperAreaPageView(),
-        WrapperOriginPageView(),
+        OriginWrapperRoute(),
       ],
       builder: (context, child, _) {
         final tabsRouter = AutoTabsRouter.of(context);

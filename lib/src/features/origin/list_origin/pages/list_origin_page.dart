@@ -8,8 +8,8 @@ import 'package:familytree/src/utils/helper/gap.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class TabViewListOrigin extends StatelessWidget {
-  const TabViewListOrigin({super.key});
+class ListOriginPage extends StatelessWidget {
+  const ListOriginPage({super.key});
 
   @override
   Widget build(BuildContext context) {

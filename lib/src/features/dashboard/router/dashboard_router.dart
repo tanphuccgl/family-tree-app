@@ -5,7 +5,8 @@ import 'package:familytree/src/features/dashboard/pages/dashboard_page.dart';
 import 'package:familytree/src/features/dashboard/router/dashboard_wrapper_router.dart';
 import 'package:familytree/src/features/family_tree/pages/family_tree_page.dart';
 import 'package:familytree/src/features/individual/router/individual_router.dart';
-import 'package:familytree/src/features/origin/wrapper_origin_page.dart';
+
+import 'package:familytree/src/features/origin/router/origin_router.dart';
 import 'package:familytree/src/router/router_name.dart';
 
 class DashboardPageView {
@@ -44,11 +45,7 @@ class DashboardCoordinator {
               path: DashboardPageView.area,
               page: WrapperAreaPage,
             ),
-            AutoRoute(
-              name: "WrapperOriginPageView",
-              path: DashboardPageView.origin,
-              page: WrapperOriginPage,
-            ),
+            OriginCoordinator.autoRoute,
             RedirectRoute(path: '*', redirectTo: ''),
           ]),
       RedirectRoute(path: '*', redirectTo: ''),

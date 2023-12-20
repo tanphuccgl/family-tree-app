@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:equatable/equatable.dart';
 
 import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/origin_model.dart';
+import 'package:familytree/src/router/app_router.gr.dart';
 
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:flutter/material.dart';
@@ -48,12 +50,8 @@ class OriginBloc extends Cubit<OriginState> {
     getAllOrigin();
   }
 
-  void onShowDetailOrigin(String id) async {
-    emit(state.copyWith(detailOriginSelectedId: id));
-  }
-
-  void onCloseButton() {
-    emit(state.copyWith(detailOriginSelectedId: ""));
+  void onShowDetailOrigin(BuildContext context, String originId) {
+    context.router.push(DetailOriginRoute(originId: originId));
   }
 
   void onCheckBoxAll(bool value) {
