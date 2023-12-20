@@ -23,7 +23,7 @@ class DashboardPage extends StatelessWidget {
         TreeViewPageView(),
         IndividualWrapperRoute(),
         WrapperCopulatePageView(),
-        WrapperAreaPageView(),
+        AreaWrapperRoute(),
         OriginWrapperRoute(),
       ],
       builder: (context, child, _) {

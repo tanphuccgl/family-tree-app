@@ -8,8 +8,8 @@ import 'package:familytree/src/utils/helper/gap.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class TabViewListArea extends StatelessWidget {
-  const TabViewListArea({super.key});
+class ListAreaPage extends StatelessWidget {
+  const ListAreaPage({super.key});
 
   @override
   Widget build(BuildContext context) {

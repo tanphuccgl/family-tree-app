@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:familytree/src/features/area/wrapper_area_page.dart';
+import 'package:familytree/src/features/area/router/area_router.dart';
 import 'package:familytree/src/features/copulate/pages/wrapper_copulate_page.dart';
 import 'package:familytree/src/features/dashboard/pages/dashboard_page.dart';
 import 'package:familytree/src/features/dashboard/router/dashboard_wrapper_router.dart';
@@ -40,11 +40,7 @@ class DashboardCoordinator {
               path: DashboardPageView.copulate,
               page: WrapperCopulatePage,
             ),
-            AutoRoute(
-              name: "WrapperAreaPageView",
-              path: DashboardPageView.area,
-              page: WrapperAreaPage,
-            ),
+            AreaCoordinator.autoRoute,
             OriginCoordinator.autoRoute,
             RedirectRoute(path: '*', redirectTo: ''),
           ]),
