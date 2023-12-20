@@ -6,37 +6,34 @@ import 'package:familytree/src/network/model/info_more_model.dart';
 import 'package:familytree/src/network/model/origin_model.dart';
 import 'package:familytree/src/network/model/individual_model.dart';
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../../logic/create_individual_bloc.dart';
+import '../../../create_individual/logic/create_individual_bloc.dart';
 
-part 'create_individual_default_state.dart';
+part 'create_individual_f0_root_state.dart';
 
-class CreateIndividualDefaultBloc extends Cubit<CreateIndividualDefaultState> {
+class CreateIndividualF0RootBloc extends Cubit<CreateIndividualF0RootState> {
   final BuildContext context;
   final AreaModel area;
-  final GenerationEnum type;
 
-  CreateIndividualDefaultBloc(
+  CreateIndividualF0RootBloc(
     this.context, {
-    required this.type,
     required this.area,
-  }) : super(CreateIndividualDefaultState.ds()) {
+  }) : super(CreateIndividualF0RootState.ds()) {
     init();
   }
 
   Domain get domain => GetIt.I<Domain>();
 
   void init() {
-    emit(state.copyWith(area: area, type: type));
-    _getListParentSuggest();
+    emit(state.copyWith(area: area));
     _getListOriginSuggest();
   }
 
@@ -70,21 +67,15 @@ class CreateIndividualDefaultBloc extends Cubit<CreateIndividualDefaultState> {
       return;
     }
 
-    if (state.isFamilyCodeExist) {
-      XToast.error("Mã đã tồn tại");
-      return;
-    }
-
     XToast.showLoading();
 
-    final product = IndividualModel(
-      isMale: state.isMale,
+    final model = IndividualModel(
       name: state.name,
       id: state.familyCode,
-      type: type,
+      type: GenerationEnum.f0,
       area: area,
-      fatherId: state.fatherSelected?.id ?? "",
-      motherId: state.motherSelected?.id ?? "",
+      isMale: true,
+      origin: state.origin,
       updateAt: Timestamp.now(),
       createAt: Timestamp.now(),
       age: int.tryParse(state.age) ?? 0,
@@ -98,18 +89,17 @@ class CreateIndividualDefaultBloc extends Cubit<CreateIndividualDefaultState> {
       style: state.style,
       videoLink: state.video,
       weight: double.tryParse(state.weight) ?? 0,
-      origin: state.origin,
     );
 
-    final result = await domain.individual.createIndividual(product);
+    final result = await domain.individual.createIndividual(model);
     if (result.isSuccess) {
-      emit(CreateIndividualDefaultState.ds());
+      emit(CreateIndividualF0RootState.ds());
       XToast.success("Tạo mới cá thể thành công");
       XToast.hideLoading();
       context.read<CreateIndividualBloc>().replaceCreatePage();
       return;
     }
-    emit(CreateIndividualDefaultState.ds());
+    emit(CreateIndividualF0RootState.ds());
     XToast.error("Tạo cá thể thất bại");
     XToast.hideLoading();
     context.read<CreateIndividualBloc>().replaceCreatePage();
@@ -235,6 +225,18 @@ class CreateIndividualDefaultBloc extends Cubit<CreateIndividualDefaultState> {
     }
   }
 
+  void onChangedName(String value) {
+    emit(state.copyWith(name: value));
+  }
+
+  void onChangedFamilyCode(String value) {
+    emit(state.copyWith(familyCode: value));
+  }
+
+  void onChangedOrigin(OriginModel value) {
+    emit(state.copyWith(origin: value));
+  }
+
   void onChangedAge(String value) {
     emit(state.copyWith(age: value));
   }
@@ -276,82 +278,6 @@ class CreateIndividualDefaultBloc extends Cubit<CreateIndividualDefaultState> {
     Clipboard.setData(ClipboardData(text: state.video));
 
     XToast.show("Sao chép");
-  }
-
-  void _getListParentSuggest() async {
-    GenerationEnum? typeQuery;
-
-    switch (type) {
-      case GenerationEnum.f0:
-        break;
-      case GenerationEnum.f1:
-        typeQuery = GenerationEnum.f0;
-        break;
-      case GenerationEnum.f2:
-        typeQuery = GenerationEnum.f1;
-        break;
-      case GenerationEnum.f3:
-        typeQuery = GenerationEnum.f2;
-        break;
-    }
-    if (typeQuery == null) {
-      return;
-    }
-
-    final result = await domain.individual.getIndividualWithType(typeQuery);
-    if (result.isSuccess) {
-      final listParent = result.data!
-          .where((e) => e.isMale == true && e.listCopulateId.isNotEmpty)
-          .toList();
-      emit(state.copyWith(listFatherSuggest: [...listParent]));
-    }
-  }
-
-  void _checkIdExist() async {
-    final result = await domain.individual.getIndividual(state.familyCode);
-    if (result.isSuccess) {
-      emit(state.copyWith(isFamilyCodeExist: true));
-      return;
-    }
-    emit(state.copyWith(isFamilyCodeExist: false));
-  }
-
-  void onChangedName(String value) {
-    emit(state.copyWith(name: value));
-  }
-
-  void onChangedFamilyCode(String value) {
-    emit(state.copyWith(familyCode: value));
-    _checkIdExist();
-  }
-
-  void onChangedSex(bool value) {
-    emit(state.copyWith(isMale: value));
-  }
-
-  void onChangedOrigin(OriginModel value) {
-    emit(state.copyWith(origin: value));
-  }
-
-  void onChangedMother(IndividualModel value) {
-    emit(state.copyWith(motherSelected: value));
-  }
-
-  void onChangedFather(IndividualModel value) async {
-    emit(state.copyWith(fatherSelected: value));
-
-    final list = await Future.wait(value.listCopulateId.map((item) async {
-      final result = await _getIndividual(item);
-      return result;
-    }));
-
-    emit(state.copyWith(
-        listMotherSuggest: list.whereType<IndividualModel>().toList()));
-  }
-
-  Future<IndividualModel?> _getIndividual(String id) async {
-    final result = await domain.individual.getIndividual(id);
-    return result.isSuccess ? result.data! : null;
   }
 
   @override

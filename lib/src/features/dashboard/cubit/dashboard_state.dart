@@ -4,10 +4,8 @@ part of 'dashboard_bloc.dart';
 class DashboardState extends Equatable {
   final bool isExpandedDrawer;
 
-
   const DashboardState({
     this.isExpandedDrawer = true,
-
   });
 
   @override

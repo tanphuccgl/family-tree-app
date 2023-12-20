@@ -1,12 +1,14 @@
-import 'package:familytree/src/features/individual/create_individual/sub_create_individual/create_individual_f0_female/logic/create_individual_f0_female_bloc.dart';
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
 import 'package:familytree/widgets/froms/input.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class StyleF0FemaleWidget extends StatelessWidget {
-  const StyleF0FemaleWidget({super.key});
+import '../logic/create_individual_f0_female_bloc.dart';
+
+class PriceF0FemaleWidget extends StatelessWidget {
+  const PriceF0FemaleWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class StyleF0FemaleWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Phong cách",
+              "Giá",
               style: TextStyle(
                   color: XColors.primary5,
                   fontSize: 20,
@@ -28,10 +30,14 @@ class StyleF0FemaleWidget extends StatelessWidget {
               width: 300,
               height: 80,
               child: XInput(
-                  value: state.style,
+                  value: state.price,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                  ],
+                  keyboardType: TextInputType.number,
                   onChanged: (value) => context
                       .read<CreateIndividualF0FemaleBloc>()
-                      .onChangedStyle(value)),
+                      .onChangedPrice(value)),
             ),
           ],
         );

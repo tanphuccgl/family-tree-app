@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:equatable/equatable.dart';
 
 import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/individual_model.dart';
+import 'package:familytree/src/router/app_router.gr.dart';
 
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:flutter/material.dart';
@@ -97,12 +99,8 @@ class IndividualBloc extends Cubit<IndividualState> {
     getAllIndividual();
   }
 
-  void onShowDetailIndividual(String id) async {
-    emit(state.copyWith(detailIndividualSelectedId: id));
-  }
-
-  void onCloseButton() {
-    emit(state.copyWith(detailIndividualSelectedId: ""));
+  void onShowDetailIndividual(BuildContext context, String individualId) {
+    context.router.push(DetailIndividualRoute(individualId: individualId));
   }
 
   void onCheckBoxAll(bool value) {

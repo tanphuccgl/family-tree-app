@@ -1,10 +1,11 @@
-import 'package:familytree/src/features/individual/create_individual/sub_create_individual/create_individual_f0_root/logic/create_individual_f0_root_bloc.dart';
 import 'package:familytree/src/theme/colors.dart';
 
 import 'package:familytree/src/utils/helper/gap.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../logic/create_individual_f0_root_bloc.dart';
 
 class ImageF0RootWidget extends StatelessWidget {
   const ImageF0RootWidget({super.key});

@@ -6,7 +6,6 @@ import 'package:familytree/src/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'detail_individual/pages/detail_individual_page.dart';
 import 'list_individual/logic/individual_bloc.dart';
 
 class IndividualPage extends StatelessWidget {
@@ -25,30 +24,6 @@ class IndividualPage extends StatelessWidget {
           create: (context) => IndividualBloc(context),
           child: BlocBuilder<IndividualBloc, IndividualState>(
             builder: (context, state) {
-              if (state.detailIndividualSelectedId.isNotEmpty) {
-                return Scaffold(
-                  backgroundColor: XColors.primary8,
-                  body: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-                    child: ListView(
-                      shrinkWrap: true,
-                      children: [
-                        Text(
-                          "Cá thể",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 30),
-                        ),
-                        SizedBox(height: 40),
-                        DetailIndividualPage(
-                            individualId: state.detailIndividualSelectedId)
-                      ],
-                    ),
-                  ),
-                );
-              }
-
               return Scaffold(
                 backgroundColor: XColors.primary8,
                 body: Padding(
