@@ -20,14 +20,13 @@ import '../features/copulate/pages/wrapper_copulate_page.dart' as _i5;
 import '../features/dashboard/pages/dashboard_page.dart' as _i2;
 import '../features/dashboard/router/dashboard_wrapper_router.dart' as _i1;
 import '../features/family_tree/pages/family_tree_page.dart' as _i3;
-import '../features/individual/list_individual/create_individual/pages/create_individual_page.dart'
+import '../features/individual/create_individual/pages/create_individual_page.dart'
     as _i10;
-import '../features/individual/list_individual/detail_individual/pages/detail_individual_page.dart'
+import '../features/individual/detail_individual/pages/detail_individual_page.dart'
     as _i11;
-import '../features/individual/list_individual/list_individual/pages/list_individual_page.dart'
+import '../features/individual/individual_page.dart' as _i8;
+import '../features/individual/list_individual/pages/list_individual_page.dart'
     as _i9;
-import '../features/individual/list_individual/individual_page.dart'
-    as _i8;
 import '../features/individual/router/individual_wrapper_router.dart' as _i4;
 import '../features/origin/wrapper_origin_page.dart' as _i7;
 

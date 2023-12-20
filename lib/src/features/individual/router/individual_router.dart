@@ -1,9 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:familytree/src/features/dashboard/router/dashboard_router.dart';
-import 'package:familytree/src/features/individual/list_individual/create_individual/pages/create_individual_page.dart';
-import 'package:familytree/src/features/individual/list_individual/detail_individual/pages/detail_individual_page.dart';
-import 'package:familytree/src/features/individual/list_individual/list_individual/pages/list_individual_page.dart';
-import 'package:familytree/src/features/individual/list_individual/individual_page.dart';
+import 'package:familytree/src/features/individual/create_individual/pages/create_individual_page.dart';
+import 'package:familytree/src/features/individual/detail_individual/pages/detail_individual_page.dart';
+
+import 'package:familytree/src/features/individual/individual_page.dart';
+import 'package:familytree/src/features/individual/list_individual/pages/list_individual_page.dart';
 import 'package:familytree/src/features/individual/router/individual_wrapper_router.dart';
 
 class IndividualTabView {
