@@ -13,7 +13,9 @@ class ItemDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<DashboardBloc, DashboardState>(
       builder: (context, state) {
-        final isSelected = state.currentIndex == data.index;
+        final currentIndex =
+            context.read<DashboardBloc>().tabsRouter.activeIndex;
+        final isSelected = currentIndex == data.index;
         if (!state.isExpandedDrawer) {
           return GestureDetector(
             onTap: () => context.read<DashboardBloc>().changePage(data.index),
