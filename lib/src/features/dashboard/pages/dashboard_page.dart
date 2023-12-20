@@ -20,7 +20,7 @@ class DashboardPage extends StatelessWidget {
     return AutoTabsRouter.pageView(
       routes: [
         TreeViewPageView(),
-        WrapperIndividualPageView(),
+        IndividualWrapperRoute(),
         WrapperCopulatePageView(),
         WrapperAreaPageView(),
         WrapperOriginPageView(),

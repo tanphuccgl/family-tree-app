@@ -28,9 +28,9 @@ import 'package:familytree/src/utils/helper/gap.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class DetailIndividual extends StatelessWidget {
+class DetailIndividualPage extends StatelessWidget {
   final String individualId;
-  const DetailIndividual({super.key, required this.individualId});
+  const DetailIndividualPage({super.key, required this.individualId});
 
   @override
   Widget build(BuildContext context) {

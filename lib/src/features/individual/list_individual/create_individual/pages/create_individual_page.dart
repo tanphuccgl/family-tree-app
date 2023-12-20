@@ -13,8 +13,8 @@ import 'package:familytree/src/utils/helper/gap.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class TabViewCreateIndividual extends StatelessWidget {
-  const TabViewCreateIndividual({super.key});
+class CreateIndividualPage extends StatelessWidget {
+  const CreateIndividualPage({super.key});
 
   @override
   Widget build(BuildContext context) {

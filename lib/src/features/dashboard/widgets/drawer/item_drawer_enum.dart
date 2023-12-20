@@ -1,14 +1,5 @@
 import 'package:familytree/src/config/constants/images.dart';
 
-import 'package:familytree/src/features/area/wrapper_area_page.dart';
-import 'package:familytree/src/features/copulate/pages/wrapper_copulate_page.dart';
-
-import 'package:familytree/src/features/family_tree/pages/family_tree_page.dart';
-import 'package:familytree/src/features/individual/list_individual/wrapper_individual_page.dart';
-import 'package:familytree/src/features/origin/wrapper_origin_page.dart';
-
-import 'package:flutter/material.dart';
-
 enum ItemDrawerEnum {
   tree,
   list,
@@ -43,21 +34,6 @@ enum ItemDrawerEnum {
         return XImage.copulate;
       case origin:
         return XImage.origin;
-    }
-  }
-
-  Widget get pages {
-    switch (this) {
-      case copulate:
-        return WrapperCopulatePage();
-      case tree:
-        return TreeViewPage();
-      case list:
-        return WrapperIndividualPage();
-      case area:
-        return WrapperAreaPage();
-      case origin:
-        return WrapperOriginPage();
     }
   }
 }
