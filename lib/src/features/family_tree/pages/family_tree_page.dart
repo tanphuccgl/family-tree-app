@@ -17,6 +17,27 @@ class TreeViewPage extends StatelessWidget {
       create: (context) => FamilyTreeBloc(),
       child: BlocBuilder<FamilyTreeBloc, FamilyTreeState>(
           builder: (context, state) {
+        if (state.currnentArea != null && state.isShowSelectArea == false) {
+          return Scaffold(
+            backgroundColor: XColors.primary8,
+            body: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+              child: Column(
+                children: [
+                  Text(
+                    "Family tree",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30),
+                  ),
+                  SizedBox(height: 40),
+                  TreeWidget()
+                ],
+              ),
+            ),
+          );
+        }
         return Scaffold(
           backgroundColor: XColors.primary8,
           body: Padding(
@@ -40,9 +61,6 @@ class TreeViewPage extends StatelessWidget {
                       if (state.currnentArea != null) ButtonNextToFamilyTree(),
                     ],
                   )
-                else if (state.currnentArea != null &&
-                    state.isShowSelectArea == false)
-                  TreeWidget()
                 else
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 30),
