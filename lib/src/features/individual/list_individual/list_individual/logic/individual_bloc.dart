@@ -12,6 +12,7 @@ part 'individual_state.dart';
 
 class IndividualBloc extends Cubit<IndividualState> {
   final BuildContext context;
+
   IndividualBloc(this.context) : super(IndividualState()) {
     init();
   }

@@ -10,8 +10,8 @@ import 'package:familytree/widgets/froms/input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class TabViewListIndividual extends StatelessWidget {
-  const TabViewListIndividual({super.key});
+class ListIndividualPage extends StatelessWidget {
+  const ListIndividualPage({super.key});
 
   @override
   Widget build(BuildContext context) {

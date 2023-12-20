@@ -4,7 +4,7 @@ import 'package:familytree/src/features/copulate/pages/wrapper_copulate_page.dar
 import 'package:familytree/src/features/dashboard/pages/dashboard_page.dart';
 import 'package:familytree/src/features/dashboard/router/dashboard_wrapper_router.dart';
 import 'package:familytree/src/features/family_tree/pages/family_tree_page.dart';
-import 'package:familytree/src/features/individual/list_individual/wrapper_individual_page.dart';
+import 'package:familytree/src/features/individual/router/individual_router.dart';
 import 'package:familytree/src/features/origin/wrapper_origin_page.dart';
 import 'package:familytree/src/router/router_name.dart';
 
@@ -33,12 +33,7 @@ class DashboardCoordinator {
               path: DashboardPageView.tree,
               page: TreeViewPage,
             ),
-            AutoRoute(
-              name: "WrapperIndividualPageView",
-              path: DashboardPageView.individual,
-              page: WrapperIndividualPage,
-              initial: true,
-            ),
+            IndividualCoordinator.autoRoute,
             AutoRoute(
               name: "WrapperCopulatePageView",
               path: DashboardPageView.copulate,
