@@ -25,9 +25,9 @@ import 'package:familytree/src/features/individual/detail_individual/widgets/wei
 
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
+import 'package:familytree/src/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 
 class DetailIndividualPage extends StatelessWidget {
   final String individualId;
@@ -39,7 +39,6 @@ class DetailIndividualPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final isMobile = ResponsiveBreakpoints.of(context).isMobile;
 
     return BlocProvider(
       create: (context) => DetailIndividualBloc(context, individualId),
@@ -82,7 +81,7 @@ class DetailIndividualPage extends StatelessWidget {
                                 Text(
                                   state.isEdit
                                       ? "Chỉnh sửa"
-                                      : isMobile
+                                      : Utils.isWebMobile
                                           ? "Chi tiết"
                                           : "Chi tiết cá thể",
                                   style: TextStyle(
