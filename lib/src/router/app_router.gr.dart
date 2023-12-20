@@ -11,85 +11,86 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i20;
-import 'package:flutter/cupertino.dart' as _i22;
-import 'package:flutter/material.dart' as _i21;
+import 'package:auto_route/auto_route.dart' as _i21;
+import 'package:flutter/cupertino.dart' as _i23;
+import 'package:flutter/material.dart' as _i22;
 
-import '../features/area/area_page.dart' as _i12;
-import '../features/area/create_area/pages/create_origin_page.dart' as _i15;
-import '../features/area/detail_area/pages/detail_area_page.dart' as _i13;
-import '../features/area/list_area/pages/list_area_page.dart' as _i14;
+import '../features/area/area_page.dart' as _i13;
+import '../features/area/create_area/pages/create_origin_page.dart' as _i16;
+import '../features/area/detail_area/pages/detail_area_page.dart' as _i14;
+import '../features/area/list_area/pages/list_area_page.dart' as _i15;
 import '../features/area/router/area_wrapper_router.dart' as _i6;
 import '../features/copulate/pages/wrapper_copulate_page.dart' as _i5;
 import '../features/dashboard/pages/dashboard_page.dart' as _i2;
 import '../features/dashboard/router/dashboard_wrapper_router.dart' as _i1;
-import '../features/family_tree/pages/family_tree_page.dart' as _i3;
+import '../features/family_tree/pages/family_tree_page.dart' as _i8;
+import '../features/family_tree/router/tree_wrapper_router.dart' as _i3;
 import '../features/individual/create_individual/pages/create_individual_page.dart'
-    as _i11;
+    as _i12;
 import '../features/individual/detail_individual/pages/detail_individual_page.dart'
     as _i9;
-import '../features/individual/individual_page.dart' as _i8;
+import '../features/individual/individual_page.dart' as _i10;
 import '../features/individual/list_individual/pages/list_individual_page.dart'
-    as _i10;
+    as _i11;
 import '../features/individual/router/individual_wrapper_router.dart' as _i4;
-import '../features/origin/create_origin/pages/create_origin_page.dart' as _i19;
-import '../features/origin/detail_origin/pages/detail_origin_page.dart' as _i17;
-import '../features/origin/list_origin/pages/list_origin_page.dart' as _i18;
-import '../features/origin/origin_page.dart' as _i16;
+import '../features/origin/create_origin/pages/create_origin_page.dart' as _i20;
+import '../features/origin/detail_origin/pages/detail_origin_page.dart' as _i18;
+import '../features/origin/list_origin/pages/list_origin_page.dart' as _i19;
+import '../features/origin/origin_page.dart' as _i17;
 import '../features/origin/router/origin_wrapper_router.dart' as _i7;
 
-class XRouter extends _i20.RootStackRouter {
-  XRouter([_i21.GlobalKey<_i21.NavigatorState>? navigatorKey])
+class XRouter extends _i21.RootStackRouter {
+  XRouter([_i22.GlobalKey<_i22.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i20.PageFactory> pagesMap = {
+  final Map<String, _i21.PageFactory> pagesMap = {
     DashboardWrapperRoute.name: (routeData) {
-      return _i20.MaterialPageX<dynamic>(
+      return _i21.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i1.DashboardWrapperPage(),
       );
     },
     DashboardRoute.name: (routeData) {
-      return _i20.MaterialPageX<dynamic>(
+      return _i21.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i2.DashboardPage(),
       );
     },
-    TreeViewPageView.name: (routeData) {
-      return _i20.MaterialPageX<dynamic>(
+    TreeWrapperRoute.name: (routeData) {
+      return _i21.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i3.TreeViewPage(),
+        child: const _i3.TreeWrapperPage(),
       );
     },
     IndividualWrapperRoute.name: (routeData) {
-      return _i20.MaterialPageX<dynamic>(
+      return _i21.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i4.IndividualWrapperPage(),
       );
     },
     WrapperCopulatePageView.name: (routeData) {
-      return _i20.MaterialPageX<dynamic>(
+      return _i21.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i5.WrapperCopulatePage(),
       );
     },
     AreaWrapperRoute.name: (routeData) {
-      return _i20.MaterialPageX<dynamic>(
+      return _i21.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i6.AreaWrapperPage(),
       );
     },
     OriginWrapperRoute.name: (routeData) {
-      return _i20.MaterialPageX<dynamic>(
+      return _i21.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i7.OriginWrapperPage(),
       );
     },
-    IndividualRoute.name: (routeData) {
-      return _i20.MaterialPageX<dynamic>(
+    TreeViewRoute.name: (routeData) {
+      return _i21.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i8.IndividualPage(),
+        child: const _i8.TreeViewPage(),
       );
     },
     DetailIndividualRoute.name: (routeData) {
@@ -97,7 +98,7 @@ class XRouter extends _i20.RootStackRouter {
       final args = routeData.argsAs<DetailIndividualRouteArgs>(
           orElse: () => DetailIndividualRouteArgs(
               individualId: pathParams.getString('individualId')));
-      return _i20.MaterialPageX<dynamic>(
+      return _i21.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i9.DetailIndividualPage(
           key: args.key,
@@ -105,22 +106,28 @@ class XRouter extends _i20.RootStackRouter {
         ),
       );
     },
-    ListIndividualTab.name: (routeData) {
-      return _i20.MaterialPageX<dynamic>(
+    IndividualRoute.name: (routeData) {
+      return _i21.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i10.ListIndividualPage(),
+        child: const _i10.IndividualPage(),
+      );
+    },
+    ListIndividualTab.name: (routeData) {
+      return _i21.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i11.ListIndividualPage(),
       );
     },
     CreateIndividualTab.name: (routeData) {
-      return _i20.MaterialPageX<dynamic>(
+      return _i21.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i11.CreateIndividualPage(),
+        child: const _i12.CreateIndividualPage(),
       );
     },
     AreaRoute.name: (routeData) {
-      return _i20.MaterialPageX<dynamic>(
+      return _i21.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i12.AreaPage(),
+        child: const _i13.AreaPage(),
       );
     },
     DetailAreaRoute.name: (routeData) {
@@ -128,30 +135,30 @@ class XRouter extends _i20.RootStackRouter {
       final args = routeData.argsAs<DetailAreaRouteArgs>(
           orElse: () =>
               DetailAreaRouteArgs(areaId: pathParams.getString('areaId')));
-      return _i20.MaterialPageX<dynamic>(
+      return _i21.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i13.DetailAreaPage(
+        child: _i14.DetailAreaPage(
           key: args.key,
           areaId: args.areaId,
         ),
       );
     },
     ListAreaTab.name: (routeData) {
-      return _i20.MaterialPageX<dynamic>(
+      return _i21.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i14.ListAreaPage(),
+        child: const _i15.ListAreaPage(),
       );
     },
     CreateAreaTab.name: (routeData) {
-      return _i20.MaterialPageX<dynamic>(
+      return _i21.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i15.CreateAreaPage(),
+        child: const _i16.CreateAreaPage(),
       );
     },
     OriginRoute.name: (routeData) {
-      return _i20.MaterialPageX<dynamic>(
+      return _i21.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i16.OriginPage(),
+        child: const _i17.OriginPage(),
       );
     },
     DetailOriginRoute.name: (routeData) {
@@ -159,85 +166,104 @@ class XRouter extends _i20.RootStackRouter {
       final args = routeData.argsAs<DetailOriginRouteArgs>(
           orElse: () => DetailOriginRouteArgs(
               originId: pathParams.getString('originId')));
-      return _i20.MaterialPageX<dynamic>(
+      return _i21.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i17.DetailOriginPage(
+        child: _i18.DetailOriginPage(
           key: args.key,
           originId: args.originId,
         ),
       );
     },
     ListOriginTab.name: (routeData) {
-      return _i20.MaterialPageX<dynamic>(
+      return _i21.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i18.ListOriginPage(),
+        child: const _i19.ListOriginPage(),
       );
     },
     CreateOriginTab.name: (routeData) {
-      return _i20.MaterialPageX<dynamic>(
+      return _i21.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i19.CreateOriginPage(),
+        child: const _i20.CreateOriginPage(),
       );
     },
   };
 
   @override
-  List<_i20.RouteConfig> get routes => [
-        _i20.RouteConfig(
+  List<_i21.RouteConfig> get routes => [
+        _i21.RouteConfig(
           '/#redirect',
           path: '/',
           redirectTo: '/dashboard',
           fullMatch: true,
         ),
-        _i20.RouteConfig(
+        _i21.RouteConfig(
           DashboardWrapperRoute.name,
           path: '/dashboard',
           children: [
-            _i20.RouteConfig(
+            _i21.RouteConfig(
               DashboardRoute.name,
               path: '',
               parent: DashboardWrapperRoute.name,
               children: [
-                _i20.RouteConfig(
+                _i21.RouteConfig(
                   '#redirect',
                   path: '',
                   parent: DashboardRoute.name,
                   redirectTo: 'individual',
                   fullMatch: true,
                 ),
-                _i20.RouteConfig(
-                  TreeViewPageView.name,
+                _i21.RouteConfig(
+                  TreeWrapperRoute.name,
                   path: 'tree',
                   parent: DashboardRoute.name,
+                  children: [
+                    _i21.RouteConfig(
+                      TreeViewRoute.name,
+                      path: '',
+                      parent: TreeWrapperRoute.name,
+                    ),
+                    _i21.RouteConfig(
+                      DetailIndividualRoute.name,
+                      path: 'info/:individualId',
+                      parent: TreeWrapperRoute.name,
+                    ),
+                    _i21.RouteConfig(
+                      '*#redirect',
+                      path: '*',
+                      parent: TreeWrapperRoute.name,
+                      redirectTo: '',
+                      fullMatch: true,
+                    ),
+                  ],
                 ),
-                _i20.RouteConfig(
+                _i21.RouteConfig(
                   IndividualWrapperRoute.name,
                   path: 'individual',
                   parent: DashboardRoute.name,
                   children: [
-                    _i20.RouteConfig(
+                    _i21.RouteConfig(
                       IndividualRoute.name,
                       path: '',
                       parent: IndividualWrapperRoute.name,
                       children: [
-                        _i20.RouteConfig(
+                        _i21.RouteConfig(
                           '#redirect',
                           path: '',
                           parent: IndividualRoute.name,
                           redirectTo: 'list',
                           fullMatch: true,
                         ),
-                        _i20.RouteConfig(
+                        _i21.RouteConfig(
                           ListIndividualTab.name,
                           path: 'list',
                           parent: IndividualRoute.name,
                         ),
-                        _i20.RouteConfig(
+                        _i21.RouteConfig(
                           CreateIndividualTab.name,
                           path: 'create',
                           parent: IndividualRoute.name,
                         ),
-                        _i20.RouteConfig(
+                        _i21.RouteConfig(
                           '*#redirect',
                           path: '*',
                           parent: IndividualRoute.name,
@@ -246,12 +272,12 @@ class XRouter extends _i20.RootStackRouter {
                         ),
                       ],
                     ),
-                    _i20.RouteConfig(
+                    _i21.RouteConfig(
                       DetailIndividualRoute.name,
                       path: 'info/:individualId',
                       parent: IndividualWrapperRoute.name,
                     ),
-                    _i20.RouteConfig(
+                    _i21.RouteConfig(
                       '*#redirect',
                       path: '*',
                       parent: IndividualWrapperRoute.name,
@@ -260,39 +286,39 @@ class XRouter extends _i20.RootStackRouter {
                     ),
                   ],
                 ),
-                _i20.RouteConfig(
+                _i21.RouteConfig(
                   WrapperCopulatePageView.name,
                   path: 'copulate',
                   parent: DashboardRoute.name,
                 ),
-                _i20.RouteConfig(
+                _i21.RouteConfig(
                   AreaWrapperRoute.name,
                   path: 'area',
                   parent: DashboardRoute.name,
                   children: [
-                    _i20.RouteConfig(
+                    _i21.RouteConfig(
                       AreaRoute.name,
                       path: '',
                       parent: AreaWrapperRoute.name,
                       children: [
-                        _i20.RouteConfig(
+                        _i21.RouteConfig(
                           '#redirect',
                           path: '',
                           parent: AreaRoute.name,
                           redirectTo: 'list',
                           fullMatch: true,
                         ),
-                        _i20.RouteConfig(
+                        _i21.RouteConfig(
                           ListAreaTab.name,
                           path: 'list',
                           parent: AreaRoute.name,
                         ),
-                        _i20.RouteConfig(
+                        _i21.RouteConfig(
                           CreateAreaTab.name,
                           path: 'create',
                           parent: AreaRoute.name,
                         ),
-                        _i20.RouteConfig(
+                        _i21.RouteConfig(
                           '*#redirect',
                           path: '*',
                           parent: AreaRoute.name,
@@ -301,12 +327,12 @@ class XRouter extends _i20.RootStackRouter {
                         ),
                       ],
                     ),
-                    _i20.RouteConfig(
+                    _i21.RouteConfig(
                       DetailAreaRoute.name,
                       path: 'info/:areaId',
                       parent: AreaWrapperRoute.name,
                     ),
-                    _i20.RouteConfig(
+                    _i21.RouteConfig(
                       '*#redirect',
                       path: '*',
                       parent: AreaWrapperRoute.name,
@@ -315,34 +341,34 @@ class XRouter extends _i20.RootStackRouter {
                     ),
                   ],
                 ),
-                _i20.RouteConfig(
+                _i21.RouteConfig(
                   OriginWrapperRoute.name,
                   path: 'origin',
                   parent: DashboardRoute.name,
                   children: [
-                    _i20.RouteConfig(
+                    _i21.RouteConfig(
                       OriginRoute.name,
                       path: '',
                       parent: OriginWrapperRoute.name,
                       children: [
-                        _i20.RouteConfig(
+                        _i21.RouteConfig(
                           '#redirect',
                           path: '',
                           parent: OriginRoute.name,
                           redirectTo: 'list',
                           fullMatch: true,
                         ),
-                        _i20.RouteConfig(
+                        _i21.RouteConfig(
                           ListOriginTab.name,
                           path: 'list',
                           parent: OriginRoute.name,
                         ),
-                        _i20.RouteConfig(
+                        _i21.RouteConfig(
                           CreateOriginTab.name,
                           path: 'create',
                           parent: OriginRoute.name,
                         ),
-                        _i20.RouteConfig(
+                        _i21.RouteConfig(
                           '*#redirect',
                           path: '*',
                           parent: OriginRoute.name,
@@ -351,12 +377,12 @@ class XRouter extends _i20.RootStackRouter {
                         ),
                       ],
                     ),
-                    _i20.RouteConfig(
+                    _i21.RouteConfig(
                       DetailOriginRoute.name,
                       path: 'info/:originId',
                       parent: OriginWrapperRoute.name,
                     ),
-                    _i20.RouteConfig(
+                    _i21.RouteConfig(
                       '*#redirect',
                       path: '*',
                       parent: OriginWrapperRoute.name,
@@ -365,7 +391,7 @@ class XRouter extends _i20.RootStackRouter {
                     ),
                   ],
                 ),
-                _i20.RouteConfig(
+                _i21.RouteConfig(
                   '*#redirect',
                   path: '*',
                   parent: DashboardRoute.name,
@@ -374,7 +400,7 @@ class XRouter extends _i20.RootStackRouter {
                 ),
               ],
             ),
-            _i20.RouteConfig(
+            _i21.RouteConfig(
               '*#redirect',
               path: '*',
               parent: DashboardWrapperRoute.name,
@@ -383,7 +409,7 @@ class XRouter extends _i20.RootStackRouter {
             ),
           ],
         ),
-        _i20.RouteConfig(
+        _i21.RouteConfig(
           '*#redirect',
           path: '*',
           redirectTo: '',
@@ -394,8 +420,8 @@ class XRouter extends _i20.RootStackRouter {
 
 /// generated route for
 /// [_i1.DashboardWrapperPage]
-class DashboardWrapperRoute extends _i20.PageRouteInfo<void> {
-  const DashboardWrapperRoute({List<_i20.PageRouteInfo>? children})
+class DashboardWrapperRoute extends _i21.PageRouteInfo<void> {
+  const DashboardWrapperRoute({List<_i21.PageRouteInfo>? children})
       : super(
           DashboardWrapperRoute.name,
           path: '/dashboard',
@@ -407,8 +433,8 @@ class DashboardWrapperRoute extends _i20.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.DashboardPage]
-class DashboardRoute extends _i20.PageRouteInfo<void> {
-  const DashboardRoute({List<_i20.PageRouteInfo>? children})
+class DashboardRoute extends _i21.PageRouteInfo<void> {
+  const DashboardRoute({List<_i21.PageRouteInfo>? children})
       : super(
           DashboardRoute.name,
           path: '',
@@ -419,21 +445,22 @@ class DashboardRoute extends _i20.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.TreeViewPage]
-class TreeViewPageView extends _i20.PageRouteInfo<void> {
-  const TreeViewPageView()
+/// [_i3.TreeWrapperPage]
+class TreeWrapperRoute extends _i21.PageRouteInfo<void> {
+  const TreeWrapperRoute({List<_i21.PageRouteInfo>? children})
       : super(
-          TreeViewPageView.name,
+          TreeWrapperRoute.name,
           path: 'tree',
+          initialChildren: children,
         );
 
-  static const String name = 'TreeViewPageView';
+  static const String name = 'TreeWrapperRoute';
 }
 
 /// generated route for
 /// [_i4.IndividualWrapperPage]
-class IndividualWrapperRoute extends _i20.PageRouteInfo<void> {
-  const IndividualWrapperRoute({List<_i20.PageRouteInfo>? children})
+class IndividualWrapperRoute extends _i21.PageRouteInfo<void> {
+  const IndividualWrapperRoute({List<_i21.PageRouteInfo>? children})
       : super(
           IndividualWrapperRoute.name,
           path: 'individual',
@@ -445,7 +472,7 @@ class IndividualWrapperRoute extends _i20.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.WrapperCopulatePage]
-class WrapperCopulatePageView extends _i20.PageRouteInfo<void> {
+class WrapperCopulatePageView extends _i21.PageRouteInfo<void> {
   const WrapperCopulatePageView()
       : super(
           WrapperCopulatePageView.name,
@@ -457,8 +484,8 @@ class WrapperCopulatePageView extends _i20.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.AreaWrapperPage]
-class AreaWrapperRoute extends _i20.PageRouteInfo<void> {
-  const AreaWrapperRoute({List<_i20.PageRouteInfo>? children})
+class AreaWrapperRoute extends _i21.PageRouteInfo<void> {
+  const AreaWrapperRoute({List<_i21.PageRouteInfo>? children})
       : super(
           AreaWrapperRoute.name,
           path: 'area',
@@ -470,8 +497,8 @@ class AreaWrapperRoute extends _i20.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i7.OriginWrapperPage]
-class OriginWrapperRoute extends _i20.PageRouteInfo<void> {
-  const OriginWrapperRoute({List<_i20.PageRouteInfo>? children})
+class OriginWrapperRoute extends _i21.PageRouteInfo<void> {
+  const OriginWrapperRoute({List<_i21.PageRouteInfo>? children})
       : super(
           OriginWrapperRoute.name,
           path: 'origin',
@@ -482,24 +509,23 @@ class OriginWrapperRoute extends _i20.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i8.IndividualPage]
-class IndividualRoute extends _i20.PageRouteInfo<void> {
-  const IndividualRoute({List<_i20.PageRouteInfo>? children})
+/// [_i8.TreeViewPage]
+class TreeViewRoute extends _i21.PageRouteInfo<void> {
+  const TreeViewRoute()
       : super(
-          IndividualRoute.name,
+          TreeViewRoute.name,
           path: '',
-          initialChildren: children,
         );
 
-  static const String name = 'IndividualRoute';
+  static const String name = 'TreeViewRoute';
 }
 
 /// generated route for
 /// [_i9.DetailIndividualPage]
 class DetailIndividualRoute
-    extends _i20.PageRouteInfo<DetailIndividualRouteArgs> {
+    extends _i21.PageRouteInfo<DetailIndividualRouteArgs> {
   DetailIndividualRoute({
-    _i22.Key? key,
+    _i23.Key? key,
     required String individualId,
   }) : super(
           DetailIndividualRoute.name,
@@ -520,7 +546,7 @@ class DetailIndividualRouteArgs {
     required this.individualId,
   });
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
   final String individualId;
 
@@ -531,8 +557,21 @@ class DetailIndividualRouteArgs {
 }
 
 /// generated route for
-/// [_i10.ListIndividualPage]
-class ListIndividualTab extends _i20.PageRouteInfo<void> {
+/// [_i10.IndividualPage]
+class IndividualRoute extends _i21.PageRouteInfo<void> {
+  const IndividualRoute({List<_i21.PageRouteInfo>? children})
+      : super(
+          IndividualRoute.name,
+          path: '',
+          initialChildren: children,
+        );
+
+  static const String name = 'IndividualRoute';
+}
+
+/// generated route for
+/// [_i11.ListIndividualPage]
+class ListIndividualTab extends _i21.PageRouteInfo<void> {
   const ListIndividualTab()
       : super(
           ListIndividualTab.name,
@@ -543,8 +582,8 @@ class ListIndividualTab extends _i20.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i11.CreateIndividualPage]
-class CreateIndividualTab extends _i20.PageRouteInfo<void> {
+/// [_i12.CreateIndividualPage]
+class CreateIndividualTab extends _i21.PageRouteInfo<void> {
   const CreateIndividualTab()
       : super(
           CreateIndividualTab.name,
@@ -555,9 +594,9 @@ class CreateIndividualTab extends _i20.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i12.AreaPage]
-class AreaRoute extends _i20.PageRouteInfo<void> {
-  const AreaRoute({List<_i20.PageRouteInfo>? children})
+/// [_i13.AreaPage]
+class AreaRoute extends _i21.PageRouteInfo<void> {
+  const AreaRoute({List<_i21.PageRouteInfo>? children})
       : super(
           AreaRoute.name,
           path: '',
@@ -568,10 +607,10 @@ class AreaRoute extends _i20.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i13.DetailAreaPage]
-class DetailAreaRoute extends _i20.PageRouteInfo<DetailAreaRouteArgs> {
+/// [_i14.DetailAreaPage]
+class DetailAreaRoute extends _i21.PageRouteInfo<DetailAreaRouteArgs> {
   DetailAreaRoute({
-    _i22.Key? key,
+    _i23.Key? key,
     required String areaId,
   }) : super(
           DetailAreaRoute.name,
@@ -592,7 +631,7 @@ class DetailAreaRouteArgs {
     required this.areaId,
   });
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
   final String areaId;
 
@@ -603,8 +642,8 @@ class DetailAreaRouteArgs {
 }
 
 /// generated route for
-/// [_i14.ListAreaPage]
-class ListAreaTab extends _i20.PageRouteInfo<void> {
+/// [_i15.ListAreaPage]
+class ListAreaTab extends _i21.PageRouteInfo<void> {
   const ListAreaTab()
       : super(
           ListAreaTab.name,
@@ -615,8 +654,8 @@ class ListAreaTab extends _i20.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i15.CreateAreaPage]
-class CreateAreaTab extends _i20.PageRouteInfo<void> {
+/// [_i16.CreateAreaPage]
+class CreateAreaTab extends _i21.PageRouteInfo<void> {
   const CreateAreaTab()
       : super(
           CreateAreaTab.name,
@@ -627,9 +666,9 @@ class CreateAreaTab extends _i20.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i16.OriginPage]
-class OriginRoute extends _i20.PageRouteInfo<void> {
-  const OriginRoute({List<_i20.PageRouteInfo>? children})
+/// [_i17.OriginPage]
+class OriginRoute extends _i21.PageRouteInfo<void> {
+  const OriginRoute({List<_i21.PageRouteInfo>? children})
       : super(
           OriginRoute.name,
           path: '',
@@ -640,10 +679,10 @@ class OriginRoute extends _i20.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i17.DetailOriginPage]
-class DetailOriginRoute extends _i20.PageRouteInfo<DetailOriginRouteArgs> {
+/// [_i18.DetailOriginPage]
+class DetailOriginRoute extends _i21.PageRouteInfo<DetailOriginRouteArgs> {
   DetailOriginRoute({
-    _i22.Key? key,
+    _i23.Key? key,
     required String originId,
   }) : super(
           DetailOriginRoute.name,
@@ -664,7 +703,7 @@ class DetailOriginRouteArgs {
     required this.originId,
   });
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
   final String originId;
 
@@ -675,8 +714,8 @@ class DetailOriginRouteArgs {
 }
 
 /// generated route for
-/// [_i18.ListOriginPage]
-class ListOriginTab extends _i20.PageRouteInfo<void> {
+/// [_i19.ListOriginPage]
+class ListOriginTab extends _i21.PageRouteInfo<void> {
   const ListOriginTab()
       : super(
           ListOriginTab.name,
@@ -687,8 +726,8 @@ class ListOriginTab extends _i20.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i19.CreateOriginPage]
-class CreateOriginTab extends _i20.PageRouteInfo<void> {
+/// [_i20.CreateOriginPage]
+class CreateOriginTab extends _i21.PageRouteInfo<void> {
   const CreateOriginTab()
       : super(
           CreateOriginTab.name,
