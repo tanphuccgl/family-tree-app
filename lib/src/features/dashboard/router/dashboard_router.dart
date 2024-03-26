@@ -8,6 +8,7 @@ import 'package:familytree/src/features/family_tree/router/tree_router.dart';
 import 'package:familytree/src/features/individual/router/individual_router.dart';
 
 import 'package:familytree/src/features/origin/router/origin_router.dart';
+import 'package:familytree/src/features/table_female/router/table_female_router.dart';
 import 'package:familytree/src/router/router_name.dart';
 
 class DashboardPageView {
@@ -16,6 +17,7 @@ class DashboardPageView {
   static const String copulate = 'copulate';
   static const String area = 'area';
   static const String origin = 'origin';
+  static const String tableFemale = 'table-female';
 }
 
 class DashboardCoordinator {
@@ -39,6 +41,7 @@ class DashboardCoordinator {
             ),
             AreaCoordinator.autoRoute,
             OriginCoordinator.autoRoute,
+            TableFemaleCoordinator.autoRoute,
             RedirectRoute(path: '*', redirectTo: ''),
           ]),
       RedirectRoute(path: '*', redirectTo: ''),

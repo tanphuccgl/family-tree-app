@@ -5,7 +5,8 @@ enum ItemDrawerEnum {
   list,
   copulate,
   area,
-  origin;
+  origin,
+  female;
 
   String get title {
     switch (this) {
@@ -19,6 +20,8 @@ enum ItemDrawerEnum {
         return "Khu vực";
       case origin:
         return "Xuất xứ";
+      case female:
+        return "Lứa cái";
     }
   }
 
@@ -34,6 +37,8 @@ enum ItemDrawerEnum {
         return XImage.copulate;
       case origin:
         return XImage.origin;
+      case female:
+        return XImage.femenine;
     }
   }
 }

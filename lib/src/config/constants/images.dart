@@ -4,4 +4,5 @@ class XImage {
   static const String area = "assets/network.png";
   static const String origin = "assets/identities.png";
   static const String copulate = "assets/puzzle.png";
+  static const String femenine = "assets/femenine.png";
 }
