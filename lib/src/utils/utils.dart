@@ -2,6 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
 class Utils {
+  static String getPrefix(String input, String delimiter) {
+    List<String> parts = input.split(delimiter);
+    return parts.first;
+  }
+
   static Timestamp convertMapToTimestamp(dynamic data) {
     if (data != null) {
       if (data is int) {

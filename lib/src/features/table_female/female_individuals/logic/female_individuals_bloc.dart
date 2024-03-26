@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:equatable/equatable.dart';
 
 import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/individual_model.dart';
+import 'package:familytree/src/router/app_router.gr.dart';
 
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:flutter/material.dart';
@@ -60,17 +62,6 @@ class FemaleIndividualsBloc extends Cubit<FemaleIndividualsState> {
     XToast.hideLoading();
   }
 
-  Future<void> deleteIndividual() async {
-    XToast.showLoading();
-
-    await Future.wait(state.listIndividualSelected
-        .map((id) => domain.individual.deleteIndividual(id)));
-
-    getAllIndividual();
-    onClearButton();
-    XToast.hideLoading();
-  }
-
   void onChangedSearchText(String value) {
     emit(state.copyWith(searchText: value));
   }
@@ -97,9 +88,8 @@ class FemaleIndividualsBloc extends Cubit<FemaleIndividualsState> {
     getAllIndividual();
   }
 
-  void onShowDetailIndividual(BuildContext context, String individualId) {
-    //TODO
-    // context.router.push(DetailIndividualRoute(individualId: individualId));
+  void showTableFemale(BuildContext context, String individualId) {
+    context.router.push(TableFemaleRoute(individualId: individualId));
   }
 
   void onClearButton() {

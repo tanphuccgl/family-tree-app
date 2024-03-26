@@ -1,4 +1,4 @@
-import 'package:familytree/src/features/table_female/female_individuals/logic/female_individuals_bloc.dart';
+import 'package:familytree/src/features/table_female/table_female/logic/table_female_state.dart';
 import 'package:familytree/src/network/model/individual_model.dart';
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
@@ -6,11 +6,11 @@ import 'package:familytree/src/utils/helper/gap.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ItemFemaleIndividual extends StatelessWidget {
+class ItemTableFemale extends StatelessWidget {
   final IndividualModel data;
   final int index;
   final bool isLastItem;
-  const ItemFemaleIndividual(
+  const ItemTableFemale(
       {super.key,
       required this.data,
       required this.index,
@@ -18,14 +18,14 @@ class ItemFemaleIndividual extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FemaleIndividualsBloc, FemaleIndividualsState>(
+    return BlocBuilder<TableFemaleBloc, TableFemaleState>(
       builder: (context, state) {
         return Column(
           children: [
             GestureDetector(
-              onTap: () => context
-                  .read<FemaleIndividualsBloc>()
-                  .showTableFemale(context, data.id),
+              // onTap: () => context
+              //     .read<TableFemaleBloc>()
+              //     .showTableFemale(context, data.id),
               child: Container(
                 width: double.infinity,
                 height: 70,
