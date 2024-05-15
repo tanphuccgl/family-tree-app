@@ -18,8 +18,7 @@ class IndividualCoordinator {
     path: DashboardPageView.individual,
     name: "IndividualWrapperRoute",
     page: IndividualWrapperPage,
-    //todo
-    initial: false,
+    initial: true,
     children: [
       AutoRoute(
           name: "IndividualRoute",

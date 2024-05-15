@@ -10,6 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
 
+import '../../../../widgets/button/back_button.dart';
+
 class TreeViewPage extends StatelessWidget {
   const TreeViewPage({super.key});
 
@@ -30,12 +32,24 @@ class TreeViewPage extends StatelessWidget {
                 children: [
                   if (!(currentOrientation == Orientation.landscape &&
                       Utils.isWebMobile)) ...[
-                    Text(
-                      "Family tree",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        BackButtonCustom(
+                          onPressed: () {
+                            context.read<FamilyTreeBloc>().onBack();
+                          },
+                        ),
+                        Spacer(),
+                        Text(
+                          "Family tree",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30),
+                        ),
+                        Spacer()
+                      ],
                     ),
                     SizedBox(height: 40),
                   ],

@@ -14,7 +14,6 @@ class TableFemaleCoordinator {
     path: DashboardPageView.tableFemale,
     name: "TableFemaleWrapperRoute",
     page: TableFemaleWrapperPage,
-    initial: true,
     children: [
       AutoRoute(
         name: "FemaleIndividualsRoute",

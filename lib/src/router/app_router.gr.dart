@@ -240,7 +240,7 @@ class XRouter extends _i24.RootStackRouter {
                   '#redirect',
                   path: '',
                   parent: DashboardRoute.name,
-                  redirectTo: 'table-female',
+                  redirectTo: 'individual',
                   fullMatch: true,
                 ),
                 _i24.RouteConfig(
