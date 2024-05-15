@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:equatable/equatable.dart';
+import 'package:familytree/src/features/common/logic/stream_bloc.dart';
 
 import 'package:familytree/src/network/domain.dart';
 import 'package:familytree/src/network/model/individual_model.dart';
@@ -7,12 +8,13 @@ import 'package:familytree/src/router/app_router.gr.dart';
 
 import 'package:familytree/widgets/dialogs/toast_wrapper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:get_it/get_it.dart';
 
 part 'individual_state.dart';
 
-class IndividualBloc extends Cubit<IndividualState> {
+class IndividualBloc
+    extends StreamCubit<IndividualState, List<IndividualModel>> {
   final BuildContext context;
 
   IndividualBloc(this.context) : super(IndividualState()) {
@@ -23,6 +25,21 @@ class IndividualBloc extends Cubit<IndividualState> {
 
   ScrollController scrollController1 = ScrollController();
   ScrollController scrollController2 = ScrollController();
+
+  @override
+  Stream<List<IndividualModel>>? get getStream {
+    return domain.individual.getAllIndividualStream();
+  }
+
+  @override
+  void onStreamData(List<IndividualModel>? data) {
+    if (data != null) {
+      emit(state.copyWith(list: data));
+    }
+  }
+
+  @override
+  void onStreamError(error) {}
 
   void syncScrollController() {
     bool shouldSync = true;
@@ -47,7 +64,8 @@ class IndividualBloc extends Cubit<IndividualState> {
   }
 
   void init() async {
-    await getAllIndividual();
+    // XToast.showLoading();
+    // await getAllIndividual();
     syncScrollController();
   }
 

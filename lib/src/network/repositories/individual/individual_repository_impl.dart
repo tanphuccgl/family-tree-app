@@ -46,4 +46,9 @@ class IndividualRepositoryImpl extends IndividualRepository {
       String areaId) async {
     return reference.getIndividualsWithArea(areaId);
   }
+
+  @override
+  Stream<List<IndividualModel>> getAllIndividualStream() {
+    return reference.getAllIndividualStream();
+  }
 }

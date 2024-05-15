@@ -14,6 +14,7 @@ abstract class IndividualRepository {
   Future<XResult<String>> deleteIndividual(String id);
 
   Future<XResult<List<IndividualModel>>> getAllIndividual();
+  Stream<List<IndividualModel>> getAllIndividualStream();
 
   Future<XResult<List<IndividualModel>>> getIndividualWithType(
       GenerationEnum value);

@@ -2,19 +2,20 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-abstract class StreamCubit<T> extends Cubit<T> {
+abstract class StreamCubit<T, D> extends Cubit<T> {
   StreamCubit(T initialState) : super(initialState) {
-    initialise();
+    initialize();
   }
-  @override
-  Stream<T> get stream;
+  Stream<D>? get getStream;
 
   StreamSubscription? get streamSubscription => _streamSubscription;
 
   StreamSubscription? _streamSubscription;
 
-  void initialise() {
-    _streamSubscription = stream.listen(
+  bool get isPaused => _streamSubscription?.isPaused ?? false;
+
+  void initialize() {
+    _streamSubscription = getStream?.listen(
       (incomingData) {
         var data = transformData(incomingData);
         onStreamData(data);
@@ -25,14 +26,27 @@ abstract class StreamCubit<T> extends Cubit<T> {
     );
   }
 
-  /// Called before the notifyListeners is called when data has been set.
-  void onStreamData(T? data);
+  void onSourceChange() {
+    // Disable current stream
+    _streamSubscription?.cancel();
+    _streamSubscription = null;
+    if (getStream != null) {
+      initialize();
+    }
+  }
 
-  /// Called when an error is fired in the stream.
+  void pause() => _streamSubscription?.pause();
+
+  void resume() => _streamSubscription?.resume();
+
+  /// Called before the notifyListeners is called when data has been set
+  void onStreamData(D? data);
+
+  /// Called when an error is fired in the stream
   void onStreamError(error);
 
-  /// Called before the data is set for the ViewModel.
-  T transformData(T data) {
+  /// Called before the data is set for the ViewModel
+  D transformData(D data) {
     return data;
   }
 
