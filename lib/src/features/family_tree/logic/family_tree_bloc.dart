@@ -20,7 +20,7 @@ class FamilyTreeBloc extends Cubit<FamilyTreeState> {
   }
 
   Domain get domain => GetIt.I<Domain>();
-  final Graph graph = Graph()..isTree = true;
+  Graph graph = Graph()..isTree = true;
   BuchheimWalkerConfiguration builder = BuchheimWalkerConfiguration();
   OverlayEntry? overlayEntry;
 
@@ -49,6 +49,13 @@ class FamilyTreeBloc extends Cubit<FamilyTreeState> {
     } else {
       emit(state.copyWith(currnentArea: value));
     }
+  }
+
+  void onBack() async {
+    emit(FamilyTreeState());
+    graph = Graph()..isTree = true;
+    builder = BuchheimWalkerConfiguration();
+    init();
   }
 
   void onSelectIndividual(BuildContext context, String individualId) {
