@@ -8,6 +8,14 @@ class ItemElementWidget extends StatelessWidget {
   final IndividualModel data;
   const ItemElementWidget({super.key, required this.data});
 
+  String getFirstImage(List<String> image) {
+    if (image.isNotEmpty) {
+      return image.first;
+    } else {
+      return "";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -74,7 +82,7 @@ class ItemElementWidget extends StatelessWidget {
                         shape: BoxShape.rectangle,
                         color: Colors.blue,
                         image: DecorationImage(
-                          image: NetworkImage(data.image),
+                          image: NetworkImage(getFirstImage(data.image)),
                           colorFilter: new ColorFilter.mode(
                               Colors.black.withOpacity(0.5), BlendMode.dstATop),
                         )),
@@ -101,7 +109,7 @@ class ItemElementWidget extends StatelessWidget {
                             colorFilter: new ColorFilter.mode(
                                 Colors.black.withOpacity(0.5),
                                 BlendMode.dstATop),
-                            image: NetworkImage(data.image))),
+                            image: NetworkImage(getFirstImage(data.image)))),
                     child: Center(
                       child: Text(
                         data.name,

@@ -205,9 +205,9 @@ class CreateIndividualF0FemaleBloc
           .putData(file.bytes!, metadata);
 
       final image = await uploadTask.ref.getDownloadURL();
-      emit(state.copyWith(image: image));
+      final listImage = [...state.image, image];
+      emit(state.copyWith(image: listImage));
     } catch (error) {
-      emit(state.copyWith(image: ""));
       return;
     }
   }

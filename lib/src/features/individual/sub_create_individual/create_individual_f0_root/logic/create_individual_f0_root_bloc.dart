@@ -200,9 +200,9 @@ class CreateIndividualF0RootBloc extends Cubit<CreateIndividualF0RootState> {
           .putData(file.bytes!, metadata);
 
       final image = await uploadTask.ref.getDownloadURL();
-      emit(state.copyWith(image: image));
+      final list = [...state.image, image];
+      emit(state.copyWith(image: list));
     } catch (error) {
-      emit(state.copyWith(image: ""));
       return;
     }
   }
