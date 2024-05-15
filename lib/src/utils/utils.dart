@@ -38,4 +38,14 @@ class Utils {
     final result = kIsWeb && defaultTargetPlatform == TargetPlatform.iOS;
     return result;
   }
+
+  static List<String> generateListNumberRating() {
+    List<String> list = [];
+    double value = 0.0;
+    while (value <= 10.0) {
+      list.add(value.toStringAsFixed(1));
+      value += 0.5;
+    }
+    return list;
+  }
 }
