@@ -69,7 +69,7 @@ class IndividualModel extends BaseModel {
   final String name;
   final String videoLink;
   final bool isMale;
-  final String image;
+  final List<String> image;
   final GenerationEnum type;
   final String fatherId;
   final String motherId;
@@ -94,7 +94,7 @@ class IndividualModel extends BaseModel {
     this.videoLink = "",
     this.isMale = true,
     this.type = GenerationEnum.f0,
-    this.image = "",
+    this.image = const [],
     this.fatherId = "",
     this.motherId = "",
     this.food = "",
@@ -130,7 +130,7 @@ class IndividualModel extends BaseModel {
       'name': name,
       'videoLink': videoLink,
       'isMale': isMale,
-      'image': image,
+      'image': image.toList(),
       'area': area?.toMap(),
       'fatherId': fatherId,
       'motherId': motherId,
@@ -161,7 +161,9 @@ class IndividualModel extends BaseModel {
       name: map['name'] as String,
       videoLink: map['videoLink'] as String,
       isMale: map['isMale'] as bool,
-      image: map['image'] as String,
+      image: map['image'] == null
+          ? []
+          : (map['image'] as List).map((e) => e.toString()).toList(),
       area: map['area'] == null ? null : AreaModel.fromMap(map['area']),
       fatherId: map['fatherId'] as String,
       motherId: map['motherId'] as String,
@@ -195,7 +197,7 @@ class IndividualModel extends BaseModel {
     bool? isMale,
     List<String>? listCopulateId,
     GenerationEnum? type,
-    String? image,
+    List<String>? image,
     AreaModel? area,
     OriginModel? origin,
     String? fatherId,

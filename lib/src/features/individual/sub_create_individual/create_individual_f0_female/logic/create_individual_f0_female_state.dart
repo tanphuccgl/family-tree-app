@@ -19,7 +19,7 @@ class CreateIndividualF0FemaleState extends Equatable {
   final String style;
   final String weight;
 
-  final String image;
+  final List<String> image;
   final String video;
 
   final List<InfoMoreModel> listFieldInfo;
@@ -39,7 +39,7 @@ class CreateIndividualF0FemaleState extends Equatable {
     this.review = "",
     this.style = "",
     this.weight = "",
-    this.image = "",
+    this.image = const [],
     this.video = "",
     this.listFieldInfo = const [],
   });
@@ -84,7 +84,7 @@ class CreateIndividualF0FemaleState extends Equatable {
     String? review,
     String? style,
     String? weight,
-    String? image,
+    List<String>? image,
     String? video,
     List<InfoMoreModel>? listFieldInfo,
   }) {

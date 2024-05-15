@@ -1,8 +1,6 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
 import 'package:familytree/src/utils/utils.dart';
-import 'package:familytree/widgets/froms/input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,9 +31,9 @@ class ReviewF0RootWidget extends StatelessWidget {
     );
   }
 
-   Widget dropdownListReviewSuggest() {
-    return BlocBuilder<CreateIndividualF0RootBloc,
-        CreateIndividualF0RootState>(builder: (context, state) {
+  Widget dropdownListReviewSuggest() {
+    return BlocBuilder<CreateIndividualF0RootBloc, CreateIndividualF0RootState>(
+        builder: (context, state) {
       return Container(
         width: 300,
         height: 50,

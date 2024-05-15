@@ -39,6 +39,7 @@ class IndividualCollectionReference
       return XResult.exception(e);
     }
   }
+
   Stream<List<IndividualModel>> getAllIndividualStream() {
     return ref.snapshots().asyncMap<List<IndividualModel>>((event) async {
       try {
