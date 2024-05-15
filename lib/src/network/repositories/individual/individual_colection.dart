@@ -39,6 +39,15 @@ class IndividualCollectionReference
       return XResult.exception(e);
     }
   }
+  Stream<List<IndividualModel>> getAllIndividualStream() {
+    return ref.snapshots().asyncMap<List<IndividualModel>>((event) async {
+      try {
+        return event.docs.toList().map((e) => e.data()).toList();
+      } catch (e) {
+        return [];
+      }
+    });
+  }
 
   Future<XResult<List<IndividualModel>>> getIndividualWithType(
       GenerationEnum value) async {
