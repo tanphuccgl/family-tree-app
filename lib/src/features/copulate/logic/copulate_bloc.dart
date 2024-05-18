@@ -55,10 +55,11 @@ class CopulateBloc extends Cubit<CopulateState> {
       XToast.error("Vui lòng chọn cá thể");
       return;
     }
-    if (femaleSelected.origin?.id == maleSelected.origin?.id) {
-      XToast.error("Không được phối cận huyết - chung xuất xứ");
-      return;
-    }
+    //TODO
+    // if (femaleSelected.origin?.id == maleSelected.origin?.id) {
+    //   XToast.error("Không được phối cận huyết - chung xuất xứ");
+    //   return;
+    // }
     XToast.showLoading();
 
     try {
