@@ -36,7 +36,7 @@ class OverlayInfoIndividual extends StatelessWidget {
             : BoxConstraints(maxHeight: 300, maxWidth: 400),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: XColors.primary10,
+          color: Color(0xffeaf4ff),
         ),
         child: Column(
           children: [

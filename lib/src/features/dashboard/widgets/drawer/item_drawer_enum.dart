@@ -11,7 +11,7 @@ enum ItemDrawerEnum {
   String get title {
     switch (this) {
       case tree:
-        return "Family tree";
+        return "Sơ Đồ Phả Hệ";
       case list:
         return "Cá thể";
       case copulate:

@@ -23,11 +23,15 @@ class ItemDrawer extends StatelessWidget {
               margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
               decoration: BoxDecoration(
-                  color: isSelected ? XColors.primary4 : null,
+                  color: isSelected
+                      ? XColors.primary4
+                      : (data.index % 2 == 0
+                          ? Colors.white
+                          : Color(0xfff8f9fa)),
                   borderRadius: BorderRadius.circular(15)),
               child: Image.asset(
                 data.icon,
-                color: isSelected ? XColors.primary6 : XColors.primary5,
+                color: isSelected ? Color(0xff000000) : Color(0xff000000),
                 width: 30,
                 height: 30,
               ),
@@ -40,13 +44,15 @@ class ItemDrawer extends StatelessWidget {
             margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             decoration: BoxDecoration(
-                color: isSelected ? XColors.primary4 : null,
+                color: isSelected
+                    ? XColors.primary4
+                    : (data.index % 2 == 0 ? Colors.white : Color(0xfff8f9fa)),
                 borderRadius: BorderRadius.circular(15)),
             child: Row(
               children: [
                 Image.asset(
                   data.icon,
-                  color: isSelected ? XColors.primary6 : XColors.primary5,
+                  color: isSelected ? Color(0xff000000) : Color(0xff000000),
                   width: 30,
                   height: 30,
                 ),
@@ -54,7 +60,7 @@ class ItemDrawer extends StatelessWidget {
                 Text(
                   data.title,
                   style: TextStyle(
-                    color: isSelected ? XColors.primary6 : XColors.primary5,
+                    color: isSelected ? Color(0xff000000) : Color(0xff000000),
                     fontWeight: FontWeight.w400,
                     fontSize: 18,
                   ),

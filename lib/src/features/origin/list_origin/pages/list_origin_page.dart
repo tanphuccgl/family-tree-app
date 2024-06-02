@@ -21,7 +21,7 @@ class ListOriginPage extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: XColors.primary10,
+              color: Color(0xffeaf4ff),
             ),
             child: Column(
               children: [
@@ -31,7 +31,7 @@ class ListOriginPage extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10)),
-                    color: hasSelected ? XColors.primary7 : XColors.primary9,
+                    color: hasSelected ? Color(0xffeaf4ff) : Color(0xffeaf4ff),
                   ),
                   child: Row(
                     mainAxisAlignment: hasSelected
@@ -67,7 +67,7 @@ class ListOriginPage extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                   decoration: BoxDecoration(
-                    color: XColors.primary9,
+                    color: Color(0xffeaf4ff),
                   ),
                   child: Row(
                     children: [

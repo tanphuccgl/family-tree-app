@@ -32,7 +32,7 @@ class OriginOverlayWidget extends StatelessWidget {
               fillColor: XColors.primary7,
               style: Theme.of(context).textTheme.labelLarge?.copyWith(
                   fontSize: 13,
-                  color: Colors.white,
+                  color: Color(0xff000000),
                   fontWeight: FontWeight.w400),
             )),
       ],

@@ -42,9 +42,9 @@ class TreeViewPage extends StatelessWidget {
                         ),
                         Spacer(),
                         Text(
-                          "Family tree",
+                          "Sơ Đồ Phả Hệ",
                           style: TextStyle(
-                              color: Colors.white,
+                              color: Color(0xff000000),
                               fontWeight: FontWeight.bold,
                               fontSize: 30),
                         ),
@@ -67,9 +67,9 @@ class TreeViewPage extends StatelessWidget {
               shrinkWrap: true,
               children: [
                 Text(
-                  "Family tree",
+                  "Sơ Đồ Phả Hệ",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Color(0xff000000),
                       fontWeight: FontWeight.bold,
                       fontSize: 30),
                 ),

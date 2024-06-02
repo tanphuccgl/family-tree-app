@@ -21,7 +21,7 @@ class BoxSelectArea extends StatelessWidget {
               margin: EdgeInsets.symmetric(horizontal: size.width * 0.05),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: XColors.primary10,
+                color: Color(0xffeaf4ff),
               ),
               child: Column(
                 children: [
@@ -31,7 +31,7 @@ class BoxSelectArea extends StatelessWidget {
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
                           topRight: Radius.circular(10)),
-                      color: XColors.primary9,
+                      color: Color(0xffeaf4ff),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -50,7 +50,7 @@ class BoxSelectArea extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                     decoration: BoxDecoration(
-                      color: XColors.primary9,
+                      color: Color(0xffeaf4ff),
                     ),
                     child: Row(
                       children: [
