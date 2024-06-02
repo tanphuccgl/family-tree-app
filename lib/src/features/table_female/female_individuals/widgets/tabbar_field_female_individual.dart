@@ -18,7 +18,7 @@ class TabbarFieldFemaleIndividual extends StatelessWidget {
           height: 50,
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
           decoration: BoxDecoration(
-            color: XColors.primary9,
+            color: Color(0xffeaf4ff),
           ),
           child: ListView(
             controller: context.read<FemaleIndividualsBloc>().scrollController2,

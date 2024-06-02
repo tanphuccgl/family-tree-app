@@ -15,7 +15,7 @@ class AreaOvelayWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Xuất xứ",
+          "Khu vực",
           style: TextStyle(
               color: XColors.primary5,
               fontSize: 15,
@@ -30,7 +30,9 @@ class AreaOvelayWidget extends StatelessWidget {
             readOnly: true,
             fillColor: XColors.primary7,
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                fontSize: 13, color: Colors.white, fontWeight: FontWeight.w400),
+                fontSize: 13,
+                color: Color(0xff000000),
+                fontWeight: FontWeight.w400),
           ),
         ),
       ],

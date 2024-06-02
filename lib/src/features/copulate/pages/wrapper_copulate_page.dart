@@ -4,7 +4,6 @@ import 'package:familytree/src/features/copulate/widgets/box_select_area.dart';
 import 'package:familytree/src/features/copulate/widgets/button_select_area.dart';
 import 'package:familytree/src/network/model/individual_model.dart';
 
-import 'package:familytree/src/theme/colors.dart';
 import 'package:familytree/src/utils/helper/gap.dart';
 
 import 'package:flutter/material.dart';
@@ -37,7 +36,7 @@ class _WrapperCopulatePageState extends State<WrapperCopulatePage>
       child: BlocBuilder<CopulateBloc, CopulateState>(
         builder: (context, state) {
           return Scaffold(
-            backgroundColor: XColors.primary8,
+            backgroundColor: Color(0xfff8f9fa),
             body: Padding(
               padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
               child: Column(

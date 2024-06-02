@@ -64,7 +64,7 @@ class FamilyTreeBloc extends Cubit<FamilyTreeState> {
 
   Paint _colorPaint(Color color) {
     return Paint()
-      ..color = color
+      ..color = Colors.black
       ..strokeWidth = 1
       ..style = PaintingStyle.stroke;
   }
@@ -81,45 +81,48 @@ class FamilyTreeBloc extends Cubit<FamilyTreeState> {
     for (var element in list) {
       if (element.type == GenerationEnum.f0 && element.isMale == false) {
         edges.add(
-            Edge(nodeRoot, Node.Id(element), paint: _colorPaint(Colors.red)));
+            Edge(nodeRoot, Node.Id(element), paint: _colorPaint(Colors.black)));
       }
 
       if (element.type == GenerationEnum.f1) {
         if (element.fatherId.isNotEmpty && element.motherId.isNotEmpty) {
           final b = list.singleWhere((e) => e.id == element.motherId);
           //T
-          edges.add(Edge(Node.Id(b), Node.Id(element)));
+          edges.add(Edge(Node.Id(b), Node.Id(element),
+              paint: _colorPaint(Colors.black)));
         } else if (element.listCopulateId.isNotEmpty) {
           final a =
               list.singleWhere((e) => e.id == element.listCopulateId.first);
 
           edges.add(Edge(Node.Id(a), Node.Id(element),
-              paint: _colorPaint(Colors.blue)));
+              paint: _colorPaint(Colors.black)));
         }
       }
 
       if (element.type == GenerationEnum.f2) {
         if (element.fatherId.isNotEmpty && element.motherId.isNotEmpty) {
           final b = list.singleWhere((e) => e.id == element.motherId);
-          edges.add(Edge(Node.Id(b), Node.Id(element)));
+          edges.add(Edge(Node.Id(b), Node.Id(element),
+              paint: _colorPaint(Colors.black)));
         } else if (element.listCopulateId.isNotEmpty) {
           final a =
               list.singleWhere((e) => e.id == element.listCopulateId.first);
 
           edges.add(Edge(Node.Id(a), Node.Id(element),
-              paint: _colorPaint(Colors.green)));
+              paint: _colorPaint(Colors.black)));
         }
       }
       if (element.type == GenerationEnum.f3) {
         if (element.fatherId.isNotEmpty && element.motherId.isNotEmpty) {
           final b = list.singleWhere((e) => e.id == element.motherId);
-          edges.add(Edge(Node.Id(b), Node.Id(element)));
+          edges.add(Edge(Node.Id(b), Node.Id(element),
+              paint: _colorPaint(Colors.black)));
         } else if (element.listCopulateId.isNotEmpty) {
           final a =
               list.singleWhere((e) => e.id == element.listCopulateId.first);
 
           edges.add(Edge(Node.Id(a), Node.Id(element),
-              paint: _colorPaint(Colors.purple)));
+              paint: _colorPaint(Colors.black)));
         }
       }
     }

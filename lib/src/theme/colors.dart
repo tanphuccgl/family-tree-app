@@ -6,14 +6,14 @@ class XColors {
   static final MaterialColor primaryColors =
       ColorUtility.generateMaterialColor(primary1);
 
-  static const Color primary1 = Color(0xff081B2B);
+  static const Color primary1 = Colors.white;
   static const Color primary2 = Color(0xff10253A);
   static const Color primary3 = Color(0xff162C46);
-  static const Color primary4 = Color(0xff0642A0);
-  static const Color primary5 = Color(0xff97A8BF);
+  static const Color primary4 = Color(0xfffff6e3);
+  static const Color primary5 = Color(0xff000000);
   static const Color primary6 = Color(0xffD4E2FE);
-  static const Color primary7 = Color(0xff7CACF8);
-  static const Color primary8 = Color(0xff031625);
+  static const Color primary7 = Color(0xffFFF6E3);
+  static const Color primary8 = Color(0xfff8f9fa);
   static const Color primary9 = Color(0xff172C46);
   static const Color primary10 = Color(0xff0D2136);
 

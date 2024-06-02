@@ -30,7 +30,9 @@ class FamilyCodeOverlayWidget extends StatelessWidget {
             fillColor: XColors.primary7,
             value: individual.id,
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                fontSize: 13, color: Colors.white, fontWeight: FontWeight.w400),
+                fontSize: 13,
+                color: Color(0xff000000),
+                fontWeight: FontWeight.w400),
           ),
         ),
       ],

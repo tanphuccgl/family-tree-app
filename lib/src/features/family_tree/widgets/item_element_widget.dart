@@ -1,6 +1,6 @@
 import 'package:familytree/src/features/family_tree/logic/family_tree_bloc.dart';
 import 'package:familytree/src/network/model/individual_model.dart';
-import 'package:familytree/src/theme/colors.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -45,13 +45,13 @@ class ItemElementWidget extends StatelessWidget {
                   TextSpan(
                     text: data.type.labelOf,
                     style: const TextStyle(
-                      color: XColors.primary4,
+                      color: Color(0xff000000),
                     ),
                     children: <TextSpan>[
                       TextSpan(
                         text: " - ",
                         style: const TextStyle(
-                          color: XColors.primary5,
+                          color: Color(0xff000000),
                         ),
                       ),
                       TextSpan(
@@ -64,10 +64,7 @@ class ItemElementWidget extends StatelessWidget {
                   ),
                 ),
                 data.isMale
-                    ? const Icon(
-                        Icons.male,
-                        color: Colors.blue,
-                      )
+                    ? Icon(Icons.male, color: Colors.blue)
                     : const Icon(
                         Icons.female,
                         color: Colors.yellow,
@@ -80,7 +77,20 @@ class ItemElementWidget extends StatelessWidget {
                     height: 50,
                     decoration: BoxDecoration(
                         shape: BoxShape.rectangle,
-                        color: Colors.blue,
+                        color: data.type == GenerationEnum.f0
+                            ? Color(0xfffff6e3)
+                            : (data.type == GenerationEnum.f1
+                                ? Color(0xffE8f2fc)
+                                : Color(0xffafc4f8)),
+                        borderRadius: BorderRadius.circular(13),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 1,
+                            blurRadius: 7,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
                         image: DecorationImage(
                           image: NetworkImage(getFirstImage(data.image)),
                           colorFilter: new ColorFilter.mode(
@@ -94,7 +104,7 @@ class ItemElementWidget extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                           fontSize: 15,
-                          color: XColors.primary8,
+                          color: Color(0xff000000),
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -104,7 +114,19 @@ class ItemElementWidget extends StatelessWidget {
                     height: 80,
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.yellow,
+                        color: data.type == GenerationEnum.f0
+                            ? Color(0xfffff6e3)
+                            : (data.type == GenerationEnum.f1
+                                ? Color(0xffE8f2fc)
+                                : Color(0xffafc4f8)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 1,
+                            blurRadius: 7,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
                         image: DecorationImage(
                             colorFilter: new ColorFilter.mode(
                                 Colors.black.withOpacity(0.5),
@@ -118,7 +140,7 @@ class ItemElementWidget extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                           fontSize: 15,
-                          color: XColors.primary8,
+                          color: Color(0xff000000),
                           fontWeight: FontWeight.w500,
                         ),
                       ),
